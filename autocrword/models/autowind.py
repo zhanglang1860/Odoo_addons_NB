@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api
+import sys
+import os
+
+parentUrl=r'C:\Program Files (x86)\Odoo 12.0\server\odoo'
+sys.path.append(parentUrl)
+print(sys.path)
+# import models, fields, api
+
 from . import renew2
 import base64,os
 from . import connect_sql
