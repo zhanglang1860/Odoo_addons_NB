@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_form_electrical" model="ir.ui.view">
+        <field name="name">Electrical_Information Form</field>
+        <field name="model">autoreport.electrical</field>
+        <field name="arch" type="xml">
+            <form string="Electrical">
+                <header>
+                  <button name="electrical_generate" type="object" groups="autocrword.electrical_group_user"
+                           string="生成报告" />
+                  <button name="button_electrical" type="object"  groups="autocrword.electrical_group_user"
+                           string="提交报告" confirm="是否确认提交该项目电气资料？" />
+               </header>
+                <sheet>
+                    <group name="group_top">
+                         <group name="group_left">
+                            <field name="project_id" />
+                            <field name="version_id" />
+                            <field name="voltage_class" />
+                         </group>
+                    </group>
+                    <group name="group_buttom">
+                        <field name="lenth_singlejL240" />
+                        <field name="lenth_doublejL240" />
+                        <field name="yjlv95" />
+                        <field name="yjv300" />
+                        <field name="circuit_number" />
+                    </group>
+                </sheet>
+            </form>
+
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_form_generator" model="ir.ui.view">
+        <field name="name">Wind_Information Form</field>
+        <field name="model">autoreport.generator</field>
+        <field name="arch" type="xml">
+            <form string="Wind generator">
+                <sheet>
+                    <group name="group_top">
+                         <group name="group_left">
+                            <field name="generator_name" />
+                            <field name="company_name" />
+                         </group>
+                         <group name="group_right">
+                            <field name="generator_height" />
+                            <field name="generator_diameter" />
+                            <field name="generator_Power" />
+                        </group>
+                    </group>
+
+                    <group name="group_bottom">
+                        <field name="generator_Output" />
+                    </group>
+
+                </sheet>
+            </form>
+
+        </field>
+    </record>
+</odoo>

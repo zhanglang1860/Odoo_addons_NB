@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- Autocrword App Menu -->
+    <menuitem id="menu_autocrword" name="风能自动报告编制系统" />
+
+    <!-- Action to open the Project list -->
+
+    <act_window id="action_autocrword_project"
+        name="项目资料"
+        res_model="autoreport.project"
+        view_mode="tree,form"
+    />
+
+
+    <!-- Menu item to open the Project list -->
+
+    <menuitem id="menu_autocrword_project"
+        name="项目资料"
+        parent="menu_autocrword"
+        action="action_autocrword_project"
+    />
+
+    <!-- Action to open the Wind list -->
+
+    <act_window id="action_autocrword_wind"
+        name="风能专业"
+        res_model="autoreport.windenergy"
+        view_mode="tree,form"
+    />
+
+    <!-- Menu item to open the Wind list -->
+
+    <menuitem id="menu_autocrword_wind"
+        name="风能专业"
+        parent="menu_autocrword"
+        action="action_autocrword_wind"
+    />
+
+        <!-- Action to open the Civil list -->
+
+    <act_window id="action_autocrword_civil"
+        name="土建专业"
+        res_model="autoreport.civil"
+        view_mode="tree,form"
+    />
+
+    <!-- Menu item to open the Civil list -->
+
+    <menuitem id="menu_autocrword_civil"
+        name="土建专业"
+        parent="menu_autocrword"
+        action="action_autocrword_civil"
+    />
+
+         <!-- Action to open the Electrical list -->
+
+    <act_window id="action_autocrword_electrical"
+        name="电气专业"
+        res_model="autoreport.electrical"
+        view_mode="tree,form"
+    />
+
+    <!-- Menu item to open the Electrical list -->
+
+    <menuitem id="menu_autocrword_electrical"
+        name="电气专业"
+        parent="menu_autocrword"
+        action="action_autocrword_electrical"
+    /> 
+            <!-- Action to open the Economic list -->
+
+    <act_window id="action_autocrword_economic"
+        name="概算与经评"
+        res_model="autoreport.economic"
+        view_mode="tree,form"
+    />
+
+    <!-- Menu item to open the Economic list -->
+
+    <menuitem id="menu_autocrword_economic"
+        name="概算与经评"
+        parent="menu_autocrword"
+        action="action_autocrword_economic"
+    />
+                <!-- Action to open the input list -->
+
+    <act_window id="action_autocrword_efficiency"
+        name="效率曲线"
+        res_model="autoreport.efficiency"
+        view_mode="tree,form"
+    />
+
+    <!-- Menu item to open the input list -->
+
+    <menuitem id="menu_autocrword_efficiency"
+        name="效率曲线"
+        parent="menu_autocrword"
+        action="action_autocrword_efficiency"
+    />
+</odoo>
