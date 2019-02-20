@@ -15,6 +15,7 @@ def connect_sql_chapter5(*turbine_list):
             sql_str = sql_str + '\'%s\','
 
     # 第五章
+
     selectsql_tur = "SELECT * FROM autoreport_generator WHERE name_tur in " + sql_str
     selectsql_power = "SELECT * FROM autoreport_outputcurve WHERE name_output in " + sql_str
     selectsql_efficiency = "SELECT * FROM autoreport_efficiency WHERE name_efficiency in " + sql_str

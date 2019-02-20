@@ -46,7 +46,7 @@ class windenergy_specialty(models.Model):
         data_tur_np, data_power_np, data_efficiency_np = connect_sql.connect_sql_chapter5(*tur_name)
         print(data_efficiency_np)
         #####################
-        path_images = r"C:\Program Files (x86)\Odoo 12.0\server\addons\autocrword\models"
+        path_images = r"d:\Program Files (x86)\Odoo 12.0\server\addons\autocrword\models"
         print("---------step:3  生成图片--------")
         # generate_images.generate_images(path_images, data_power_np, data_efficiency_np)  # 一会儿注释generate_images
         print("---------step:3  生成图片完毕--------")

@@ -1,76 +1,45 @@
 # coding=utf=8
 import os
 import numpy as np
-from pyecharts import Bar
+from pyecharts import Line
+import sys
+
+sys.path.append(r"C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models")
+import connect_sql
+
+turbine_list = ['GW3.3-155', 'MY2.5-145', 'GW3.0-140', 'GW3.4-140', 'GW2.5-140']
+data_tur_np, data_power_np, data_efficiency_np = connect_sql.connect_sql_chapter5(*turbine_list)
+
+save_path = r'D:\Program Files (x86)\Odoo 12.0\server\addons\autocrword\models\chapter_5'
 
 
-# import matplotlib.pyplot as plt
-
-# def generate_images(save_path, turbine_list):
 def generate_images(save_path, power_np, efficiency_np):
-# def generate_images():
     png_box = ('powers', 'efficiency')
 
-    # tur_np, power_np, efficiency_np = connect_sql(*turbine_list)
-
-    # speed = np.zeros(power_np.shape[1] - 6)  #  标注
-    # for i in range(0, power_np.shape[1] - 6):  #  标注
-    #     if i == 0:
-    #         speed[i] = 2.5
-    #     else:
-    #         speed[i] = i + 2
-    # power = power_np[:, 6: power_np.shape[1]].astype('float32') #  标注
-    # efficiency = efficiency_np[:, 2: (efficiency_np.shape[1]-4)].astype('float32') #  标注
+    speed = np.zeros(power_np.shape[1] - 6)  # 标注
+    for i in range(0, power_np.shape[1] - 6):  # 标注
+        if i == 0:
+            speed[i] = 2.5
+        else:
+            speed[i] = i + 2
+    power = power_np[:, 2: (power_np.shape[1] - 4)].astype('float32')  # 标注
+    efficiency = efficiency_np[:, 2: (efficiency_np.shape[1] - 4)].astype('float32')  # 标注
     # Label
-    # turbine_power_model = power_np[:, 5]
-    # turbine_efficiency_model = efficiency_np[:, 1]
+    turbine_power_model = power_np[:, 1]
+    turbine_efficiency_model = efficiency_np[:, 1]
     # figure power
-    attr = ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
-    v1 = [5, 20, 36, 10, 75, 90]
-    v2 = [10, 25, 8, 60, 20, 80]
-    bar = Bar("柱状图数据堆叠示例")
-    bar.add("商家A", attr, v1, is_stack=True)
-    bar.add("商家B", attr, v2, is_stack=True)
-    bar.render(path='powers.png')
+    line1 = Line("power")
+    attr = [i for i in range(0, 24)]
+    print(power)
+    for i in range(0, len(turbine_power_model)):
+        line1.add(turbine_power_model[i], attr, power[i], is_stack=False)
+    line1.render(path='powers.gif')
 
-    attr = ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
-    v1 = [5, 20, 36, 10, 75, 90]
-    v2 = [10, 25, 8, 60, 20, 80]
-    bar1 = Bar("柱状图数据堆叠示例")
-    bar1.add("商家A", attr, v1, is_stack=True)
-    bar1.add("商家B", attr, v2, is_stack=True)
-    bar1.render(path='efficiency.png')
+    line2 = Line("efficiency")
+    attr = [i for i in range(0, 24)]
+    for i in range(0, len(turbine_efficiency_model)):
+        line2.add(turbine_efficiency_model[i], attr, efficiency[i], is_stack=True)
+    line2.render(path='efficiency.png')
 
-# generate_images()
-# plt.figure(figsize=(5.6, 3.15))
-# for i in range(len(power)):
-#     plt.plot(speed, power[i], label=turbine_power_model[i])
-# plt.xlim((2.5, 25))
-# plt.ylim((0.0, 4000.0))
-# plt.xlabel("Wind speed")
-# plt.ylabel("Power")
-# new_ticks = np.linspace(0, 4000, 9)
-# print(new_ticks)
-# plt.yticks(new_ticks)
-# plt.legend(loc='lower right')
-# plt.subplots_adjust(left=0.115, right=0.965, wspace=0.200, hspace=0.200, bottom=0.145, top=0.96)
-# plt.savefig(os.path.join(save_path, '%s.png') % png_box[0])
 
-# # figure efficiency
-# plt.figure(figsize=(5.6, 3.15))
-# for i in range(len(efficiency)):
-#     plt.plot(speed, efficiency[i], label=turbine_efficiency_model[i])
-# plt.xlim((3, 20))
-# plt.ylim((0.0, 0.5))
-# plt.xlabel("Wind speed")
-# plt.ylabel("efficiency")
-# new_ticks = np.linspace(3, 20, 18)
-# print(new_ticks)
-# plt.xticks(new_ticks)
-#
-# new_ticks = np.linspace(0, 0.5, 11)
-# print(new_ticks)
-# plt.yticks(new_ticks)
-# plt.legend(loc='upper right')
-# plt.subplots_adjust(left=0.115, right=0.965, wspace=0.200, hspace=0.200, bottom=0.145, top=0.96)
-# plt.savefig(os.path.join(save_path, '%s.png') % png_box[1])
+generate_images(save_path, data_power_np, data_efficiency_np)
