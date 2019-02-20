@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_form_civil" model="ir.ui.view">
+        <field name="name">Civil_Information Form</field>
+        <field name="model">autoreport.civil</field>
+        <field name="arch" type="xml">
+            <form string="Civil">
+                <header>
+                  <button name="civil_generate" type="object" groups="autocrword.civil_group_user"
+                           string="生成报告" />
+                  <button name="button_civil" type="object"  groups="autocrword.civil_group_user"
+                           string="提交报告" confirm="是否确认提交该项目土建资料？" />
+               </header>
+                <sheet>
+                    <group name="group_top">
+                         <group name="group_left">
+                            <field name="project_id" />
+                            <field name="version_id" />
+                         </group>
+                         <group name="group_right">
+                            <field name="fort_intensity" />
+                            <field name="beating_capacity" />
+                            <field name="base_form" />
+                            <field name="ultimate_load" />
+                            <field name="Earthrock_ratio" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+
+        </field>
+    </record>
+</odoo>

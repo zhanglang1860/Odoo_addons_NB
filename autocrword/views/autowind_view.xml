@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_form_wind" model="ir.ui.view">
+        <field name="name">Wind_Information Form</field>
+        <field name="model">autoreport.windenergy</field>
+        <field name="arch" type="xml">
+            <form string="Wind">
+                <header>
+                  <button name="wind_generate" type="object" groups="autocrword.wind_group_user"
+                           string="生成报告" />
+                  <button name="button_wind" type="object" groups="autocrword.wind_group_user"
+                           string="提交报告" confirm="是否确认提交该项目风资源资料？" />
+               </header>
+                <sheet>
+                    <group name="group_top">
+                         <group name="group_left">
+                            <field name="project_id" />
+                            <field name="version_id" />
+                         </group>
+                         <group name="group_right">
+                            <field name="installed_number" />
+                        </group>
+                    </group>
+                    <group name="group_bottom">
+                        <field name="generator_ids" />
+                        <field name="report_attachment_id" />
+                    </group>
+
+                </sheet>
+            </form>
+
+        </field>
+    </record>
+</odoo>

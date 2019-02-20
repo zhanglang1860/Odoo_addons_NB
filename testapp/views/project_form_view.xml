@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_form_test" model="ir.ui.view">
+        <field name="name">Project_Information Form</field>
+        <field name="model">test.project</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <header>
+                  <button name="button_project" type="object"
+                           string="生成报告" />
+               </header>
+                <sheet>
+                    <group name="group_top">
+                         <group name="group_left">
+                             <field name="project_name" />
+                             <field name="order_number" />
+                         </group>
+                    </group>
+                </sheet>
+            </form>
+
+        </field>
+    </record>
+</odoo>

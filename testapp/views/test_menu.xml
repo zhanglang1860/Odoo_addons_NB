@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- test App Menu -->
+    <menuitem id="menu_test" name="测试" />
+
+    <!-- Action to open the Project list -->
+    <act_window id="action_test_project"
+        name="项目资料"
+        res_model="test.project"
+        view_mode="tree,form"
+    />
+
+
+
+    <!-- Menu item to open the Project list -->
+
+
+</odoo>

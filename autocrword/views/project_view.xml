@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_tree_project" model="ir.ui.view">
+        <field name="name">Project_Information Form</field>
+        <field name="model">autoreport.project</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name = "project_name"/>
+                <field name = "order_number"/>
+                <field name = "announce_capacity"/>
+                <field name = "wind_attachment_ok"/>
+                <field name = "electrical_attachment_ok"/>
+                <field name = "civil_attachment_ok"/>
+                <field name = "economic_attachment_ok"/>
+                <field name = "report_attachment_id" widget="many2one_binary"/>
+            </tree>
+
+        </field>
+    </record>
+</odoo>
