@@ -67,12 +67,12 @@ class windenergy_specialty(models.Model):
             r'C:\Program Files (x86)\Odoo 12.0\server\addons\autocrword\models\CR_chapter5_template.docx')
         Dict_5 = generate_dict.get_dict(data_tur_np, dict_keys_chapter5)
         context_5 = generate_dict.write_context(Dict_5, *context_keys_chapter5)
-        # png_box = ('powers', 'efficiency')
-        # for i in range(0, 2):
-        #     key = 'myimage' + str(i)
-        #     value = InlineImage(tpl, os.path.join(path_images, '%s.png') % png_box[i])
-        #     context_5[key] = value
-        # tpl.render(context_5)
+        png_box = ('powers', 'efficiency')
+        for i in range(0, 2):
+            key = 'myimage' + str(i)
+            value = InlineImage(tpl, os.path.join(path_images, '%s.png') % png_box[i])
+            context_5[key] = value
+        tpl.render(context_5)
         tpl.save(r'C:\Program Files (x86)\Odoo 12.0\server\addons\autocrword\models\result_chapter5_d.docx')
         print("---------chapter 5 生成完毕--------")
 

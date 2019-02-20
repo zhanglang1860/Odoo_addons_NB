@@ -84,17 +84,17 @@
     />
                 <!-- Action to open the input list -->
 
-    <act_window id="action_autocrword_efficiency"
-        name="效率曲线"
-        res_model="autoreport.efficiency"
+    <act_window id="action_autocrword_generator"
+        name="风机样式"
+        res_model="autoreport.generator"
         view_mode="tree,form"
     />
 
     <!-- Menu item to open the input list -->
 
-    <menuitem id="menu_autocrword_efficiency"
-        name="效率曲线"
+    <menuitem id="menu_autocrword_generator"
+        name="风机样式"
         parent="menu_autocrword"
-        action="action_autocrword_efficiency"
+        action="action_autocrword_generator"
     />
 </odoo>
