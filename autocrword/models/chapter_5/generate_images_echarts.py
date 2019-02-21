@@ -2,11 +2,7 @@
 import os
 import numpy as np
 from pyecharts import Line
-import sys
-
-sys.path.append(r"C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models")
 import connect_sql
-
 turbine_list = ['GW3.3-155', 'MY2.5-145', 'GW3.0-140', 'GW3.4-140', 'GW2.5-140']
 data_tur_np, data_power_np, data_efficiency_np = connect_sql.connect_sql_chapter5(*turbine_list)
 
@@ -38,8 +34,8 @@ def generate_images(save_path, power_np, efficiency_np):
     line2 = Line("efficiency")
     attr = [i for i in range(0, 24)]
     for i in range(0, len(turbine_efficiency_model)):
-        line2.add(turbine_efficiency_model[i], attr, efficiency[i], is_stack=True)
-    line2.render(path='efficiency.png')
+        line2.add(turbine_efficiency_model[i], attr, efficiency[i], is_stack=False)
+    line2.render(path='efficiency.gif')
 
 
 generate_images(save_path, data_power_np, data_efficiency_np)
