@@ -42,16 +42,16 @@ class ElectricalInsulator(TowerType):
         if self.composite_zinc_oxide_protector == "YH5WZ-51/134":
             self.used_numbers_YH5WZ_51_134 = (self.tur_number + self.line_loop_number) * 3
 
-
-insulator_list = ['FXBW4-35/70', 'U70BP-146D', 'FPQ-35/4T16', 'YH5WZ-51/134']
-tower_type_list = ['单回耐张塔', '单回耐张塔', '单回耐张塔', '单回直线塔', '单回直线塔', '双回耐张塔', '双回耐张塔', '双回直线塔', '双回直线塔', '铁塔电缆支架']
-tower_type_high_list = ['J2-24', 'J4-24', 'FS-18', 'Z2-30', 'ZK-42', 'SJ2-24', 'SJ4-24', 'SZ2-30', 'SZK-42', '角钢']
-tower_weight_list = [6.8, 8.5, 7, 5.5, 8.5, 12.5, 17, 6.5, 10, 0.5, ]
-tower_height_list = [32, 32, 27, 37, 49, 37, 37, 42, 54, 0]
-tower_foot_distance_list = [5.5, 5.5, 6, 5, 6, 7, 8, 6, 8, 0]
-
-project02 = ElectricalInsulator(25.3, 23.6, 1.55, 3, 31, 5)
-project02.sum_cal(tower_type_list, tower_type_high_list, tower_weight_list, tower_height_list, tower_foot_distance_list)
-project02.electrical_insulator_model(*insulator_list)
-print(project02.used_numbers_FXBW4_35_70, project02.used_numbers_U70BP_146D, project02.used_numbers_FPQ_35_4T16,
-      project02.used_numbers_YH5WZ_51_134)
+#
+# insulator_list = ['FXBW4-35/70', 'U70BP-146D', 'FPQ-35/4T16', 'YH5WZ-51/134']
+# tower_type_list = ['单回耐张塔', '单回耐张塔', '单回耐张塔', '单回直线塔', '单回直线塔', '双回耐张塔', '双回耐张塔', '双回直线塔', '双回直线塔', '铁塔电缆支架']
+# tower_type_high_list = ['J2-24', 'J4-24', 'FS-18', 'Z2-30', 'ZK-42', 'SJ2-24', 'SJ4-24', 'SZ2-30', 'SZK-42', '角钢']
+# tower_weight_list = [6.8, 8.5, 7, 5.5, 8.5, 12.5, 17, 6.5, 10, 0.5, ]
+# tower_height_list = [32, 32, 27, 37, 49, 37, 37, 42, 54, 0]
+# tower_foot_distance_list = [5.5, 5.5, 6, 5, 6, 7, 8, 6, 8, 0]
+#
+# project02 = ElectricalInsulator(25.3, 23.6, 1.55, 3, 31, 5)
+# project02.sum_cal(tower_type_list, tower_type_high_list, tower_weight_list, tower_height_list, tower_foot_distance_list)
+# project02.electrical_insulator_model(*insulator_list)
+# print(project02.used_numbers_FXBW4_35_70, project02.used_numbers_U70BP_146D, project02.used_numbers_FPQ_35_4T16,
+#       project02.used_numbers_YH5WZ_51_134)

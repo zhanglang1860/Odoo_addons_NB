@@ -21,6 +21,6 @@ class WireRod(ElectricalCircuit):
         # return self.aluminium_cable_steel_reinforced_length_weight
 
 
-project02 = WireRod(25.3, 23.6, 1.55, 3, 31, 5)
-project02.aluminium_cable_steel_reinforced("LGJ-240/30")
-print(project02.aluminium_cable_steel_reinforced_length_weight)
+# project02 = WireRod(25.3, 23.6, 1.55, 3, 31, 5)
+# project02.aluminium_cable_steel_reinforced("LGJ-240/30")
+# print(project02.aluminium_cable_steel_reinforced_length_weight)

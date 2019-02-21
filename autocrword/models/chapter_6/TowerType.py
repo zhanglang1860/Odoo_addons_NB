@@ -33,7 +33,6 @@ class TowerType(ElectricalCircuit):
                     self.used_numbers_single_J2_24 = self.used_numbers
                 elif self.tower_type_high == "J4-24":
                     self.used_numbers_single_J4_24 = self.used_numbers
-                print("asd"+str(self.used_numbers_single_J2_24))
             elif self.tower_type_high == "FS-18":
                 self.used_numbers = round(((self.line_loop_number * 100 / 2) / 100 + 1), 0)
                 self.tower_number_weight = self.tower_weight * self.used_numbers
