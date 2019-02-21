@@ -1,35 +1,6 @@
-# import decimal
-# from decimal import *
-#
-# Context(prec=4, rounding=ROUND_HALF_EVEN, Emin=-999999, Emax=999999, capitals=1, clamp=0, flags=[],
-#         traps=[InvalidOperation, DivisionByZero, Overflow])
+import ElectricalCircuit
 
 
-class ElectricalCircuit:
-    def __init__(self, single_circuit, double_circuit, buried_cable_35_1, buried_cable_35_3, tur_number,
-                 line_loop_number):
-        self.single_circuit = single_circuit
-        self.double_circuit = double_circuit
-        self.buried_cable_35_1 = buried_cable_35_1
-        self.buried_cable_35_3 = buried_cable_35_3
-        self.tur_number = tur_number
-        self.line_loop_number = line_loop_number
-
-        self.aluminium_cable_steel_reinforced_type = ''
-        self.aluminium_cable_steel_reinforced_length = 0
-        self.aluminium_cable_steel_reinforced_weight = 0
-        self.aluminium_cable_steel_reinforced_weight_length = 0
-
-
-class WireRod(ElectricalCircuit):
-    def aluminium_cable_steel_reinforced(self, aluminium_type):
-        self.aluminium_cable_steel_reinforced_type = aluminium_type
-        if self.aluminium_cable_steel_reinforced_type == "LGJ-240/30":
-            self.aluminium_cable_steel_reinforced_length = self.single_circuit * 3 * 1.05 + self.double_circuit * 6 * 1.05
-            self.aluminium_cable_steel_reinforced_weight = 0.922
-            self.aluminium_cable_steel_reinforced_weight_length = round(
-                self.aluminium_cable_steel_reinforced_length * self.aluminium_cable_steel_reinforced_weight)
-        return self.aluminium_cable_steel_reinforced_weight_length
 
 
 class TowerType(ElectricalCircuit):

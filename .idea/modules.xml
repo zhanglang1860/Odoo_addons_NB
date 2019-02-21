@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Odoo_addons_NB.iml" filepath="$PROJECT_DIR$/.idea/Odoo_addons_NB.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../docx_project/.idea/docx_project.iml" filepath="$PROJECT_DIR$/../docx_project/.idea/docx_project.iml" />
     </modules>
   </component>
 </project>
