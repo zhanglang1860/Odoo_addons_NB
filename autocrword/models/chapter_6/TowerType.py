@@ -1,6 +1,4 @@
-import ElectricalCircuit
-
-
+from ElectricalCircuit import ElectricalCircuit
 
 
 class TowerType(ElectricalCircuit):
