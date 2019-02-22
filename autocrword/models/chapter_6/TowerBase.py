@@ -35,7 +35,7 @@ class TowerBase(TowerType):
         self.used_numbers_base_jjc2, self.used_numbers_base_tw1, self.used_numbers_base_tw2 = 0, 0, 0
         self.used_numbers_base_layer = 0
 
-    def electrical_insulator_model(self, base_type, c25_unit, steel_unit,foot_bolt_unit):
+    def electrical_insulator_model(self, base_type, c25_unit, steel_unit, foot_bolt_unit):
         self.used_numbers_base_type = base_type
         self.c25_unit = c25_unit
         self.steel_unit = steel_unit
@@ -49,7 +49,6 @@ class TowerBase(TowerType):
             self.steel_sum_zjc1 = self.used_numbers_base_zjc1 * self.steel_unit_zjc1 / 1000
             self.foot_bolt_unit_zjc1 = self.foot_bolt_unit
             self.foot_bolt_sum_zjc1 = self.used_numbers_base_zjc1 * self.foot_bolt_unit_zjc1
-
 
         if self.used_numbers_base_type == "ZJC2":
             self.used_numbers_base_zjc2 = round_up(
@@ -89,7 +88,7 @@ class TowerBase(TowerType):
             self.steel_sum_tw1 = self.used_numbers_base_tw1 * self.steel_unit_tw1 / 1000
             self.foot_bolt_unit_tw1 = self.foot_bolt_unit
             self.foot_bolt_sum_tw1 = self.used_numbers_base_tw1 * self.foot_bolt_unit_tw1
-            
+
         if self.used_numbers_base_type == "TW2":
             self.used_numbers_base_tw2 = self.used_numbers_single_ZK_42 + self.used_numbers_double_SZK_42 \
                                          - self.used_numbers_base_zjc2
@@ -109,7 +108,6 @@ class TowerBase(TowerType):
             self.foot_bolt_unit_layer = self.foot_bolt_unit
             self.foot_bolt_sum_layer = self.used_numbers_base_layer * self.foot_bolt_unit_layer
 
-
     def sum_cal_tower_base(self, tower_base_li, c25_unit_li, steel_unit_li, foot_bolt_li):
         self.c25_unit_list = c25_unit_li
         self.used_numbers_base_type_list = tower_base_li
@@ -119,10 +117,13 @@ class TowerBase(TowerType):
             TowerBase.electrical_insulator_model(self, self.used_numbers_base_type_list[i], self.c25_unit_list[i],
                                                  self.steel_unit_list[i], foot_bolt_list[i])
 
-        self.c25_sum = self.c25_sum_zjc1 + self.c25_sum_zjc2 + self.c25_sum_jjc1 + self.c25_sum_jjc2 + \
-                       self.c25_sum_tw1 + self.c25_sum_tw2 + self.c25_sum_layer
+        self.c25_sum = round_up((self.c25_sum_zjc1 + self.c25_sum_zjc2 + self.c25_sum_jjc1 + self.c25_sum_jjc2 +
+                                 self.c25_sum_tw1 + self.c25_sum_tw2 + self.c25_sum_layer), 2)
         self.steel_sum = round_up((self.steel_sum_zjc1 + self.steel_sum_zjc2 + self.steel_sum_jjc1 + self.steel_sum_jjc2
                                    + self.steel_sum_tw1 + self.steel_sum_tw2 + self.steel_sum_layer), 2)
+        self.foot_bolt_sum = round_up((self.foot_bolt_sum_zjc1 + self.foot_bolt_sum_zjc2 + self.foot_bolt_sum_jjc1 +
+                                       self.foot_bolt_sum_jjc2 + self.foot_bolt_sum_tw1 + self.foot_bolt_sum_tw2 +
+                                       self.foot_bolt_sum_layer), 2)
         # print(self.tower_type, self.tower_type_high, self.used_numbers)
 
 
