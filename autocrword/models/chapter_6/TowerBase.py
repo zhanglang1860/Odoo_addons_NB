@@ -6,10 +6,10 @@ class TowerBase(TowerType):
     def __init__(self, *value_list):
         TowerType.__init__(self, *value_list)
 
-        self.used_numbers_base_zjc1 = ''
-        self.used_numbers_base_zjc2 = ''
-        self.used_numbers_base_jjc1 = ''
-        self.used_numbers_base_jjc2 = ''
+        self.used_numbers_base_zjc1 = 0
+        self.used_numbers_base_zjc2 = 0
+        self.used_numbers_base_jjc1 = 0
+        self.used_numbers_base_jjc2 = 0
         self.used_numbers_base_tw1 = 0
         self.used_numbers_base_tw2 = 0
         self.used_numbers_base_layer = 0
@@ -58,7 +58,10 @@ tower_weight_list = [6.8, 8.5, 7, 5.5, 8.5, 12.5, 17, 6.5, 10, 0.5, ]
 tower_height_list = [32, 32, 27, 37, 49, 37, 37, 42, 54, 0]
 tower_foot_distance_list = [5.5, 5.5, 6, 5, 6, 7, 8, 6, 8, 0]
 
+c25_list=[]
 project02 = TowerBase(25.3, 23.6, 1.55, 3, 31, 5)
+
+
 project02.sum_cal(tower_type_list, tower_type_high_list, tower_weight_list, tower_height_list, tower_foot_distance_list)
 project02.electrical_insulator_model(*tower_base_list)
 print(project02.used_numbers_base_zjc1, project02.used_numbers_base_zjc2, project02.used_numbers_base_jjc1,
