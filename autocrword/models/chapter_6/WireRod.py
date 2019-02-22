@@ -2,7 +2,11 @@ from ElectricalCircuit import ElectricalCircuit
 
 
 class WireRod(ElectricalCircuit):
+    """
+    线  材:
+    钢芯铝绞线
 
+    """
     def __init__(self, *value_list):
         print(value_list)
         ElectricalCircuit.__init__(self, *value_list)

@@ -3,6 +3,9 @@ from RoundUp import round_up
 
 
 class TowerBase(TowerType):
+    """
+    铁塔基础
+    """
     def __init__(self, *value_list):
         TowerType.__init__(self, *value_list)
         self.used_numbers_base_type = ''
@@ -121,9 +124,9 @@ class TowerBase(TowerType):
                                  self.c25_sum_tw1 + self.c25_sum_tw2 + self.c25_sum_layer), 2)
         self.steel_sum = round_up((self.steel_sum_zjc1 + self.steel_sum_zjc2 + self.steel_sum_jjc1 + self.steel_sum_jjc2
                                    + self.steel_sum_tw1 + self.steel_sum_tw2 + self.steel_sum_layer), 2)
+
         self.foot_bolt_sum = round_up((self.foot_bolt_sum_zjc1 + self.foot_bolt_sum_zjc2 + self.foot_bolt_sum_jjc1 +
-                                       self.foot_bolt_sum_jjc2 + self.foot_bolt_sum_tw1 + self.foot_bolt_sum_tw2 +
-                                       self.foot_bolt_sum_layer), 2)
+                                       self.foot_bolt_sum_jjc2), 2)
         # print(self.tower_type, self.tower_type_high, self.used_numbers)
 
 
@@ -146,6 +149,7 @@ project02.sum_cal_tower_type(tower_type_list, tower_type_high_list, tower_weight
 
 project02.sum_cal_tower_base(tower_base_list, c25_unit_list, steel_unit_list, foot_bolt_list)
 
-print(project02.steel_sum_zjc1, project02.steel_sum_zjc2, project02.steel_sum_jjc1, project02.steel_sum_jjc2,
-      project02.steel_sum_tw1, project02.steel_sum_tw2,
-      project02.steel_sum_layer, project02.steel_sum)
+print(project02.foot_bolt_sum_zjc1, project02.foot_bolt_sum_zjc2, project02.foot_bolt_sum_jjc1,
+      project02.foot_bolt_sum_jjc2,
+      project02.foot_bolt_sum_tw1, project02.foot_bolt_sum_tw2,
+      project02.foot_bolt_sum_layer, project02.foot_bolt_sum)

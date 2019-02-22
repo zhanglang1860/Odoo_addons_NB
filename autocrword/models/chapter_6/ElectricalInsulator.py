@@ -3,6 +3,9 @@ from TowerType import TowerType
 
 
 class ElectricalInsulator(TowerType):
+    """
+    绝缘子
+    """
     def __init__(self, *value_list):
         # ElectricalCircuit.__init__(self, *value_list)
         TowerType.__init__(self, *value_list)

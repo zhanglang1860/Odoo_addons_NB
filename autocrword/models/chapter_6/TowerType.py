@@ -3,6 +3,10 @@ from RoundUp import round_up
 
 
 class TowerType(ElectricalCircuit):
+    """
+    铁塔
+
+    """
     def __init__(self, *value_list):
         ElectricalCircuit.__init__(self, *value_list)
         self.tower_type, self.tower_type_high = "", ""
