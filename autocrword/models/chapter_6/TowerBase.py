@@ -5,65 +5,91 @@ from RoundUp import round_up
 class TowerBase(TowerType):
     def __init__(self, *value_list):
         TowerType.__init__(self, *value_list)
+        self.used_numbers_base_type = ''
+        self.c25_unit_list, self.c25_sum = [], []
+        self.c25_unit_zjc1, self.c25_unit_zjc2, self.c25_unit_jjc1 = 0, 0, 0
+        self.c25_unit_jjc2, self.c25_unit_tw1, self.c25_unit_tw2 = 0, 0, 0
+        self.c25_unit_layer, self.c25_unit = 0, 0
 
-        self.used_numbers_base_zjc1 = 0
-        self.used_numbers_base_zjc2 = 0
-        self.used_numbers_base_jjc1 = 0
-        self.used_numbers_base_jjc2 = 0
-        self.used_numbers_base_tw1 = 0
-        self.used_numbers_base_tw2 = 0
+        self.c25_sum_zjc1, self.c25_sum_zjc2, self.c25_sum_jjc1 = 0, 0, 0
+        self.c25_sum_jjc2, self.c25_sum_tw1, self.c25_sum_tw2 = 0, 0, 0
+        self.c25_sum_layer, self.c25_sum = 0, 0
+
+        self.used_numbers_base_type_list = []
+        self.used_numbers_base_zjc1, self.used_numbers_base_zjc2, self.used_numbers_base_jjc1 = 0, 0, 0
+        self.used_numbers_base_jjc2, self.used_numbers_base_tw1, self.used_numbers_base_tw2 = 0, 0, 0
         self.used_numbers_base_layer = 0
 
-    def electrical_insulator_model(self, base_zjc1, base_zjc2, base_jjc1, base_jjc2, base_tw1, base_tw2, base_layer):
-        self.used_numbers_base_zjc1 = base_zjc1
-        self.used_numbers_base_zjc2 = base_zjc2
-        self.used_numbers_base_jjc1 = base_jjc1
-        self.used_numbers_base_jjc2 = base_jjc2
-        self.used_numbers_base_tw1 = base_tw1
-        self.used_numbers_base_tw2 = base_tw2
-        self.used_numbers_base_layer = base_layer
-
-        if self.used_numbers_base_zjc1 == "ZJC1":
-
+    def electrical_insulator_model(self, base_type, c25_unit):
+        self.used_numbers_base_type = base_type
+        self.c25_unit = c25_unit
+        if self.used_numbers_base_type == "ZJC1":
             self.used_numbers_base_zjc1 = round_up(
                 (self.used_numbers_single_Z2_30 + self.used_numbers_double_SZ2_30) / 2, 0)
+            self.c25_unit_zjc1 = self.c25_unit
+            self.c25_sum_zjc1 = self.used_numbers_base_zjc1 * self.c25_unit_zjc1
 
-        if self.used_numbers_base_zjc2 == "ZJC2":
+        if self.used_numbers_base_type == "ZJC2":
             self.used_numbers_base_zjc2 = round_up(
                 (self.used_numbers_single_ZK_42 + self.used_numbers_double_SZK_42) / 2, 0)
+            self.c25_unit_zjc2 = self.c25_unit
+            self.c25_sum_zjc2 = self.used_numbers_base_zjc2 * self.c25_unit_zjc2
 
-        if self.used_numbers_base_jjc1 == "JJC1":
+        if self.used_numbers_base_type == "JJC1":
             self.used_numbers_base_jjc1 = self.used_numbers_single_J2_24 + self.used_numbers_double_SJ2_24
+            self.c25_unit_jjc1 = self.c25_unit
+            self.c25_sum_jjc1 = self.used_numbers_base_jjc1 * self.c25_unit_jjc1
 
-        if self.used_numbers_base_jjc2 == "JJC2":
+        if self.used_numbers_base_type == "JJC2":
             self.used_numbers_base_jjc2 = self.used_numbers_single_J4_24 + self.used_numbers_single_FS_18 \
                                           + self.used_numbers_double_SJ4_24
+            self.c25_unit_jjc2 = self.c25_unit
+            self.c25_sum_jjc2 = self.used_numbers_base_jjc2 * self.c25_unit_jjc2
 
-        if self.used_numbers_base_tw1 == "TW1":
+        if self.used_numbers_base_type == "TW1":
             self.used_numbers_base_tw1 = self.used_numbers_single_Z2_30 + self.used_numbers_double_SZ2_30 \
                                          - self.used_numbers_base_zjc1
+            self.c25_unit_tw1 = self.c25_unit
+            self.c25_sum_tw1 = self.used_numbers_base_tw1 * self.c25_unit_tw1
 
-        if self.used_numbers_base_tw2 == "TW2":
+        if self.used_numbers_base_type == "TW2":
             self.used_numbers_base_tw2 = self.used_numbers_single_ZK_42 + self.used_numbers_double_SZK_42 \
                                          - self.used_numbers_base_zjc2
+            self.c25_unit_tw2 = self.c25_unit
+            self.c25_sum_tw2 = self.used_numbers_base_tw2 * self.c25_unit_tw2
 
-        if self.used_numbers_base_layer == "基础垫层":
+        if self.used_numbers_base_type == "基础垫层":
             self.used_numbers_base_layer = self.sum_used_numbers
+            self.c25_unit_layer = self.c25_unit
+            self.c25_sum_layer = self.used_numbers_base_layer * self.c25_unit_layer
+
+    def sum_cal_tower_base(self, tower_base_li, c25_unit_li):
+        self.c25_unit_list = c25_unit_li
+        self.used_numbers_base_type_list = tower_base_li
+        for i in range(0, len(self.c25_unit_list)):
+            TowerBase.electrical_insulator_model(self, self.used_numbers_base_type_list[i], self.c25_unit_list[i])
+
+        self.c25_sum = self.c25_sum_zjc1 + self.c25_sum_zjc2 + self.c25_sum_jjc1 + self.c25_sum_jjc2 + \
+                       self.c25_sum_tw1 + self.c25_sum_tw2 + self.c25_sum_layer
+        # print(self.tower_type, self.tower_type_high, self.used_numbers)
 
 
-tower_base_list = ['ZJC1', 'ZJC2', 'JJC1', 'JJC2', 'TW1', 'TW2', '基础垫层']
 tower_type_list = ['单回耐张塔', '单回耐张塔', '单回耐张塔', '单回直线塔', '单回直线塔', '双回耐张塔', '双回耐张塔', '双回直线塔', '双回直线塔', '铁塔电缆支架']
 tower_type_high_list = ['J2-24', 'J4-24', 'FS-18', 'Z2-30', 'ZK-42', 'SJ2-24', 'SJ4-24', 'SZ2-30', 'SZK-42', '角钢']
 tower_weight_list = [6.8, 8.5, 7, 5.5, 8.5, 12.5, 17, 6.5, 10, 0.5, ]
 tower_height_list = [32, 32, 27, 37, 49, 37, 37, 42, 54, 0]
 tower_foot_distance_list = [5.5, 5.5, 6, 5, 6, 7, 8, 6, 8, 0]
 
-c25_list=[]
+c25_unit_list = [12, 16, 42, 80, 8.8, 10.2, 2.4]
+tower_base_list = ['ZJC1', 'ZJC2', 'JJC1', 'JJC2', 'TW1', 'TW2', '基础垫层']
+# 需要改成字典形式
+
 project02 = TowerBase(25.3, 23.6, 1.55, 3, 31, 5)
+project02.sum_cal_tower_type(tower_type_list, tower_type_high_list, tower_weight_list, tower_height_list,
+                             tower_foot_distance_list)
 
+project02.sum_cal_tower_base(tower_base_list, c25_unit_list)
 
-project02.sum_cal(tower_type_list, tower_type_high_list, tower_weight_list, tower_height_list, tower_foot_distance_list)
-project02.electrical_insulator_model(*tower_base_list)
-print(project02.used_numbers_base_zjc1, project02.used_numbers_base_zjc2, project02.used_numbers_base_jjc1,
-      project02.used_numbers_base_jjc2, project02.used_numbers_base_tw1, project02.used_numbers_base_tw2,
-      project02.used_numbers_base_layer)
+print(project02.c25_sum_zjc1, project02.c25_sum_zjc2, project02.c25_sum_jjc1, project02.c25_sum_jjc2,
+      project02.c25_sum_tw1, project02.c25_sum_tw2,
+      project02.c25_sum_layer, project02.c25_sum)

@@ -78,8 +78,8 @@ class TowerType(ElectricalCircuit):
                 self.tower_number_weight = self.tower_weight * self.used_numbers
                 self.tower_area = 0
 
-    def sum_cal(self, tower_type_li, tower_type_high_li, tower_weight_li, tower_height_li,
-                tower_foot_distance_li):
+    def sum_cal_tower_type(self, tower_type_li, tower_type_high_li, tower_weight_li, tower_height_li,
+                           tower_foot_distance_li):
         self.tower_type_list = tower_type_li
         self.tower_type_high_list = tower_type_high_li
         self.tower_weight_list = tower_weight_li
@@ -108,6 +108,7 @@ tower_type_high_list = ['J2-24', 'J4-24', 'FS-18', 'Z2-30', 'ZK-42', 'SJ2-24', '
 tower_weight_list = [6.8, 8.5, 7, 5.5, 8.5, 12.5, 17, 6.5, 10, 0.5, ]
 tower_height_list = [32, 32, 27, 37, 49, 37, 37, 42, 54, 0]
 tower_foot_distance_list = [5.5, 5.5, 6, 5, 6, 7, 8, 6, 8, 0]
-project02.sum_cal(tower_type_list, tower_type_high_list, tower_weight_list, tower_height_list, tower_foot_distance_list)
+project02.sum_cal_tower_type(tower_type_list, tower_type_high_list, tower_weight_list, tower_height_list,
+                             tower_foot_distance_list)
 
 print(project02.sum_tower_area)
