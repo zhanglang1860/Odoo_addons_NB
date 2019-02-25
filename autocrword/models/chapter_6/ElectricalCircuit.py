@@ -13,5 +13,4 @@ class ElectricalCircuit:
         self.aluminium_cable_steel_reinforced_weight = 0
         self.aluminium_cable_steel_reinforced_weight_length = 0
 
-
 #需要消除参数顺序问题

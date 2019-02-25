@@ -4,7 +4,7 @@ from TowerType import TowerType
 
 class ElectricalInsulator(TowerType):
     """
-    绝缘子
+    绝缘子 写的不好到时候再改
     """
     def __init__(self, *value_list):
         # ElectricalCircuit.__init__(self, *value_list)
@@ -25,7 +25,7 @@ class ElectricalInsulator(TowerType):
         self.composite_pin_insulator = composite_pin_insulat
         self.composite_zinc_oxide_protector = composite_zinc_oxide_protector
 
-        if self.composite_insulator == "FXBW4-35/70":
+        if self.composite_insulator == "FXBW4_35_70":
             self.used_numbers_FXBW4_35_70 = (self.used_numbers_single_Z2_30 + self.used_numbers_single_ZK_42) * 3 + \
                                             (self.used_numbers_double_SZ2_30 + self.used_numbers_double_SZK_42) * 3 + \
                                             (
@@ -35,14 +35,14 @@ class ElectricalInsulator(TowerType):
                                                     self.used_numbers_single_J2_24 + self.used_numbers_single_J4_24 + self.used_numbers_single_FS_18) * 12 + \
                                             (self.used_numbers_double_SJ2_24 + self.used_numbers_double_SJ4_24) * 12
 
-        if self.porcelain_insulator == "U70BP-146D":
+        if self.porcelain_insulator == "U70BP_146D":
             self.used_numbers_U70BP_146D = ((self.used_numbers_double_SJ2_24 + self.used_numbers_double_SJ4_24) * 12 + \
                                             (self.used_numbers_double_SZ2_30 + self.used_numbers_double_SZK_42) * 3) * 5
 
-        if self.composite_pin_insulator == "FPQ-35/4T16":
+        if self.composite_pin_insulator == "FPQ_35_4T16":
             self.used_numbers_FPQ_35_4T16 = (self.tur_number + self.line_loop_number) * 12
 
-        if self.composite_zinc_oxide_protector == "YH5WZ-51/134":
+        if self.composite_zinc_oxide_protector == "YH5WZ_51_134":
             self.used_numbers_YH5WZ_51_134 = (self.tur_number + self.line_loop_number) * 3
 
 #

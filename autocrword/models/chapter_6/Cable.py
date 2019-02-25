@@ -43,13 +43,13 @@ class Cable(ElectricalCircuit):
             Cable.cable_model(self, self.cable_project_list[i], self.cable_model_list[i])
 
 
-cable_project_list = ['高压电缆', '高压电缆', '电缆沟', '电缆终端', '电缆终端']
-cable_model_list = ['YJLV22-26/35-3×95', 'YJV22-26/35-1×300', '电缆沟长度', 'YJLV22-26/35-3×95', 'YJV22-26/35-1×300']
-
-project02 = Cable(25.3, 23.6, 1.55, 3, 31, 5)
-
-project02.sum_cal_cable(cable_project_list, cable_model_list)
-
-print(project02.cable_model_YJLV22_26_35_3_95_g, project02.cable_model_YJV22_26_35_1_300_g,
-      project02.cable_model_cable_duct,
-      project02.cable_model_YJLV22_26_35_3_95_d, project02.cable_model_YJV22_26_35_1_300_d)
+# cable_project_list = ['高压电缆', '高压电缆', '电缆沟', '电缆终端', '电缆终端']
+# cable_model_list = ['YJLV22-26/35-3×95', 'YJV22-26/35-1×300', '电缆沟长度', 'YJLV22-26/35-3×95', 'YJV22-26/35-1×300']
+#
+# project02 = Cable(25.3, 23.6, 1.55, 3, 31, 5)
+#
+# project02.sum_cal_cable(cable_project_list, cable_model_list)
+#
+# print(project02.cable_model_YJLV22_26_35_3_95_g, project02.cable_model_YJV22_26_35_1_300_g,
+#       project02.cable_model_cable_duct,
+#       project02.cable_model_YJLV22_26_35_3_95_d, project02.cable_model_YJV22_26_35_1_300_d)
