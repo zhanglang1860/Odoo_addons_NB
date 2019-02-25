@@ -2,13 +2,16 @@ from TowerType import TowerType
 from RoundUp import round_up
 from Cable import Cable
 
+
 class TowerBase(TowerType):
     """
     铁塔基础
     """
+
     def __init__(self, *value_list):
         TowerType.__init__(self, *value_list)
         self.used_numbers_base_type = ''
+        self.used_numbers_base_sum = 0
         self.c25_unit_list = []
         self.c25_unit_zjc1, self.c25_unit_zjc2, self.c25_unit_jjc1 = 0, 0, 0
         self.c25_unit_jjc2, self.c25_unit_tw1, self.c25_unit_tw2 = 0, 0, 0
@@ -86,7 +89,7 @@ class TowerBase(TowerType):
             self.used_numbers_base_tw1 = self.used_numbers_single_Z2_30 + self.used_numbers_double_SZ2_30 \
                                          - self.used_numbers_base_zjc1
             self.c25_unit_tw1 = self.c25_unit
-            self.c25_sum_tw1 = self.used_numbers_base_tw1 * self.c25_unit_tw1
+            self.c25_sum_tw1 = round_up((self.used_numbers_base_tw1 * self.c25_unit_tw1),2)
             self.steel_unit_tw1 = self.steel_unit
             self.steel_sum_tw1 = self.used_numbers_base_tw1 * self.steel_unit_tw1 / 1000
             self.foot_bolt_unit_tw1 = self.foot_bolt_unit
@@ -96,7 +99,7 @@ class TowerBase(TowerType):
             self.used_numbers_base_tw2 = self.used_numbers_single_ZK_42 + self.used_numbers_double_SZK_42 \
                                          - self.used_numbers_base_zjc2
             self.c25_unit_tw2 = self.c25_unit
-            self.c25_sum_tw2 = self.used_numbers_base_tw2 * self.c25_unit_tw2
+            self.c25_sum_tw2 = round_up((self.used_numbers_base_tw2 * self.c25_unit_tw2),2)
             self.steel_unit_tw2 = self.steel_unit
             self.steel_sum_tw2 = self.used_numbers_base_tw2 * self.steel_unit_tw2 / 1000
             self.foot_bolt_unit_tw2 = self.foot_bolt_unit
@@ -120,6 +123,9 @@ class TowerBase(TowerType):
             TowerBase.electrical_insulator_model(self, self.used_numbers_base_type_list[i], self.c25_unit_list[i],
                                                  self.steel_unit_list[i], foot_bolt_list[i])
 
+        self.used_numbers_base_sum = round_up((self.used_numbers_base_zjc1 + self.used_numbers_base_zjc2 +
+                                               self.used_numbers_base_jjc1 + self.used_numbers_base_jjc2 +
+                                               self.used_numbers_base_tw1 + self.used_numbers_base_tw2), 2)
         self.c25_sum = round_up((self.c25_sum_zjc1 + self.c25_sum_zjc2 + self.c25_sum_jjc1 + self.c25_sum_jjc2 +
                                  self.c25_sum_tw1 + self.c25_sum_tw2 + self.c25_sum_layer), 2)
         self.steel_sum = round_up((self.steel_sum_zjc1 + self.steel_sum_zjc2 + self.steel_sum_jjc1 + self.steel_sum_jjc2

@@ -110,7 +110,8 @@ foot_bolt_list = [100, 180, 280, 360, 100, 180, 0]
 
 args_chapter6_04_type = tower_base_list
 project04 = TowerBase(*args_list)
-
+project04.sum_cal_tower_type(tower_type_list, tower_type_high_list, tower_weight_list, tower_height_list,
+                             tower_foot_distance_list)
 project04.sum_cal_tower_base(tower_base_list, c25_unit_list, steel_unit_list, foot_bolt_list)
 
 for i in range(0, len(args_chapter6_04_type)):
@@ -131,26 +132,31 @@ for i in range(0, len(args_chapter6_04_type)):
         Dict_6['steel_sum_jjc1'] = str(project04.steel_sum_jjc1)
 
     if key_dict == 'JJC2':
-        value_dict = str(project04.used_numbers_base_jjc2)
-        Dict_6[key_dict] = value_dict
+        Dict_6['jjc2_num'] = str(project04.used_numbers_base_jjc2)
+        Dict_6['c25_sum_jjc2'] = str(project04.c25_sum_jjc2)
+        Dict_6['steel_sum_jjc2'] = str(project04.steel_sum_jjc2)
+
     if key_dict == 'TW1':
-        value_dict = str(project04.used_numbers_base_tw1)
-        Dict_6[key_dict] = value_dict
+        Dict_6['tw1_num'] = str(project04.used_numbers_base_tw1)
+        Dict_6['c25_sum_tw1'] = str(project04.c25_sum_tw1)
+        Dict_6['steel_sum_tw1'] = str(project04.steel_sum_tw1)
     if key_dict == 'TW2':
-        value_dict = str(project04.used_numbers_base_tw2)
-        Dict_6[key_dict] = value_dict
+        Dict_6['tw2_num'] = str(project04.used_numbers_base_tw2)
+        Dict_6['c25_sum_tw2'] = str(project04.c25_sum_tw2)
+        Dict_6['steel_sum_tw2'] = str(project04.steel_sum_tw2)
+
     if key_dict == '基础垫层':
-        value_dict = str(project04.used_numbers_base_layer)
-        Dict_6[key_dict] = value_dict
+        Dict_6['base_layer'] = str(project04.used_numbers_base_layer)
+        Dict_6['c25_sum_layer'] = str(project04.c25_sum_layer)
+        Dict_6['steel_sum_layer'] = str(project04.steel_sum_layer)
 
-Dict_6['铁塔合计'] = str(project04.sum_used_numbers)
-
-
-
-
+Dict_6['基础数量合计'] = str(project04.used_numbers_base_sum)
+Dict_6['基础混凝土合计'] = str(project04.c25_sum)
+Dict_6['基础钢筋合计'] = str(project04.steel_sum)
+print(Dict_6)
 path_images = r"C:\Users\Administrator\PycharmProjects\docx_project\files\results"
 tpl = DocxTemplate(r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\CR_chapter6_template.docx')
 tpl.render(Dict_6)
-print(Dict_6)
-tpl.save(r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\result_chapter6_b.docx')
+
+tpl.save(r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\result_chapter6_d.docx')
 print("---------chapter 6 生成完毕--------")
