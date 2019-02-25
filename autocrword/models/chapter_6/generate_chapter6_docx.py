@@ -153,6 +153,29 @@ for i in range(0, len(args_chapter6_04_type)):
 Dict_6['基础数量合计'] = str(project04.used_numbers_base_sum)
 Dict_6['基础混凝土合计'] = str(project04.c25_sum)
 Dict_6['基础钢筋合计'] = str(project04.steel_sum)
+
+print("---------铁塔基础生成完毕--------")
+
+cable_project_list = ['高压电缆', '高压电缆', '电缆沟', '电缆终端', '电缆终端']
+cable_model_list = ['YJLV22_26_35_3_95_g', 'YJV22_26_35_1_300_g', '电缆沟长度', 'YJLV22_26_35_3_95_d', 'YJV22_26_35_1_300_d']
+
+args_chapter6_05_type = cable_model_list
+project05 = Cable(*args_list)
+project05.sum_cal_cable(cable_project_list, cable_model_list)
+
+for i in range(0, len(args_chapter6_05_type)):
+    key_dict = args_chapter6_05_type[i]
+    if key_dict == 'YJLV22_26_35_3_95_g':
+        Dict_6['YJLV22_26_35_3_95_g'] = str(project05.cable_model_YJLV22_26_35_3_95_g)
+    if key_dict == 'YJV22_26_35_1_300_g':
+        Dict_6['YJV22_26_35_1_300_g'] = str(project05.cable_model_YJV22_26_35_1_300_g)
+    if key_dict == '电缆沟长度':
+        Dict_6['电缆沟长度'] = str(project05.cable_model_cable_duct)
+    if key_dict == 'YJLV22_26_35_3_95_d':
+        Dict_6['YJLV22_26_35_3_95_d'] = str(project05.cable_model_YJLV22_26_35_3_95_d)
+    if key_dict == 'YJV22_26_35_1_300_d':
+        Dict_6['YJV22_26_35_1_300_d'] = str(project05.cable_model_YJV22_26_35_1_300_d)
+
 print(Dict_6)
 path_images = r"C:\Users\Administrator\PycharmProjects\docx_project\files\results"
 tpl = DocxTemplate(r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\CR_chapter6_template.docx')
