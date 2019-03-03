@@ -10,7 +10,6 @@
     </content>
     <orderEntry type="jdk" jdkName="Python 3.6 (Odoo_addons_NB)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="docx_project" />
   </component>
   <component name="TestRunnerService">
     <option name="PROJECT_TEST_RUNNER" value="Unittests" />
