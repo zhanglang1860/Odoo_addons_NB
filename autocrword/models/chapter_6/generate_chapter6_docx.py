@@ -3,7 +3,6 @@ import os
 from docxtpl import DocxTemplate, InlineImage
 
 from generate_dict import get_dict, write_context_numbers, write_context
-
 from ElectricalCircuit import ElectricalCircuit
 from WireRod import WireRod
 from ElectricalInsulator import ElectricalInsulator
@@ -18,6 +17,7 @@ print("*" * 30)
 # 载入参数
 print("---------step:1  载入参数--------")
 #  chapter 6
+project_chapter6_type = ['山地']
 args_list = [19, 22, 8, 1.5, 40, 6]
 Dict_6 = {}
 project01 = WireRod(*args_list)
@@ -157,7 +157,8 @@ Dict_6['基础钢筋合计'] = str(project04.steel_sum)
 print("---------铁塔基础生成完毕--------")
 
 cable_project_list = ['高压电缆', '高压电缆', '电缆沟', '电缆终端', '电缆终端']
-cable_model_list = ['YJLV22_26_35_3_95_gaoya', 'YJV22_26_35_1_300_gaoya', '电缆沟长度', 'YJLV22_26_35_3_95_dianlanzhongduan', 'YJV22_26_35_1_300_dianlanzhongduan']
+cable_model_list = ['YJLV22_26_35_3_95_gaoya', 'YJV22_26_35_1_300_gaoya', '电缆沟长度', 'YJLV22_26_35_3_95_dianlanzhongduan',
+                    'YJV22_26_35_1_300_dianlanzhongduan']
 
 args_chapter6_05_type = cable_model_list
 project05 = Cable(*args_list)
