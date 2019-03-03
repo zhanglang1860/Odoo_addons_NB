@@ -31,6 +31,7 @@ class TowerType(ElectricalCircuit):
         self.tower_foot_distance = tower_foot_distance
 
         if self.tower_type == "单回耐张塔":
+
             if self.tower_type_high == "J2_24" or self.tower_type_high == "J4_24":
                 self.used_numbers = round_up(self.single_circuit / 3, 0)
                 self.tower_number_weight = self.tower_weight * self.used_numbers
@@ -93,10 +94,10 @@ class TowerType(ElectricalCircuit):
         self.tower_foot_distance_list = tower_foot_distance_li
 
         for i in range(0, len(self.tower_weight_list)):
+
             TowerType.tower_type_models(self, self.tower_type_list[i], self.tower_type_high_list[i],
                                         self.tower_weight_list[i],
                                         self.tower_height_list[i], self.tower_foot_distance_list[i])
-            print(self.tower_type, self.tower_type_high, self.used_numbers)
             if self.tower_type == "铁塔电缆支架":
                 self.sum_used_numbers = self.sum_used_numbers
             else:
@@ -106,9 +107,9 @@ class TowerType(ElectricalCircuit):
             self.kilometer_tower_number = self.sum_used_numbers / (self.single_circuit + self.double_circuit)
             self.sum_tower_area = float(self.tower_area) + self.sum_tower_area
 
-#
-# # project01 = ElectricalCircuit(25.3, 23.6, 1.55, 3, 31, 5)
-# project02 = TowerType(25.3, 23.6, 1.55, 3, 31, 5)
+
+# project_chapter6_type = ['山地']
+# project02 = TowerType(project_chapter6_type, 19, 22, 8, 1.5, 40, 6)
 # tower_type_list = ['单回耐张塔', '单回耐张塔', '单回耐张塔', '单回直线塔', '单回直线塔', '双回耐张塔', '双回耐张塔', '双回直线塔', '双回直线塔', '铁塔电缆支架']
 # tower_type_high_list = ['J2_24', 'J4_24', 'FS_18', 'Z2_30', 'ZK_42', 'SJ2_24', 'SJ4_24', 'SZ2_30', 'SZK_42', '角钢']
 # tower_weight_list = [6.8, 8.5, 7, 5.5, 8.5, 12.5, 17, 6.5, 10, 0.5, ]
