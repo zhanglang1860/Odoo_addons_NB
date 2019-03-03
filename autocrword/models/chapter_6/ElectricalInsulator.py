@@ -4,11 +4,13 @@ from TowerType import TowerType
 
 class ElectricalInsulator(TowerType):
     """
-    绝缘子 写的不好到时候再改
+    绝缘子
     """
+
     def __init__(self, *value_list):
         # ElectricalCircuit.__init__(self, *value_list)
         TowerType.__init__(self, *value_list)
+        self.electrical_insulator_name = ''
         self.composite_insulator = ''
         self.porcelain_insulator = ''
         self.composite_pin_insulator = ''
@@ -18,33 +20,50 @@ class ElectricalInsulator(TowerType):
         self.used_numbers_FPQ_35_4T16 = 0
         self.used_numbers_YH5WZ_51_134 = 0
 
-    def electrical_insulator_model(self, composite_insulat, porcelain_insulat, composite_pin_insulat,
-                                   composite_zinc_oxide_protector):
-        self.composite_insulator = composite_insulat
-        self.porcelain_insulator = porcelain_insulat
-        self.composite_pin_insulator = composite_pin_insulat
-        self.composite_zinc_oxide_protector = composite_zinc_oxide_protector
+    def electrical_insulator_model(self, project_chapter6_type, electrical_insulator_name, electrical_insulator_type):
 
-        if self.composite_insulator == "FXBW4_35_70":
-            self.used_numbers_FXBW4_35_70 = (self.used_numbers_single_Z2_30 + self.used_numbers_single_ZK_42) * 3 + \
-                                            (self.used_numbers_double_SZ2_30 + self.used_numbers_double_SZK_42) * 3 + \
-                                            (
-                                                    self.used_numbers_single_J2_24 + self.used_numbers_single_J4_24 + self.used_numbers_single_FS_18) * 4 + \
-                                            (self.used_numbers_double_SJ2_24 + self.used_numbers_double_SJ4_24) * 6 + \
-                                            (
-                                                    self.used_numbers_single_J2_24 + self.used_numbers_single_J4_24 + self.used_numbers_single_FS_18) * 12 + \
-                                            (self.used_numbers_double_SJ2_24 + self.used_numbers_double_SJ4_24) * 12
+        self.project_chapter6_type = project_chapter6_type
+        self.electrical_insulator_name = electrical_insulator_name
+        self.electrical_insulator_type = electrical_insulator_type
 
-        if self.porcelain_insulator == "U70BP_146D":
-            self.used_numbers_U70BP_146D = ((self.used_numbers_double_SJ2_24 + self.used_numbers_double_SJ4_24) * 12 + \
-                                            (self.used_numbers_double_SZ2_30 + self.used_numbers_double_SZK_42) * 3) * 5
+        if self.project_chapter6_type == "山区":
+            if self.electrical_insulator_name == '复合绝缘子':
+                if self.electrical_insulator_type == 'FXBW4_35_70':
+                    self.composite_insulator = 'FXBW4_35_70'
+            elif self.electrical_insulator_name == '瓷绝缘子':
+                if self.electrical_insulator_type == 'U70BP_146D':
+                    self.porcelain_insulator = 'U70BP_146D'
+            elif self.electrical_insulator_name == '复合针式绝缘子':
+                if self.electrical_insulator_type == 'FPQ_35_4T16':
+                    self.porcelain_insulator = 'FPQ_35_4T16'
+            elif self.electrical_insulator_name == '复合外套氧化锌避雷器':
+                if self.electrical_insulator_type == 'YH5WZ_51_134':
+                    self.porcelain_insulator = 'YH5WZ_51_134'
 
-        if self.composite_pin_insulator == "FPQ_35_4T16":
-            self.used_numbers_FPQ_35_4T16 = (self.tur_number + self.line_loop_number) * 12
 
-        if self.composite_zinc_oxide_protector == "YH5WZ_51_134":
-            self.used_numbers_YH5WZ_51_134 = (self.tur_number + self.line_loop_number) * 3
+            if self.composite_insulator == "FXBW4_35_70":
+                self.used_numbers_FXBW4_35_70 = (self.used_numbers_single_Z2_30 + self.used_numbers_single_ZK_42) * 3 + \
+                                                (
+                                                        self.used_numbers_double_SZ2_30 + self.used_numbers_double_SZK_42) * 3 + \
+                                                (
+                                                        self.used_numbers_single_J2_24 + self.used_numbers_single_J4_24 + self.used_numbers_single_FS_18) * 4 + \
+                                                (
+                                                        self.used_numbers_double_SJ2_24 + self.used_numbers_double_SJ4_24) * 6 + \
+                                                (
+                                                        self.used_numbers_single_J2_24 + self.used_numbers_single_J4_24 + self.used_numbers_single_FS_18) * 12 + \
+                                                (self.used_numbers_double_SJ2_24 + self.used_numbers_double_SJ4_24) * 12
 
+            if self.porcelain_insulator == "U70BP_146D":
+                self.used_numbers_U70BP_146D = ((
+                                                        self.used_numbers_double_SJ2_24 + self.used_numbers_double_SJ4_24) * 12 + \
+                                                (
+                                                        self.used_numbers_double_SZ2_30 + self.used_numbers_double_SZK_42) * 3) * 5
+
+            if self.composite_pin_insulator == "FPQ_35_4T16":
+                self.used_numbers_FPQ_35_4T16 = (self.tur_number + self.line_loop_number) * 12
+
+            if self.composite_zinc_oxide_protector == "YH5WZ_51_134":
+                self.used_numbers_YH5WZ_51_134 = (self.tur_number + self.line_loop_number) * 3
 
 # insulator_list = ['FXBW4-35/70', 'U70BP-146D', 'FPQ-35/4T16', 'YH5WZ-51/134']
 # tower_type_list = ['单回耐张塔', '单回耐张塔', '单回耐张塔', '单回直线塔', '单回直线塔', '双回耐张塔', '双回耐张塔', '双回直线塔', '双回直线塔', '铁塔电缆支架']
