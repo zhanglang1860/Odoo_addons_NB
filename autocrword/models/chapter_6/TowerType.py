@@ -153,7 +153,7 @@ class TowerType(ElectricalCircuit):
             TowerType.tower_type_models(self, self.tower_type_list[i], self.tower_type_high_list[i],
                                         self.tower_weight_list[i],
                                         self.tower_height_list[i], self.tower_foot_distance_list[i])
-            print(self.tower_type, self.tower_type_high, self.used_numbers)
+            # print(self.tower_type, self.tower_type_high, self.used_numbers)
             if self.tower_type == "铁塔电缆支架":
                 self.sum_used_numbers = self.sum_used_numbers
             else:

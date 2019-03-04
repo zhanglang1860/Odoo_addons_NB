@@ -192,7 +192,7 @@ class TowerBase(TowerType):
         self.foot_bolt_list = foot_bolt_li
         for i in range(0, len(self.c25_unit_list)):
             TowerBase.electrical_insulator_model(self, self.used_numbers_base_type_list[i], self.c25_unit_list[i],
-                                                 self.steel_unit_list[i], foot_bolt_list[i])
+                                                 self.steel_unit_list[i], self.foot_bolt_list[i])
 
         self.used_numbers_base_sum = round_up((self.used_numbers_base_zjc1 + self.used_numbers_base_zjc2 +
                                                self.used_numbers_base_jjc1 + self.used_numbers_base_jjc2 +
@@ -207,62 +207,62 @@ class TowerBase(TowerType):
         # print(self.tower_type, self.tower_type_high, self.used_numbers)
 
 
-tower_type_list = ['单回耐张塔', '单回耐张塔', '单回耐张塔', '单回直线塔', '单回直线塔', '双回耐张塔', '双回耐张塔', '双回直线塔', '双回直线塔', '铁塔电缆支架']
-tower_type_high_list = ['J2_24', 'J4_24', 'FS_18', 'Z2_30', 'ZK_42', 'SJ2_24', 'SJ4_24', 'SZ2_30', 'SZK_42', '角钢']
-tower_weight_list = [6.8, 8.5, 7, 5.5, 8.5, 12.5, 17, 6.5, 10, 0.5, ]
-tower_height_list = [32, 32, 27, 37, 49, 37, 37, 42, 54, 0]
-tower_foot_distance_list = [5.5, 5.5, 6, 5, 6, 7, 8, 6, 8, 0]
-
-c25_unit_list = [12, 16, 42, 80, 8.8, 10.2, 2.4]
-steel_unit_list = [300, 500, 750, 900, 600, 800, 0]
-foot_bolt_list = [100, 180, 280, 360, 100, 180, 0]
-
-tower_base_list = ['ZJC1', 'ZJC2', 'JJC1', 'JJC2', 'TW1', 'TW2', '基础垫层']
-# 需要改成字典形式
-
-project_chapter6_type = ['山地']
-project02 = TowerBase(project_chapter6_type, 19, 22, 8, 1.5, 40, 6)
-project02.sum_cal_tower_type(tower_type_list, tower_type_high_list, tower_weight_list, tower_height_list,
-                             tower_foot_distance_list)
-
-project02.sum_cal_tower_base(tower_base_list, c25_unit_list, steel_unit_list, foot_bolt_list)
-
-print(project02.foot_bolt_sum_zjc1, project02.foot_bolt_sum_zjc2, project02.foot_bolt_sum_jjc1,
-      project02.foot_bolt_sum_jjc2,
-      project02.foot_bolt_sum_tw1, project02.foot_bolt_sum_tw2,
-      project02.foot_bolt_sum_layer, project02.foot_bolt_sum)
-
-print(project02.steel_sum_zjc1, project02.steel_sum_zjc2, project02.steel_sum_jjc1,
-      project02.steel_sum_jjc2,
-      project02.steel_sum_tw1, project02.steel_sum_tw2,
-      project02.steel_sum_layer, project02.steel_sum)
-
-print(project02.used_numbers_base_zjc1, project02.used_numbers_base_zjc2, project02.used_numbers_base_jjc1,
-      project02.used_numbers_base_jjc2,
-      project02.used_numbers_base_tw1, project02.used_numbers_base_tw2,
-      project02.used_numbers_base_layer,project02.used_numbers_base_sum)
-
-project_chapter6_type = ['平地']
-project02 = TowerBase(project_chapter6_type, 25.3, 23.6, 1.55, 3, 31, 5)
-project02.sum_cal_tower_type(tower_type_list, tower_type_high_list, tower_weight_list, tower_height_list,
-                             tower_foot_distance_list)
-
-project02.sum_cal_tower_base(tower_base_list, c25_unit_list, steel_unit_list, foot_bolt_list)
-
-print(project02.foot_bolt_sum_zjc1, project02.foot_bolt_sum_zjc2, project02.foot_bolt_sum_jjc1,
-      project02.foot_bolt_sum_jjc2,
-      project02.foot_bolt_sum_tw1, project02.foot_bolt_sum_tw2,
-      project02.foot_bolt_sum_layer, project02.foot_bolt_sum)
-
-print(project02.steel_sum_zjc1, project02.steel_sum_zjc2, project02.steel_sum_jjc1,
-      project02.steel_sum_jjc2,
-      project02.steel_sum_tw1, project02.steel_sum_tw2,
-      project02.steel_sum_layer, project02.steel_sum)
-
-print(project02.used_numbers_base_zjc1, project02.used_numbers_base_zjc2, project02.used_numbers_base_jjc1,
-      project02.used_numbers_base_jjc2,
-      project02.used_numbers_base_tw1, project02.used_numbers_base_tw2,
-      project02.used_numbers_base_layer,project02.used_numbers_base_sum)
+# tower_type_list = ['单回耐张塔', '单回耐张塔', '单回耐张塔', '单回直线塔', '单回直线塔', '双回耐张塔', '双回耐张塔', '双回直线塔', '双回直线塔', '铁塔电缆支架']
+# tower_type_high_list = ['J2_24', 'J4_24', 'FS_18', 'Z2_30', 'ZK_42', 'SJ2_24', 'SJ4_24', 'SZ2_30', 'SZK_42', '角钢']
+# tower_weight_list = [6.8, 8.5, 7, 5.5, 8.5, 12.5, 17, 6.5, 10, 0.5, ]
+# tower_height_list = [32, 32, 27, 37, 49, 37, 37, 42, 54, 0]
+# tower_foot_distance_list = [5.5, 5.5, 6, 5, 6, 7, 8, 6, 8, 0]
+#
+# c25_unit_list = [12, 16, 42, 80, 8.8, 10.2, 2.4]
+# steel_unit_list = [300, 500, 750, 900, 600, 800, 0]
+# foot_bolt_list = [100, 180, 280, 360, 100, 180, 0]
+#
+# tower_base_list = ['ZJC1', 'ZJC2', 'JJC1', 'JJC2', 'TW1', 'TW2', '基础垫层']
+# # 需要改成字典形式
+#
+# project_chapter6_type = ['山地']
+# project02 = TowerBase(project_chapter6_type, 19, 22, 8, 1.5, 40, 6)
+# project02.sum_cal_tower_type(tower_type_list, tower_type_high_list, tower_weight_list, tower_height_list,
+#                              tower_foot_distance_list)
+#
+# project02.sum_cal_tower_base(tower_base_list, c25_unit_list, steel_unit_list, foot_bolt_list)
+#
+# print(project02.foot_bolt_sum_zjc1, project02.foot_bolt_sum_zjc2, project02.foot_bolt_sum_jjc1,
+#       project02.foot_bolt_sum_jjc2,
+#       project02.foot_bolt_sum_tw1, project02.foot_bolt_sum_tw2,
+#       project02.foot_bolt_sum_layer, project02.foot_bolt_sum)
+#
+# print(project02.steel_sum_zjc1, project02.steel_sum_zjc2, project02.steel_sum_jjc1,
+#       project02.steel_sum_jjc2,
+#       project02.steel_sum_tw1, project02.steel_sum_tw2,
+#       project02.steel_sum_layer, project02.steel_sum)
+#
+# print(project02.used_numbers_base_zjc1, project02.used_numbers_base_zjc2, project02.used_numbers_base_jjc1,
+#       project02.used_numbers_base_jjc2,
+#       project02.used_numbers_base_tw1, project02.used_numbers_base_tw2,
+#       project02.used_numbers_base_layer,project02.used_numbers_base_sum)
+#
+# project_chapter6_type = ['平地']
+# project02 = TowerBase(project_chapter6_type, 25.3, 23.6, 1.55, 3, 31, 5)
+# project02.sum_cal_tower_type(tower_type_list, tower_type_high_list, tower_weight_list, tower_height_list,
+#                              tower_foot_distance_list)
+#
+# project02.sum_cal_tower_base(tower_base_list, c25_unit_list, steel_unit_list, foot_bolt_list)
+#
+# print(project02.foot_bolt_sum_zjc1, project02.foot_bolt_sum_zjc2, project02.foot_bolt_sum_jjc1,
+#       project02.foot_bolt_sum_jjc2,
+#       project02.foot_bolt_sum_tw1, project02.foot_bolt_sum_tw2,
+#       project02.foot_bolt_sum_layer, project02.foot_bolt_sum)
+#
+# print(project02.steel_sum_zjc1, project02.steel_sum_zjc2, project02.steel_sum_jjc1,
+#       project02.steel_sum_jjc2,
+#       project02.steel_sum_tw1, project02.steel_sum_tw2,
+#       project02.steel_sum_layer, project02.steel_sum)
+#
+# print(project02.used_numbers_base_zjc1, project02.used_numbers_base_zjc2, project02.used_numbers_base_jjc1,
+#       project02.used_numbers_base_jjc2,
+#       project02.used_numbers_base_tw1, project02.used_numbers_base_tw2,
+#       project02.used_numbers_base_layer,project02.used_numbers_base_sum)
 #
 #
 # cable_project_list = ['高压电缆', '高压电缆', '电缆沟', '电缆终端', '电缆终端']

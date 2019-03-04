@@ -17,32 +17,40 @@ print("*" * 30)
 # 载入参数
 print("---------step:1  载入参数--------")
 #  chapter 6
-project_chapter6_type = ['山地']
-args_list = [19, 22, 8, 1.5, 40, 6]
 Dict_6 = {}
-project01 = WireRod(*args_list)
+project_chapter6_type = ['山地']
+args=[19, 22, 8, 1.5, 40, 6]
+project01 = WireRod(project_chapter6_type, *args)
 project01.aluminium_cable_steel_reinforced("LGJ_240_30")
-args_chapter6_01 = ['钢芯铝绞线']
+args_chapter6_01_name = ['钢芯铝绞线']
 args_chapter6_01_type = ['LGJ_240_30']
 
-for i in range(0, len(args_chapter6_01_type)):
-    key_dict = args_chapter6_01_type[i]
-    if key_dict == 'LGJ_240_30':
-        value_dict = str(project01.aluminium_cable_steel_reinforced_length_weight)
-        Dict_6[key_dict] = value_dict
+for i in range(0, len(args_chapter6_01_name)):
+    if args_chapter6_01_name[i]=='钢芯铝绞线':
+        print("---------线材:钢芯铝绞线--------")
+        key_dict = args_chapter6_01_type[i]
+        if key_dict == 'LGJ_240_30':
+            value_dict = str(project01.aluminium_cable_steel_reinforced_length_weight)
+            Dict_6[key_dict] = value_dict
 print("---------线材生成完毕--------")
 
-insulator_list = ['FXBW4_35_70', 'U70BP_146D', 'FPQ_35_4T16', 'YH5WZ_51_134']
+electrical_insulator_name_list = ['复合绝缘子', '瓷绝缘子', '复合针式绝缘子', '复合外套氧化锌避雷器']
+electrical_insulator_type_list = ['FXBW4_35_70', 'U70BP_146D', 'FPQ_35_4T16', 'YH5WZ_51_134']
+
 tower_type_list = ['单回耐张塔', '单回耐张塔', '单回耐张塔', '单回直线塔', '单回直线塔', '双回耐张塔', '双回耐张塔', '双回直线塔', '双回直线塔', '铁塔电缆支架']
 tower_type_high_list = ['J2_24', 'J4_24', 'FS_18', 'Z2_30', 'ZK_42', 'SJ2_24', 'SJ4_24', 'SZ2_30', 'SZK_42', '角钢']
 tower_weight_list = [6.8, 8.5, 7, 5.5, 8.5, 12.5, 17, 6.5, 10, 0.5, ]
 tower_height_list = [32, 32, 27, 37, 49, 37, 37, 42, 54, 0]
 tower_foot_distance_list = [5.5, 5.5, 6, 5, 6, 7, 8, 6, 8, 0]
-project02 = ElectricalInsulator(*args_list)
+
+project_chapter6_type = ['山地']
+project02 = ElectricalInsulator(project_chapter6_type, *args)
 project02.sum_cal_tower_type(tower_type_list, tower_type_high_list, tower_weight_list, tower_height_list,
                              tower_foot_distance_list)
-project02.electrical_insulator_model(*insulator_list)
-args_chapter6_02_type = insulator_list
+project02.electrical_insulator_model(project_chapter6_type, electrical_insulator_name_list,
+                                     electrical_insulator_type_list)
+
+args_chapter6_02_type = electrical_insulator_type_list
 
 for i in range(0, len(args_chapter6_02_type)):
     key_dict = args_chapter6_02_type[i]
@@ -62,7 +70,7 @@ for i in range(0, len(args_chapter6_02_type)):
 print("---------绝缘子生成完毕--------")
 
 args_chapter6_03_type = tower_type_high_list
-project03 = TowerType(*args_list)
+project03 = TowerType(project_chapter6_type,*args)
 project03.sum_cal_tower_type(tower_type_list, tower_type_high_list, tower_weight_list, tower_height_list,
                              tower_foot_distance_list)
 
@@ -109,7 +117,7 @@ steel_unit_list = [300, 500, 750, 900, 600, 800, 0]
 foot_bolt_list = [100, 180, 280, 360, 100, 180, 0]
 
 args_chapter6_04_type = tower_base_list
-project04 = TowerBase(*args_list)
+project04 = TowerBase(project_chapter6_type,*args)
 project04.sum_cal_tower_type(tower_type_list, tower_type_high_list, tower_weight_list, tower_height_list,
                              tower_foot_distance_list)
 project04.sum_cal_tower_base(tower_base_list, c25_unit_list, steel_unit_list, foot_bolt_list)
@@ -161,7 +169,7 @@ cable_model_list = ['YJLV22_26_35_3_95_gaoya', 'YJV22_26_35_1_300_gaoya', '电�
                     'YJV22_26_35_1_300_dianlanzhongduan']
 
 args_chapter6_05_type = cable_model_list
-project05 = Cable(*args_list)
+project05 = Cable(project_chapter6_type,*args)
 project05.sum_cal_cable(cable_project_list, cable_model_list)
 
 for i in range(0, len(args_chapter6_05_type)):
@@ -176,10 +184,10 @@ for i in range(0, len(args_chapter6_05_type)):
         Dict_6['YJLV22_26_35_3_95_dianlanzhongduan'] = str(project05.cable_model_YJLV22_26_35_3_95_dianlanzhongduan)
     if key_dict == 'YJV22_26_35_1_300_dianlanzhongduan':
         Dict_6['YJV22_26_35_1_300_dianlanzhongduan'] = str(project05.cable_model_YJV22_26_35_1_300_dianlanzhongduan)
-print(Dict_6)
+# print(Dict_6)
 path_images = r"C:\Users\Administrator\PycharmProjects\docx_project\files\results"
-tpl = DocxTemplate(r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\CR_chapter6_template.docx')
+tpl = DocxTemplate(r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_6\CR_chapter6_template.docx')
 tpl.render(Dict_6)
 
-tpl.save(r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\result_chapter6_d.docx')
+tpl.save(r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_6\result_chapter6_d.docx')
 print("---------chapter 6 生成完毕--------")

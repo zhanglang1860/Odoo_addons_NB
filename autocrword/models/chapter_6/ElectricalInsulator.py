@@ -28,7 +28,6 @@ class ElectricalInsulator(TowerType):
         self.project_chapter6_type = project_chapter6_ty
         self.electrical_insulator_name_li = electrical_insulator_name_li
         self.electrical_insulator_type_li = electrical_insulator_type_li
-        print(self.project_chapter6_type)
         if self.project_chapter6_type == ["山地"]:
             for i in range(0, len(self.electrical_insulator_name_li)):
                 self.electrical_insulator_name = self.electrical_insulator_name_li[i]
@@ -112,30 +111,30 @@ class ElectricalInsulator(TowerType):
             if self.composite_zinc_oxide_protector == "YH5WZ_51_134":
                 self.used_numbers_YH5WZ_51_134 = (self.tur_number + self.line_loop_number) * 3
 
-electrical_insulator_name_list = ['复合绝缘子', '瓷绝缘子', '复合针式绝缘子', '复合外套氧化锌避雷器']
-electrical_insulator_type_list = ['FXBW4_35_70', 'U70BP_146D', 'FPQ_35_4T16', 'YH5WZ_51_134']
-
-tower_type_list = ['单回耐张塔', '单回耐张塔', '单回耐张塔', '单回直线塔', '单回直线塔', '双回耐张塔', '双回耐张塔', '双回直线塔', '双回直线塔', '铁塔电缆支架']
-tower_type_high_list = ['J2_24', 'J4_24', 'FS_18', 'Z2_30', 'ZK_42', 'SJ2_24', 'SJ4_24', 'SZ2_30', 'SZK_42', '角钢']
-tower_weight_list = [6.8, 8.5, 7, 5.5, 8.5, 12.5, 17, 6.5, 10, 0.5, ]
-tower_height_list = [32, 32, 27, 37, 49, 37, 37, 42, 54, 0]
-tower_foot_distance_list = [5.5, 5.5, 6, 5, 6, 7, 8, 6, 8, 0]
-
-project_chapter6_type = ['山地']
-project02 = ElectricalInsulator(project_chapter6_type, 19, 22, 8, 1.5, 40, 6)
-project02.sum_cal_tower_type(tower_type_list, tower_type_high_list, tower_weight_list, tower_height_list,
-                             tower_foot_distance_list)
-project02.electrical_insulator_model(project_chapter6_type, electrical_insulator_name_list,
-                                     electrical_insulator_type_list)
-print(project02.used_numbers_FXBW4_35_70, project02.used_numbers_U70BP_146D, project02.used_numbers_FPQ_35_4T16,
-      project02.used_numbers_YH5WZ_51_134, project02.tur_number, project02.line_loop_number)
-
-project_chapter6_type = ['平地']
-project02 = ElectricalInsulator(project_chapter6_type, 25.3, 23.6, 1.55, 3, 31, 5)
-project02.sum_cal_tower_type(tower_type_list, tower_type_high_list, tower_weight_list, tower_height_list,
-                             tower_foot_distance_list)
-
-project02.electrical_insulator_model(project_chapter6_type, electrical_insulator_name_list,
-                                     electrical_insulator_type_list)
-print(project02.used_numbers_FXBW4_35_70, project02.used_numbers_U70BP_146D, project02.used_numbers_FPQ_35_4T16,
-      project02.used_numbers_YH5WZ_51_134, project02.tur_number, project02.line_loop_number)
+# electrical_insulator_name_list = ['复合绝缘子', '瓷绝缘子', '复合针式绝缘子', '复合外套氧化锌避雷器']
+# electrical_insulator_type_list = ['FXBW4_35_70', 'U70BP_146D', 'FPQ_35_4T16', 'YH5WZ_51_134']
+#
+# tower_type_list = ['单回耐张塔', '单回耐张塔', '单回耐张塔', '单回直线塔', '单回直线塔', '双回耐张塔', '双回耐张塔', '双回直线塔', '双回直线塔', '铁塔电缆支架']
+# tower_type_high_list = ['J2_24', 'J4_24', 'FS_18', 'Z2_30', 'ZK_42', 'SJ2_24', 'SJ4_24', 'SZ2_30', 'SZK_42', '角钢']
+# tower_weight_list = [6.8, 8.5, 7, 5.5, 8.5, 12.5, 17, 6.5, 10, 0.5, ]
+# tower_height_list = [32, 32, 27, 37, 49, 37, 37, 42, 54, 0]
+# tower_foot_distance_list = [5.5, 5.5, 6, 5, 6, 7, 8, 6, 8, 0]
+#
+# project_chapter6_type = ['山地']
+# project02 = ElectricalInsulator(project_chapter6_type, 19, 22, 8, 1.5, 40, 6)
+# project02.sum_cal_tower_type(tower_type_list, tower_type_high_list, tower_weight_list, tower_height_list,
+#                              tower_foot_distance_list)
+# project02.electrical_insulator_model(project_chapter6_type, electrical_insulator_name_list,
+#                                      electrical_insulator_type_list)
+# print(project02.used_numbers_FXBW4_35_70, project02.used_numbers_U70BP_146D, project02.used_numbers_FPQ_35_4T16,
+#       project02.used_numbers_YH5WZ_51_134, project02.tur_number, project02.line_loop_number)
+#
+# project_chapter6_type = ['平地']
+# project02 = ElectricalInsulator(project_chapter6_type, 25.3, 23.6, 1.55, 3, 31, 5)
+# project02.sum_cal_tower_type(tower_type_list, tower_type_high_list, tower_weight_list, tower_height_list,
+#                              tower_foot_distance_list)
+#
+# project02.electrical_insulator_model(project_chapter6_type, electrical_insulator_name_list,
+#                                      electrical_insulator_type_list)
+# print(project02.used_numbers_FXBW4_35_70, project02.used_numbers_U70BP_146D, project02.used_numbers_FPQ_35_4T16,
+#       project02.used_numbers_YH5WZ_51_134, project02.tur_number, project02.line_loop_number)
