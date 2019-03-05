@@ -2,11 +2,11 @@
 
 from odoo import models, fields, api
 from . import renew2
-import base64,os
+import base64, os
 from . import connect_sql
 from . import generate_dict
 # from . import generate_images
-from docxtpl import DocxTemplate,InlineImage
+from docxtpl import DocxTemplate, InlineImage
 
 
 class windenergy_specialty(models.Model):

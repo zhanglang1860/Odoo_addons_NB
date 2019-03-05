@@ -1,12 +1,7 @@
 import os
 # from generate_images import generate_images
 from docxtpl import DocxTemplate, InlineImage
-
-
-
-from generate_dict import get_dict, write_context_numbers,write_context
-
-# **********************************************
+from generate_dict import get_dict, write_context_numbers, write_context
 
 # **********************************************
 print("*" * 30)

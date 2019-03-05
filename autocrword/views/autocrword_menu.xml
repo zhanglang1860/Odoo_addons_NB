@@ -85,7 +85,7 @@
                 <!-- Action to open the input list -->
 
     <act_window id="action_autocrword_generator"
-        name="风机样式"
+        name="Turbines"
         res_model="autoreport.generator"
         view_mode="tree,form"
     />
@@ -93,7 +93,7 @@
     <!-- Menu item to open the input list -->
 
     <menuitem id="menu_autocrword_generator"
-        name="风机样式"
+        name="Turbines"
         parent="menu_autocrword"
         action="action_autocrword_generator"
     />

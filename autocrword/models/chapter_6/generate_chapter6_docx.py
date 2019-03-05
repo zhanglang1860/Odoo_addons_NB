@@ -1,14 +1,8 @@
-import os
-# from generate_images import generate_images
-from docxtpl import DocxTemplate, InlineImage
-
-from generate_dict import get_dict, write_context_numbers, write_context
-from ElectricalCircuit import ElectricalCircuit
+from docxtpl import DocxTemplate
 from WireRod import WireRod
 from ElectricalInsulator import ElectricalInsulator
 from TowerType import TowerType
 from TowerBase import TowerBase
-from RoundUp import round_up
 from Cable import Cable
 
 # **********************************************
