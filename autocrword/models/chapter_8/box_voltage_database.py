@@ -5,7 +5,7 @@ col_name = ['Turbinecapacity', 'convertingstation', 'long', 'width', 'high', 'Wa
             'C35concretetop', 'C15cushion', 'MU10brick', 'Reinforcement', 'area'
             ]
 
-Data = pd.read_excel('风机基础数据.xlsx', header=1,sheet_name='箱变基础数据',usecols=col_name)
+Data = pd.read_excel('chapter8database.xlsx', header=1,sheet_name='箱变基础数据',usecols=col_name)
 
 data = Data.loc[Data['Fortificationintensity'] == 7].loc[Data['Basictype'] == '扩展基础'].loc[Data['Ultimateload'] == 70000]
 
