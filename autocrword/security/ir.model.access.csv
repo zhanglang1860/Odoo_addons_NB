@@ -10,14 +10,14 @@ access_efficiency_manager,ProjectManager,model_autoreport_efficiency,autocrword_
 
 access_windenergy_winduser,WindUser,model_autoreport_windenergy,wind_group_user,1,1,1,1
 access_outputcurve_winduser,WindUser,model_autoreport_outputcurve,wind_group_user,1,1,0,0
-access_generator_winduser,WindUser,model_autoreport_generator,wind_group_user,1,1,0,0
+access_generator_winduser,WindUser,model_autoreport_generator,wind_group_user,1,1,1,1
 access_civil_winduser,WindUser,model_autoreport_civil,wind_group_user,1,0,0,0
 access_economic_winduser,WindUser,model_autoreport_economic,wind_group_user,1,0,0,0
 access_electrical_winduser,WindUser,model_autoreport_electrical,wind_group_user,1,0,0,0
 access_project_winduser,WindUser,model_autoreport_project,wind_group_user,1,1,0,0
 access_efficiency_winduser,WindUser,model_autoreport_efficiency,wind_group_user,1,1,0,0
 
-access_projectenergy_projectuser,ProjectUser,model_autoreport_windenergy,project_group_user,1,0,0,0
+access_windenergy_projectuser,ProjectUser,model_autoreport_windenergy,project_group_user,1,0,0,0
 access_outputcurve_projectuser,ProjectUser,model_autoreport_outputcurve,project_group_user,1,0,0,0
 access_generator_projectuser,ProjectUser,model_autoreport_generator,project_group_user,1,0,0,0
 access_civil_projectuser,ProjectUser,model_autoreport_civil,project_group_user,1,0,0,0
@@ -25,7 +25,7 @@ access_economic_projectuser,ProjectUser,model_autoreport_economic,project_group_
 access_electrical_projectuser,ProjectUser,model_autoreport_electrical,project_group_user,1,0,0,0
 access_project_projectuser,ProjectUser,model_autoreport_project,project_group_user,1,1,1,1
 
-access_civilenergy_civiluser,CivilUser,model_autoreport_windenergy,civil_group_user,1,0,0,0
+access_windenergy_civiluser,CivilUser,model_autoreport_windenergy,civil_group_user,1,0,0,0
 access_outputcurve_civiluser,CivilUser,model_autoreport_outputcurve,civil_group_user,1,0,0,0
 access_generator_civiluser,CivilUser,model_autoreport_generator,civil_group_user,1,0,0,0
 access_civil_civiluser,CivilUser,model_autoreport_civil,civil_group_user,1,1,1,1
@@ -33,7 +33,7 @@ access_economic_civiluser,CivilUser,model_autoreport_economic,civil_group_user,1
 access_electrical_civiluser,CivilUser,model_autoreport_electrical,civil_group_user,1,0,0,0
 access_project_civiluser,CivilUser,model_autoreport_project,civil_group_user,1,1,0,0
 
-access_electricalenergy_electricaluser,ElectricalUser,model_autoreport_windenergy,electrical_group_user,1,0,0,0
+access_windenergy_electricaluser,ElectricalUser,model_autoreport_windenergy,electrical_group_user,1,0,0,0
 access_outputcurve_electricaluser,ElectricalUser,model_autoreport_outputcurve,electrical_group_user,1,0,0,0
 access_generator_electricaluser,ElectricalUser,model_autoreport_generator,electrical_group_user,1,0,0,0
 access_civil_electricaluser,ElectricalUser,model_autoreport_civil,electrical_group_user,1,0,0,0
@@ -41,7 +41,7 @@ access_economic_electricaluser,ElectricalUser,model_autoreport_economic,electric
 access_electrical_electricaluser,ElectricalUser,model_autoreport_electrical,electrical_group_user,1,1,1,1
 access_project_electricaluser,ElectricalUser,model_autoreport_project,electrical_group_user,1,1,0,0
 
-access_electricalenergy_economicuser,EconomicUser,model_autoreport_windenergy,economic_group_user,1,0,0,0
+access_windenergy_economicuser,EconomicUser,model_autoreport_windenergy,economic_group_user,1,0,0,0
 access_outputcurve_economicuser,EconomicUser,model_autoreport_outputcurve,economic_group_user,1,0,0,0
 access_generator_economicuser,EconomicUser,model_autoreport_generator,economic_group_user,1,0,0,0
 access_civil_economicuser,EconomicUser,model_autoreport_civil,economic_group_user,1,0,0,0
