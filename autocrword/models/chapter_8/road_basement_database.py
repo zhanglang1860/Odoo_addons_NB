@@ -45,10 +45,9 @@ class RoadBasementDatabase:
         self.data_4 = Data_4.loc[Data_4['terrain_type'] == self.terrain_type]
         return self.data_1, self.data_2, self.data_3, self.data_4
 
-    def excavation_cal(self, road_basic_earthwork_ratio, road_basic_stone_ratio, terrain_type):
+    def excavation_cal(self, road_basic_earthwork_ratio, road_basic_stone_ratio):
         self.road_basic_earthwork_ratio = road_basic_earthwork_ratio
         self.road_basic_stone_ratio = road_basic_stone_ratio
-        self.terrain_type = terrain_type
 
         self.earth_excavation_1 = self.road_basic_earthwork_ratio * 2.5 * 1000 * 0.4
         self.stone_excavation_1 = self.road_basic_stone_ratio * 2.5 * 1000 * 0.4
@@ -138,37 +137,48 @@ class RoadBasementDatabase:
 
         return self.data_1, self.data_2, self.data_3, self.data_4
 
-    def generate_dict(self, data):
-        self.data = data
-        print(self.data)
-        dict_booster_station = {'土方开挖_1': self.data_1.at[0, 'Earthexcavation_1'],
-                                '石方开挖_1': self.data_1.at[0, 'Stoneexcavation_1'], '道路面积': self.data_1.at[0, 'Roadarea'],
-                                '土石方回填_1': self.data_1.at[0, 'Earthworkbackfill_1'], '绿化面积': self.data_1.at[0, 'Greenarea'],
-                                '山皮石路面_1': self.data_1.at[0, 'Gradedgravelpavement_1'],
-                                '圆管涵_1': self.data_1.at[0, 'roundtubeculvert_1'],
-                                '浆砌石排水沟_1': self.data_1.at[0, 'Stonemasonrydrainageditch_1'],
-                                '浆砌片石挡墙_1': self.data_1.at[0, 'mortarstoneretainingwall_1'],
-                                '草皮护坡_1': self.data_1.at[0, 'Turfslopeprotection_1'],
-                                '土方开挖_2': self.data_2.at[0, 'Earthexcavation_2'],
-                                '石方开挖_2': self.data_2.at[0, 'Stoneexcavation_2'],
-                                '土石方回填_2': self.data_2.at[0, 'Earthworkbackfill_2'],
-                                '级配碎石基层_2': self.data_2.at[0, 'Gradedgravelbase_2'],
-                                'C30混凝土路面_2': self.data_2.at[0, 'C30concretepavement_2'],
-                                '圆管涵_2': self.data_2.at[0, 'roundtubeculvert_2'],
-                                '浆砌石排水沟_2': self.data_2.at[0, 'Stonemasonrydrainageditch_2'],
-                                '浆砌片石挡墙_2': self.data_2.at[0, 'mortarstoneretainingwall_2'],
-                                '草皮护坡_2': self.data_2.at[0, 'Turfslopeprotection_2'],
-                                '标志标牌_2': self.data_2.at[0, 'Signage_2'],
-                                '波形护栏_2': self.data_2.at[0, 'Waveguardrail_2']
-                                }
-        return dict_booster_station
+    def generate_dict(self, data_1,data_2,data_3,data_4):
+        self.data_1 = data_1
+        self.data_2 = data_2
+        self.data_3 = data_3
+        self.data_4 = data_4
+        # print(self.data)
+        dict_road_base = {
+            '土方开挖_1': self.data_1.at[0, 'Earthexcavation_1'], '土方开挖_3': self.data_1.at[0, 'Earthexcavation_3'],
+            '石方开挖_1': self.data_1.at[0, 'Stoneexcavation_1'], '石方开挖_3': self.data_1.at[0, 'Stoneexcavation_3'],
+            '土石方回填_1': self.data_1.at[0, 'Earthworkbackfill_1'], '土石方回填_3': self.data_1.at[0, 'Earthworkbackfill_3'],
+            '山皮石路面_1': self.data_1.at[0, 'Gradedgravelpavement_1'], '山皮石路面_3': self.data_1.at[0, 'Mountainpavement_3'],
+            '圆管涵_1': self.data_1.at[0, 'roundtubeculvert_1'], 'C30混凝土路面_3': self.data_1.at[0, 'C30concretepavement_3'],
+            '浆砌石排水沟_1': self.data_1.at[0, 'Stonemasonrydrainageditch_1'],
+            '圆管涵_3': self.data_1.at[0, 'roundtubeculvert_3'],
+            '浆砌片石挡墙_1': self.data_1.at[0, 'mortarstoneretainingwall_1'],
+            '浆砌石排水沟_3': self.data_1.at[0, 'Stonemasonrydrainageditch_3'],
+            '草皮护坡_1': self.data_1.at[0, 'Turfslopeprotection_1'],
+            '浆砌片石挡墙_3': self.data_1.at[0, 'mortarstoneretainingwall_3'],
+            '土方开挖_2': self.data_2.at[0, 'Earthexcavation_2'], '草皮护坡_3': self.data_2.at[0, 'Turfslopeprotection_3'],
+            '石方开挖_2': self.data_2.at[0, 'Stoneexcavation_2'], '标志标牌_3': self.data_2.at[0, 'Signage_3'],
+            '土石方回填_2': self.data_2.at[0, 'Earthworkbackfill_2'], '波形护栏_3': self.data_2.at[0, 'Waveguardrail_3'],
+            '级配碎石基层_2': self.data_2.at[0, 'Gradedgravelbase_2'], '桥梁_3': self.data_2.at[0, 'bridge_3'],
+            'C30混凝土路面_2': self.data_2.at[0, 'C30concretepavement_2'],
+            '一般场地平整_4': self.data_2.at[0, 'Generalsiteleveling_4'],
+            '圆管涵_2': self.data_2.at[0, 'roundtubeculvert_2'], '土方开挖_4': self.data_2.at[0, 'Earthexcavation_4'],
+            '浆砌石排水沟_2': self.data_2.at[0, 'Stonemasonrydrainageditch_2'],
+            '石方开挖_4': self.data_2.at[0, 'Stoneexcavation_4'],
+            '浆砌片石挡墙_2': self.data_2.at[0, 'mortarstoneretainingwall_2'],
+            '土石方回填_4': self.data_2.at[0, 'Earthworkbackfill_4'],
+            '草皮护坡_2': self.data_2.at[0, 'Turfslopeprotection_2'],
+            '浆砌石排水沟_4': self.data_2.at[0, 'Stonemasonrydrainageditch_4'],
+            '标志标牌_2': self.data_2.at[0, 'Signage_2'], '浆砌片石护坡_4': self.data_2.at[0, 'mortarstoneprotectionslope_4'],
+            '波形护栏_2': self.data_2.at[0, 'Waveguardrail_2']
+        }
+        return dict_road_base
 
 
-project03 = BoosterStationDatabase()
-data = project03.extraction_data('新建', 110, 50)
-data_cal = project03.excavation_cal(0.8, 0.2, '丘陵')
+project04 = RoadBasementDatabase()
+data = project04.extraction_data('陡坡低山')
+data_cal,data_ca2,data_ca3,data_ca4 = project04.excavation_cal(0.8, 0.2)
 
-Dict = project03.generate_dict(data_cal)
+Dict = project04.generate_dict(data_cal,data_ca2,data_ca3,data_ca4)
 print(Dict)
 filename_box = ['CR_chapter8_template', 'result_chapter8']
 save_path = r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8'
