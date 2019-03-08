@@ -45,13 +45,14 @@ class BoosterStationDatabase:
         else:
             self.slope_area = (self.data['long'] + 10) * (self.data['width'] + 10)
             self.earth_excavation = self.slope_area * 3 * self.basic_earthwork_ratio
-            self.earth_excavation = self.slope_area * 3 * self.basic_stone_ratio
+            self.stone_excavation = self.slope_area * 3 * self.basic_stone_ratio
             self.earthwork_backfill = self.slope_area * 0.5
 
         self.data['Earthexcavation'] = self.earth_excavation
         self.data['Stoneexcavation'] = self.stone_excavation
         self.data['Earthworkbackfill'] = self.earthwork_backfill
         self.data['slope_area'] = self.slope_area
+        print(self.data['Earthexcavation'])
         return self.data
 
     def generate_dict(self, data):
@@ -75,7 +76,7 @@ class BoosterStationDatabase:
                                 '事故油池C30混凝土': self.data.at[0, 'AccidentoilpoolC30concrete'],
                                 '事故油池钢筋': self.data.at[0, 'Accidentoilpoolreinforcement'],
                                 '设备及架构基础C25混凝土': self.data.at[0, 'FoundationC25Concrete'],
-                                '室外架构（型钢）': self.data.at[0, 'Outdoorstructure'],
+                                '室外架构': self.data.at[0, 'Outdoorstructure'],
                                 '预制混凝土杆': self.data.at[0, 'Precastconcretepole'],
                                 '避雷针': self.data.at[0, 'lightningrod'], }
         return dict_booster_station
@@ -84,6 +85,7 @@ class BoosterStationDatabase:
 project03 = BoosterStationDatabase()
 data = project03.extraction_data('新建', 110, 50)
 data_cal = project03.excavation_cal(0.8, 0.2, '丘陵')
+
 Dict = project03.generate_dict(data_cal)
 print(Dict)
 filename_box = ['CR_chapter8_template', 'result_chapter8']
