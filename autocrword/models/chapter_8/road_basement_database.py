@@ -9,7 +9,7 @@ class RoadBasementDatabase:
     def __init__(self):
         self.status, self.earth_excavation, self.stone_excavation, self.earthwork_backfill = 0, 0, 0, 0
         self.road_basic_earthwork_ratio, self.road_basic_stone_ratio = 0, 0
-        self.data = pd.DataFrame()
+        self.data_1, self.data_2, self.data_3, = pd.DataFrame()
         self.data_timesnumber = pd.DataFrame()
         self.grade, self.capacity, self.slope_area, self.terrain_type = 0, 0, 0, []
 
@@ -39,22 +39,49 @@ class RoadBasementDatabase:
         self.data_1['Earthworkbackfill_1'] = self.earthwork_backfill_1
         return self.data_1
 
-
-
-
-    def excavation_cal_2(self, road_basic_earthwork_ratio, road_basic_stone_ratio):
+    def excavation_cal_2(self, road_basic_earthwork_ratio, road_basic_stone_ratio,terrain_type):
         self.road_basic_earthwork_ratio = road_basic_earthwork_ratio
         self.road_basic_stone_ratio = road_basic_stone_ratio
+        self.terrain_type=terrain_type
 
-        self.earth_excavation_1 = self.road_basic_earthwork_ratio * 2.5 * 1000 * 0.4
-        self.stone_excavation_1 = self.road_basic_stone_ratio * 2.5 * 1000 * 0.4
-        self.earthwork_backfill_1 = 2.5 * 1000 * 0.4
+        if self.terrain_type==['平原']:
+            self.earth_excavation_2 = self.road_basic_earthwork_ratio * 6500 * 0.3
+            self.stone_excavation_2 = self.road_basic_stone_ratio * 6500 * 0.3
+            self.earthwork_backfill_2 = 6.5 * 1000 * 0.5
+        elif self.terrain_type==['丘陵']:
+            self.earth_excavation_2 = self.road_basic_earthwork_ratio * 6000
+            self.stone_excavation_2 = self.road_basic_stone_ratio * 6000
+            self.earthwork_backfill_2 = 6 * 1000 * 0.5
+        elif self.terrain_type==['缓坡低山']:
+            self.earth_excavation_2 = self.road_basic_earthwork_ratio * 8000
+            self.stone_excavation_2 = self.road_basic_stone_ratio * 8000
+            self.earthwork_backfill_2 = 8 * 1000 * 0.5
+        elif self.terrain_type==['陡坡低山']:
+            self.earth_excavation_2 = self.road_basic_earthwork_ratio * 15000
+            self.stone_excavation_2 = self.road_basic_stone_ratio * 15000
+            self.earthwork_backfill_2 = 15 * 1000 * 0.5
+        elif self.terrain_type==['缓坡中山']:
+            self.earth_excavation_2 = self.road_basic_earthwork_ratio * 10000
+            self.stone_excavation_2 = self.road_basic_stone_ratio * 10000
+            self.earthwork_backfill_2 = 10 * 1000 * 0.5
+        elif self.terrain_type==['陡坡中山']:
+            self.earth_excavation_2 = self.road_basic_earthwork_ratio * 18000
+            self.stone_excavation_2 = self.road_basic_stone_ratio * 18000
+            self.earthwork_backfill_2 = 18 * 1000 * 0.5
+        elif self.terrain_type==['缓坡高山']:
+            self.earth_excavation_2 = self.road_basic_earthwork_ratio * 12000
+            self.stone_excavation_2 = self.road_basic_stone_ratio * 12000
+            self.earthwork_backfill_2 = 12 * 1000 * 0.5
+        elif self.terrain_type==['陡坡高山']:
+            self.earth_excavation_2 = self.road_basic_earthwork_ratio * 20000
+            self.stone_excavation_2 = self.road_basic_stone_ratio * 20000
+            self.earthwork_backfill_2 = 20 * 1000 * 0.5
 
-        self.data['Earthexcavation_1'] = self.earth_excavation_1
-        self.data['Stoneexcavation_1'] = self.stone_excavation_1
-        self.data['Earthworkbackfill_1'] = self.earthwork_backfill_1
-        return self.data
 
+        self.data_2['Earthexcavation_2'] = self.earth_excavation_2
+        self.data_2['Stoneexcavation_2'] = self.stone_excavation_2
+        self.data_2['Earthworkbackfill_2'] = self.earthwork_backfill_2
+        return self.data_2
 
     def generate_dict(self, data):
         self.data = data
