@@ -9,11 +9,11 @@ class RoadBasementDatabase:
     def __init__(self):
         self.status, self.earth_excavation, self.stone_excavation, self.earthwork_backfill = 0, 0, 0, 0
         self.road_basic_earthwork_ratio, self.road_basic_stone_ratio = 0, 0
-        self.data = 0
+        self.data = pd.DataFrame()
         self.data_timesnumber = pd.DataFrame()
         self.grade, self.capacity, self.slope_area, self.terrain_type = 0, 0, 0, []
 
-    def extraction_data(self, terrain_type):
+    def extraction_data_1(self, terrain_type):
         self.terrain_type = terrain_type
         col_name = ['terrain_type', 'Gradedgravelpavement', 'roundtubeculvert', 'Stonemasonrydrainageditch',
                     'mortarstoneretainingwall', 'Turfslopeprotection'
@@ -23,10 +23,26 @@ class RoadBasementDatabase:
             r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8\chapter8database.xlsx',
             header=2, sheet_name='道路基础数据1', usecols=col_name)
 
-        self.data = Data.loc[Data['terrain_type'] == self.terrain_type]
-        return self.data
+        self.data_1 = Data.loc[Data['terrain_type'] == self.terrain_type]
+        return self.data_1
 
     def excavation_cal_1(self, road_basic_earthwork_ratio, road_basic_stone_ratio):
+        self.road_basic_earthwork_ratio = road_basic_earthwork_ratio
+        self.road_basic_stone_ratio = road_basic_stone_ratio
+
+        self.earth_excavation_1 = self.road_basic_earthwork_ratio * 2.5 * 1000 * 0.4
+        self.stone_excavation_1 = self.road_basic_stone_ratio * 2.5 * 1000 * 0.4
+        self.earthwork_backfill_1 = 2.5 * 1000 * 0.4
+
+        self.data_1['Earthexcavation_1'] = self.earth_excavation_1
+        self.data_1['Stoneexcavation_1'] = self.stone_excavation_1
+        self.data_1['Earthworkbackfill_1'] = self.earthwork_backfill_1
+        return self.data_1
+
+
+
+
+    def excavation_cal_2(self, road_basic_earthwork_ratio, road_basic_stone_ratio):
         self.road_basic_earthwork_ratio = road_basic_earthwork_ratio
         self.road_basic_stone_ratio = road_basic_stone_ratio
 
@@ -38,7 +54,6 @@ class RoadBasementDatabase:
         self.data['Stoneexcavation_1'] = self.stone_excavation_1
         self.data['Earthworkbackfill_1'] = self.earthwork_backfill_1
         return self.data
-
 
 
     def generate_dict(self, data):
