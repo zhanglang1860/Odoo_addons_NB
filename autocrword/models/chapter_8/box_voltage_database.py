@@ -8,7 +8,7 @@ import math, os
 class BoxVoltageDatabase:
     def __init__(self):
         self.Turbinecapacity, self.earth_excavation, self.stone_excavation, self.earthwork_backfill = 0, 0, 0, 0
-        self.basic_earthwork_ratio, basic_stone_ratio = 0, 0
+        self.road_basic_earthwork_ratio, road_basic_stone_ratio = 0, 0
         self.data = 0
         self.data_timesnumber = pd.DataFrame()
 
@@ -24,13 +24,13 @@ class BoxVoltageDatabase:
         self.data = Data.loc[Data['Turbinecapacity'] == self.Turbinecapacity]
         return self.data
 
-    def excavation_cal(self, basic_earthwork_ratio, basic_stone_ratio):
-        self.basic_earthwork_ratio = basic_earthwork_ratio
-        self.basic_stone_ratio = basic_stone_ratio
+    def excavation_cal(self, road_basic_earthwork_ratio, road_basic_stone_ratio):
+        self.road_basic_earthwork_ratio = road_basic_earthwork_ratio
+        self.road_basic_stone_ratio = road_basic_stone_ratio
         self.earth_excavation = (self.data['long'] + 0.5 * 2) * (self.data['width'] + 0.5 * 2) * (
-                self.data['high'] - 0.2) * self.basic_earthwork_ratio
+                self.data['high'] - 0.2) * self.road_basic_earthwork_ratio
         self.stone_excavation = (self.data['long'] + 0.5 * 2) * (self.data['width'] + 0.5 * 2) * (
-                self.data['high'] - 0.2) * self.basic_stone_ratio
+                self.data['high'] - 0.2) * self.road_basic_stone_ratio
         self.earthwork_backfill = self.earth_excavation + self.stone_excavation - self.data['long'] * self.data[
             'width'] * (self.data['high'] - 0.2)
         self.data['Earthexcavation'] = self.earth_excavation
