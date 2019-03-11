@@ -21,6 +21,10 @@ def round_up(value, dec_digits=2):
     return float(result)
 
 
+def round_dict(dic):
+    for key in dic:
+        dic[key] = round_up(dic[key], 2)
+    return dic
 # print(round_up(2.55, dec_digits=1))
 #
 # result = str(2.55).strip()
