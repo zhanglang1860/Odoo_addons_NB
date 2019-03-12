@@ -7,7 +7,7 @@ from WindResourceDatabase import WindResourceDatabase
 from BoxVoltageDatabase import BoxVoltageDatabase
 
 
-class EarthStoneBalanceSheet(WindResourceDatabase,BoxVoltageDatabase):
+class EarthStoneBalanceSheet(WindResourceDatabase, BoxVoltageDatabase):
     def __init__(self):
         self.capacity, self.turbine_numbers = 0, 0
         self.material_warehouse_1, self.temporary_residential_office_1, self.steel_processing_plant_1, \
@@ -20,7 +20,10 @@ class EarthStoneBalanceSheet(WindResourceDatabase,BoxVoltageDatabase):
 
     def extraction_data(self, capacity, turbine_numbers):
         self.capacity = capacity
-        self.turbine_foundation_box_voltage = self.
+        self.turbine_foundation_box_voltage = self.data_wind_resource.at[
+                                                  self.data_wind_resource.index[0], 'EarthExcavation_Turbine_numbers'] + \
+                                              self.data_wind_resource.at[
+                                                  self.data_wind_resource.index[0], 'StoneExcavation_Turbine_numbers']
 
         if self.capacity * self.turbine_numbers <= 50:
             self.material_warehouse_1 = 200

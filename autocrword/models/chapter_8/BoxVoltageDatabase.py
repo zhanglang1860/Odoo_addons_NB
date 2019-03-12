@@ -7,36 +7,36 @@ import math, os
 
 class BoxVoltageDatabase:
     def __init__(self):
-        self.Turbinecapacity, self.earth_excavation, self.stone_excavation, self.earthwork_backfill = 0, 0, 0, 0
-        self.road_basic_earthwork_ratio, road_basic_stone_ratio = 0, 0
-        self.data = 0
-        self.data_timesnumber = pd.DataFrame()
+        self.earth_excavation_box_voltage, self.stone_excavation_box_voltage, self.earthwork_back_fill_box_voltage = 0, 0, 0
+        self.TurbineCapacity, self.road_earthwork_ratio, self.road_stone_ratio = 0, 0, 0
+        self.DataBoxVoltage, self.data_box_voltage = pd.DataFrame(), pd.DataFrame()
 
-    def extraction_data(self, Turbinecapacity):
-        self.Turbinecapacity = Turbinecapacity
-
-        col_name = ['Turbinecapacity', 'convertingstation', 'long', 'width', 'high', 'Wallthickness', 'Highpressure',
-                    'C35concretetop', 'C15cushion', 'MU10brick', 'Reinforcement', 'area']
-
-        Data = pd.read_excel(
+    def extraction_data(self, turbine_capacity):
+        self.TurbineCapacity = turbine_capacity
+        col_name = ['TurbineCapacity', 'ConvertStation', 'Long', 'Width', 'High', 'WallThickness', 'HighPressure',
+                    'C35ConcreteTop', 'C15Cushion', 'MU10Brick', 'Reinforcement', 'Area']
+        self.DataBoxVoltage = pd.read_excel(
             r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8\chapter8database.xlsx',
             header=2, sheet_name='箱变基础数据', usecols=col_name)
-        self.data = Data.loc[Data['Turbinecapacity'] == self.Turbinecapacity]
-        return self.data
+        self.data_box_voltage = self.DataBoxVoltage.loc[self.DataBoxVoltage['TurbineCapacity'] == self.TurbineCapacity]
+        return self.data_box_voltage
 
-    def excavation_cal(self, road_basic_earthwork_ratio, road_basic_stone_ratio):
-        self.road_basic_earthwork_ratio = road_basic_earthwork_ratio
-        self.road_basic_stone_ratio = road_basic_stone_ratio
-        self.earth_excavation = (self.data['long'] + 0.5 * 2) * (self.data['width'] + 0.5 * 2) * (
-                self.data['high'] - 0.2) * self.road_basic_earthwork_ratio
-        self.stone_excavation = (self.data['long'] + 0.5 * 2) * (self.data['width'] + 0.5 * 2) * (
-                self.data['high'] - 0.2) * self.road_basic_stone_ratio
-        self.earthwork_backfill = self.earth_excavation + self.stone_excavation - self.data['long'] * self.data[
-            'width'] * (self.data['high'] - 0.2)
-        self.data['Earthexcavation'] = self.earth_excavation
-        self.data['Stoneexcavation'] = self.stone_excavation
-        self.data['Earthworkbackfill'] = self.earthwork_backfill
-        return self.data
+    def excavation_cal(self, road_earthwork_ratio, road_stone_ratio):
+        self.road_earthwork_ratio = road_earthwork_ratio
+        self.road_stone_ratio = road_stone_ratio
+        self.earth_excavation_box_voltage = (self.data_box_voltage['Long'] + 0.5 * 2) * (
+                self.data_box_voltage['Width'] + 0.5 * 2) * (
+                                                    self.data_box_voltage['High'] - 0.2) * self.road_earthwork_ratio
+        self.stone_excavation_box_voltage = (self.data_box_voltage['Long'] + 0.5 * 2) * (
+                self.data_box_voltage['Width'] + 0.5 * 2) * (
+                                                    self.data_box_voltage['High'] - 0.2) * self.road_stone_ratio
+        self.earthwork_back_fill_box_voltage = self.earth_excavation_box_voltage + self.stone_excavation_box_voltage - \
+                                               self.data_box_voltage['long'] * self.data_box_voltage[
+                                                   'width'] * (self.data_box_voltage['high'] - 0.2)
+        self.data_box_voltage['EarthExcavation_BoxVoltage'] = self.earth_excavation_box_voltage
+        self.data_box_voltage['StoneExcavation_BoxVoltage'] = self.stone_excavation_box_voltage
+        self.data_box_voltage['EarthworkBackFill_BoxVoltage'] = self.earthwork_back_fill_box_voltage
+        return self.data_box_voltage
 
     def data_numbers_cal(self, num):
         self.numbers = num
@@ -76,7 +76,6 @@ savepath = os.path.join(save_path, '%s.docx') % docx_box[1]
 tpl = DocxTemplate(readpath)
 tpl.render(Dict)
 tpl.save(savepath)
-
 
 # earth_excavation, stone_excavation, earthwork_backfill = project02.excavation_cal(0.8, 0.2)
 
