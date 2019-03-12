@@ -23,12 +23,15 @@ def round_up(value, dec_digits=2):
 
 def round_dict_numbers(dic, numbers):
     for key_o in list(dic.keys()):
-
-        if type(dic[key_o]).__name__ != 'int':
-            print(type(dic[key_o]))
-            dic[key_o] = round_up(dic[key_o], 2)
-            key = key_o + '_numbers'
-            dic[key] = round_up(dic[key_o] * numbers, 2)
+        # if type(dic[key_o]).__name__ != 'int':
+        if 'numbers' not in key_o:
+            if type(dic[key_o]).__name__ != 'int':
+                dic[key_o] = round_up(dic[key_o], 2)
+                key = key_o + '_numbers'
+                dic[key] = round_up(dic[key_o] * numbers, 2)
+            else:
+                key = key_o + '_numbers'
+                dic[key] = dic[key_o] * numbers
     return dic
 
 

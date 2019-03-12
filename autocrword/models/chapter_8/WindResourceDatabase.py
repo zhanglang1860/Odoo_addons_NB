@@ -47,19 +47,6 @@ class WindResourceDatabase:
         self.data['Reinforcement'] = self.data['Volume'] * 0.1
         return self.data
 
-    #
-    # def data_numbers_cal(self, num):
-    #     self.numbers = num
-    #     for i in range(0, self.data.shape[1]):
-    #         if self.data.iloc[:, i].dtype != 'object':
-    #             self.data_timesnumber.at[0, i] = self.data.iloc[0, i] * self.numbers
-    #         else:
-    #             self.data_timesnumber.at[0, i] = self.data.iloc[0, i]
-    #     self.data_timesnumber_np = np.array(self.data_timesnumber)
-    #     self.data_np = np.array(self.data)
-    #     self.data_number_concat_np = np.vstack([self.data_np, self.data_timesnumber_np])
-    #     return self.data_number_concat_np
-
     def generate_dict(self, data, numbers_list):
         self.data = data
         self.numbers_list = numbers_list
