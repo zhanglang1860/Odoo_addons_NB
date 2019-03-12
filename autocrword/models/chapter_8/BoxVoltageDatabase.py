@@ -38,19 +38,24 @@ class BoxVoltageDatabase:
         self.data_box_voltage['EarthworkBackFill_BoxVoltage'] = self.earthwork_back_fill_box_voltage
         return self.data_box_voltage
 
-    def data_numbers_cal(self, num):
-        self.numbers = num
-        for i in range(0, self.data.shape[1]):
-            # print(self.data.iloc[:, i].dtype)
-            if self.data.iloc[:, i].dtype != 'object':
-                self.data_timesnumber.at[0, i] = self.data.iloc[0, i] * self.numbers
-            else:
-                self.data_timesnumber.at[0, i] = self.data.iloc[0, i]
-        self.data_timesnumber_np = np.array(self.data_timesnumber)
-        self.data_np = np.array(self.data)
-        self.data_number_concat_np = np.vstack([self.data_np, self.data_timesnumber_np])
-        np.set_printoptions(suppress=True)
-        return self.data_number_concat_np
+    def generate_dict(self, data, numbers_list):
+        self.data_box_voltage = data
+        self.numbers_list = numbers_list
+        dict_wind_resource = {
+            'numbers_tur': int(self.numbers_list[0]),
+            '土方开挖_风机': self.data_box_voltage.at[self.data_box_voltage.index[0], 'EarthExcavation_Turbine'],
+            '石方开挖_风机': self.data_box_voltage.at[self.data_box_voltage.index[0], 'StoneExcavation_Turbine'],
+            '土石方回填_风机': self.data_box_voltage.at[self.data_box_voltage.index[0], 'EarthWorkBackFill_Turbine'],
+            'C40混凝土_风机': self.data_box_voltage.at[self.data_box_voltage.index[0], 'Volume'],
+            'C15混凝土_风机': self.data_box_voltage.at[self.data_box_voltage.index[0], 'Cushion'],
+            '钢筋_风机': self.data_box_voltage.at[self.data_box_voltage.index[0], 'Reinforcement'],
+            '基础防水_风机': 1,
+            '沉降观测_风机': 4,
+            '预制桩长_风机': self.data_box_voltage.at[self.data_box_voltage.index[0], 'SinglePileLength'],
+            'M48预应力锚栓_风机': self.data_box_voltage.at[self.data_box_voltage.index[0], 'M48PreStressedAnchor'],
+            'C80二次灌浆_风机': self.data_box_voltage.at[self.data_box_voltage.index[0], 'C80SecondaryGrouting'],
+        }
+        return dict_wind_resource
 
 
 numbers = 20
