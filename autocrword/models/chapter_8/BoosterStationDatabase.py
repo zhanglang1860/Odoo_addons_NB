@@ -10,7 +10,6 @@ class BoosterStationDatabase:
         self.status, self.earth_excavation, self.stone_excavation, self.earthwork_backfill = 0, 0, 0, 0
         self.road_basic_earthwork_ratio, self.road_basic_stone_ratio = 0, 0
         self.data = 0
-        self.data_timesnumber = pd.DataFrame()
         self.grade, self.capacity, self.slope_area, self.terrain_type = 0, 0, 0, []
 
     def extraction_data(self, status, grade, capacity):

@@ -21,6 +21,17 @@ def round_up(value, dec_digits=2):
     return float(result)
 
 
+def round_dict_numbers(dic, numbers):
+    for key_o in list(dic.keys()):
+
+        if type(dic[key_o]).__name__ != 'int':
+            print(type(dic[key_o]))
+            dic[key_o] = round_up(dic[key_o], 2)
+            key = key_o + '_numbers'
+            dic[key] = round_up(dic[key_o] * numbers, 2)
+    return dic
+
+
 def round_dict(dic):
     for key in dic:
         dic[key] = round_up(dic[key], 2)
