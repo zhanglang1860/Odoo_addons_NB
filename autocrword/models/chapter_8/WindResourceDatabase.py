@@ -1,20 +1,19 @@
 import pandas as pd
 import math, os
 from docxtpl import DocxTemplate
-import numpy as np
-from RoundUp import round_up, round_dict_numbers
+from RoundUp import round_dict_numbers
 
 
 class WindResourceDatabase:
 
     def __init__(self):
         self.BasicType, self.FortificationIntensity, self.UltimateLoad = '', 0, 0
-        self.numbers, self.basic_earthwork_ratio, self.basic_stone_ratio = 0, 0, 0
+        self.numbers_list, self.dict_wind_resource, self.basic_earthwork_ratio, self.basic_stone_ratio = [], {}, 0, 0
         self.earth_excavation_tur, self.stone_excavation_tur, self.earth_work_back_fill_tur = 0, 0, 0
         self.data_wind_resource = pd.DataFrame()
         self.DataTurbine = pd.DataFrame()
 
-    def extraction_data(self, fortification_intensity, basic_type, ultimate_load):
+    def extraction_data_turbine(self, fortification_intensity, basic_type, ultimate_load):
         self.FortificationIntensity = fortification_intensity
         self.BasicType = basic_type
         self.UltimateLoad = ultimate_load
@@ -31,7 +30,7 @@ class WindResourceDatabase:
                 self.DataTurbine['UltimateLoad'] == self.UltimateLoad]
         return self.data_wind_resource
 
-    def excavation_cal(self, basic_earthwork_ratio, basic_stone_ratio):
+    def excavation_cal_turbine(self, basic_earthwork_ratio, basic_stone_ratio,numbers_list):
         self.basic_earthwork_ratio = basic_earthwork_ratio
         self.basic_stone_ratio = basic_stone_ratio
         self.earth_excavation_tur = math.pi * (self.data_wind_resource['FloorRadiusR'] + 1.3) ** 2 * (
@@ -48,13 +47,18 @@ class WindResourceDatabase:
         self.data_wind_resource['EarthExcavation_Turbine'] = self.earth_excavation_tur
         self.data_wind_resource['StoneExcavation_Turbine'] = self.stone_excavation_tur
         self.data_wind_resource['EarthWorkBackFill_Turbine'] = self.earth_work_back_fill_tur
+
+        self.data_wind_resource['EarthExcavation_Turbine_Numbers'] = self.earth_excavation_tur * numbers_list[0]
+        self.data_wind_resource['StoneExcavation_Turbine_Numbers'] = self.stone_excavation_tur* numbers_list[0]
+        self.data_wind_resource['EarthWorkBackFill_Turbine_Numbers'] = self.earth_work_back_fill_tur* numbers_list[0]
+
         self.data_wind_resource['Reinforcement'] = self.data_wind_resource['Volume'] * 0.1
         return self.data_wind_resource
 
-    def generate_dict(self, data, numbers_list):
+    def generate_dict_turbine(self, data, numbers_list):
         self.data_wind_resource = data
         self.numbers_list = numbers_list
-        dict_wind_resource = {
+        self.dict_wind_resource = {
             'numbers_tur': int(self.numbers_list[0]),
             '土方开挖_风机': self.data_wind_resource.at[self.data_wind_resource.index[0], 'EarthExcavation_Turbine'],
             '石方开挖_风机': self.data_wind_resource.at[self.data_wind_resource.index[0], 'StoneExcavation_Turbine'],
@@ -68,16 +72,16 @@ class WindResourceDatabase:
             'M48预应力锚栓_风机': self.data_wind_resource.at[self.data_wind_resource.index[0], 'M48PreStressedAnchor'],
             'C80二次灌浆_风机': self.data_wind_resource.at[self.data_wind_resource.index[0], 'C80SecondaryGrouting'],
         }
-        return dict_wind_resource
-
+        return self.dict_wind_resource
 
 project01 = WindResourceDatabase()
-data = project01.extraction_data(basic_type='扩展基础', ultimate_load=70000, fortification_intensity=7)
+data = project01.extraction_data_turbine(basic_type='扩展基础', ultimate_load=70000, fortification_intensity=7)
 numbers_list = [15]
-data_cal = project01.excavation_cal(0.8, 0.2)
-dict_wind_resource = project01.generate_dict(data_cal, numbers_list)
+data_cal = project01.excavation_cal_turbine(0.8, 0.2,numbers_list)
+dict_wind_resource = project01.generate_dict_turbine(data_cal, numbers_list)
 Dict = round_dict_numbers(dict_wind_resource, dict_wind_resource['numbers_tur'])
-print(Dict)
+
+
 docx_box = ['cr8', 'result_chapter8']
 save_path = r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8'
 readpath = os.path.join(save_path, '%s.docx') % docx_box[0]
