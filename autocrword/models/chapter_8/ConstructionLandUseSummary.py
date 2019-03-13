@@ -1,8 +1,7 @@
+import os
 import pandas as pd
-import numpy as np
-from RoundUp import round_up, round_dict
+from RoundUp import round_dict
 from docxtpl import DocxTemplate
-import math, os
 
 
 class ConstructionLandUseSummary:

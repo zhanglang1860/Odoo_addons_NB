@@ -8,13 +8,16 @@ from BoxVoltageDatabase import BoxVoltageDatabase
 from BoosterStationDatabase import BoosterStationDatabase
 from RoadBasementDatabase import RoadBasementDatabase
 
-class EarthStoneBalanceSheet(WindResourceDatabase, BoxVoltageDatabase, BoosterStationDatabase,RoadBasementDatabase):
+
+class EarthStoneBalanceSheet(WindResourceDatabase, BoxVoltageDatabase, BoosterStationDatabase, RoadBasementDatabase):
     def __init__(self):
         self.turbine_foundation_box_voltage_excavation, self.turbine_foundation_box_voltage_backfill, \
         self.turbine_foundation_box_voltage_spoil = 0, 0, 0
 
-        self.booster_station_engineering_excavation,
+        self.booster_station_engineering_excavation, self.booster_station_engineering_backfill, \
+        self.booster_station_engineering_spoil = 0, 0, 0
 
+        self.road_engineering_excavation
     # self.capacity, self.turbine_numbers = 0, 0
     # self.material_warehouse_1, self.temporary_residential_office_1, self.steel_processing_plant_1, \
     # self.equipment_storage_1, self.construction_machinery_parking_1, self.total_1 = 0, 0, 0, 0, 0, 0
@@ -42,7 +45,11 @@ class EarthStoneBalanceSheet(WindResourceDatabase, BoxVoltageDatabase, BoosterSt
         self.booster_station_engineering_backfill = self.earthwork_backfill_booster_station
         self.booster_station_engineering_spoil = self.booster_station_engineering_excavation - self.booster_station_engineering_backfill
 
-        self.road_engineering_excavation=self.
+        self.road_engineering_excavation = self.earth_road_base_excavation_1 + self.stone_road_base_excavation_1 + \
+                                           self.earth_road_base_excavation_2 + self.stone_road_base_excavation_2 + \
+                                           self.earth_road_base_excavation_3 + self.stone_road_base_excavation_3
+        self.road_engineering_backfill = self.earthwork_road_base_backfill_1 + self.earthwork_road_base_backfill_2 + \
+                                           self.earthwork_road_base_backfill_3
 
 
     # def generate_dict(self):

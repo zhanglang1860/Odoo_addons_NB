@@ -197,7 +197,7 @@ class RoadBasementDatabase:
             'numbers_2': self.numbers_list[1],
             '土方开挖_2': self.data_road_base_2.at[self.data_road_base_2.index[0], 'EarthExcavation_RoadBase_2'],
             '石方开挖_2': self.data_road_base_2.at[self.data_road_base_2.index[0], 'StoneExcavation_RoadBase_2'],
-            '土石方回填_2': self.data_road_base_2.at[self.data_road_base_2.index[0], 'EarthWorkBackFill_RoadBase_3'],
+            '土石方回填_2': self.data_road_base_2.at[self.data_road_base_2.index[0], 'EarthWorkBackFill_RoadBase_2'],
             '级配碎石基层_2': self.data_road_base_2.at[self.data_road_base_2.index[0], 'GradedGravelBase_2'],
             'C30混凝土路面_2': self.data_road_base_2.at[self.data_road_base_2.index[0], 'C30ConcretePavement_2'],
             '圆管涵_2': self.data_road_base_2.at[self.data_road_base_2.index[0], 'RoundTubeCulvert_2'],
@@ -238,7 +238,7 @@ class RoadBasementDatabase:
 numberslist = [5, 1.5, 10, 15]
 project04 = RoadBasementDatabase()
 data_1, data_2, data_3, data_4 = project04.extraction_data('陡坡低山')
-data_cal, data_ca2, data_ca3, data_ca4 = project04.excavation_cal('陡坡低山', 0.8, 0.2, data_1, data_2, data_3, data_4)
+data_cal, data_ca2, data_ca3, data_ca4 = project04.excavation_cal(data_1, data_2, data_3, data_4, '陡坡低山', 0.8, 0.2)
 dict_road_base_1, dict_road_base_2, dict_road_base_3, dict_road_base_4 = project04.generate_dict(data_cal, data_ca2,
                                                                                                  data_ca3, data_ca4,
                                                                                                  numberslist)
