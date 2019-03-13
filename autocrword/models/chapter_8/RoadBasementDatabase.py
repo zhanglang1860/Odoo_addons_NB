@@ -141,22 +141,22 @@ class RoadBasementDatabase:
             self.stone_road_base_excavation_4 = self.road_basic_stone_ratio * self.data_road_base_4['GeneralSiteLeveling_4'] * 4
             self.earthwork_road_base_backfill_4 = self.data_road_base_4['GeneralSiteLeveling_4'] * 0.5
 
-        self.data_road_base_1['Earthexcavation_1'] = self.earth_road_base_excavation_1
-        self.data_road_base_1['Stoneexcavation_1'] = self.stone_road_base_excavation_1
-        self.data_road_base_1['Earthworkbackfill_1'] = self.earthwork_road_base_backfill_1
+        self.data_road_base_1['Earthexcavation_RoadBase_1'] = self.earth_road_base_excavation_1
+        self.data_road_base_1['Stoneexcavation_RoadBase_1'] = self.stone_road_base_excavation_1
+        self.data_road_base_1['Earthworkbackfill_RoadBase_1'] = self.earthwork_road_base_backfill_1
 
-        self.data_road_base_2['Earthexcavation_2'] = self.earth_road_base_excavation_2
-        self.data_road_base_2['Stoneexcavation_2'] = self.stone_road_base_excavation_2
-        self.data_road_base_2['Earthworkbackfill_2'] = self.earthwork_road_base_backfill_2
+        self.data_road_base_2['Earthexcavation_RoadBase_2'] = self.earth_road_base_excavation_2
+        self.data_road_base_2['Stoneexcavation_RoadBase_2'] = self.stone_road_base_excavation_2
+        self.data_road_base_2['Earthworkbackfill_RoadBase_2'] = self.earthwork_road_base_backfill_2
 
-        self.data_road_base_3['Earthexcavation_3'] = self.earth_road_base_excavation_2
-        self.data_road_base_3['Stoneexcavation_3'] = self.stone_road_base_excavation_2
-        self.data_road_base_3['Earthworkbackfill_3'] = self.earthwork_road_base_backfill_2
+        self.data_road_base_3['Earthexcavation_RoadBase_3'] = self.earth_road_base_excavation_2
+        self.data_road_base_3['Stoneexcavation_RoadBase_3'] = self.stone_road_base_excavation_2
+        self.data_road_base_3['Earthworkbackfill_RoadBase_3'] = self.earthwork_road_base_backfill_2
         self.data_road_base_3['bridge_3'] = self.bridge_3
 
-        self.data_road_base_4['Earthexcavation_4'] = self.earth_road_base_excavation_4
-        self.data_road_base_4['Stoneexcavation_4'] = self.stone_road_base_excavation_4
-        self.data_road_base_4['Earthworkbackfill_4'] = self.earthwork_road_base_backfill_4
+        self.data_road_base_4['Earthexcavation_RoadBase_4'] = self.earth_road_base_excavation_4
+        self.data_road_base_4['Stoneexcavation_RoadBase_4'] = self.stone_road_base_excavation_4
+        self.data_road_base_4['Earthworkbackfill_RoadBase_4'] = self.earthwork_road_base_backfill_4
 
         return self.data_road_base_1, self.data_road_base_2, self.data_road_base_3, self.data_road_base_4
 

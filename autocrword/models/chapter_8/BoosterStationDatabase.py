@@ -51,9 +51,9 @@ class BoosterStationDatabase:
             self.stone_excavation_booster_station = self.slope_area * 3 * self.road_basic_stone_ratio
             self.earthwork_backfill_booster_station = self.slope_area * 0.5
 
-        self.data_booster_station['Earthexcavation_BoosterStation'] = self.earth_excavation_booster_station
-        self.data_booster_station['Stoneexcavation_BoosterStation'] = self.stone_excavation_booster_station
-        self.data_booster_station['Earthworkbackfill_BoosterStation'] = self.earthwork_backfill_booster_station
+        self.data_booster_station['EarthExcavation_BoosterStation'] = self.earth_excavation_booster_station
+        self.data_booster_station['StoneExcavation_BoosterStation'] = self.stone_excavation_booster_station
+        self.data_booster_station['EarthWorkBackFill_BoosterStation'] = self.earthwork_backfill_booster_station
         self.data_booster_station['SlopeArea'] = self.slope_area
 
         return self.data_booster_station
