@@ -67,13 +67,13 @@ class BoosterStationDatabase:
             '围墙长度': self.data_booster_station.at[self.data_booster_station.index[0], 'WallLength'],
             '绿化面积': self.data_booster_station.at[self.data_booster_station.index[0], 'GreenArea'],
             '土方开挖_升压站': self.data_booster_station.at[
-                self.data_booster_station.index[0], 'Earthexcavation_BoosterStation'],
+                self.data_booster_station.index[0], 'EarthExcavation_BoosterStation'],
             '综合楼': self.data_booster_station.at[self.data_booster_station.index[0], 'ComprehensiveBuilding'],
             '石方开挖_升压站': self.data_booster_station.at[
-                self.data_booster_station.index[0], 'Stoneexcavation_BoosterStation'],
+                self.data_booster_station.index[0], 'StoneExcavation_BoosterStation'],
             '设备楼': self.data_booster_station.at[self.data_booster_station.index[0], 'EquipmentBuilding'],
             '土方回填_升压站': self.data_booster_station.at[
-                self.data_booster_station.index[0], 'Earthworkbackfill_BoosterStation'],
+                self.data_booster_station.index[0], 'EarthWorkBackFill_BoosterStation'],
             '附属楼': self.data_booster_station.at[self.data_booster_station.index[0], 'AffiliatedBuilding'],
             '浆砌石护脚': self.data_booster_station.at[self.data_booster_station.index[0], 'StoneMasonryFoot'],
             '主变基础C30混凝土': self.data_booster_station.at[self.data_booster_station.index[0], 'C30Concrete'],
