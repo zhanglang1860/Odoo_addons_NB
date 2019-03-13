@@ -37,7 +37,9 @@ def round_dict_numbers(dic, numbers):
 
 def round_dict(dic):
     for key in dic:
-        dic[key] = round_up(dic[key], 2)
+        if type(dic[key]).__name__ != 'int':
+            dic[key] = round_up(dic[key], 2)
+
     return dic
 # print(round_up(2.55, dec_digits=1))
 #

@@ -21,8 +21,9 @@ class BoxVoltageDatabase:
         self.data_box_voltage = self.DataBoxVoltage.loc[self.DataBoxVoltage['TurbineCapacity'] == self.TurbineCapacity]
         return self.data_box_voltage
 
-    def excavation_cal_box_voltage(self,data_box_voltage, road_earthwork_ratio, road_stone_ratio, numbers_list):
-        self.data_box_voltage=data_box_voltage
+    def excavation_cal_box_voltage(self, data_box_voltage, road_earthwork_ratio, road_stone_ratio, numbers_li):
+        self.numbers_list = numbers_li
+        self.data_box_voltage = data_box_voltage
         self.road_earthwork_ratio = road_earthwork_ratio
         self.road_stone_ratio = road_stone_ratio
         self.earth_excavation_box_voltage = (self.data_box_voltage['Long'] + 0.5 * 2) * (
@@ -39,10 +40,14 @@ class BoxVoltageDatabase:
         self.data_box_voltage['StoneExcavation_BoxVoltage'] = self.stone_excavation_box_voltage
         self.data_box_voltage['EarthWorkBackFill_BoxVoltage'] = self.earthwork_back_fill_box_voltage
 
-        self.data_box_voltage['EarthExcavation_BoxVoltage_Numbers'] = self.earth_excavation_box_voltage * numbers_list
-        self.data_box_voltage['StoneExcavation_BoxVoltage_Numbers'] = self.stone_excavation_box_voltage * numbers_list
-        self.data_box_voltage[
-            'EarthWorkBackFill_BoxVoltage_Numbers'] = self.earthwork_back_fill_box_voltage * numbers_list
+        # self.data_box_voltage['EarthExcavation_BoxVoltage_Numbers'] = self.earth_excavation_box_voltage * numbers_list
+        # self.data_box_voltage['StoneExcavation_BoxVoltage_Numbers'] = self.stone_excavation_box_voltage * numbers_list
+        # self.data_box_voltage[
+        #     'EarthWorkBackFill_BoxVoltage_Numbers'] = self.earthwork_back_fill_box_voltage * numbers_list
+        self.earth_excavation_box_voltage_numbers = self.earth_excavation_box_voltage * self.numbers_list[0]
+        self.stone_excavation_box_voltage_numbers = self.stone_excavation_box_voltage * self.numbers_list[0]
+        self.earthwork_back_fill_box_voltage_numbers = self.earthwork_back_fill_box_voltage * self.numbers_list[0]
+
         return self.data_box_voltage
 
     def generate_dict_box_voltage(self, data_box_voltage, numbers_list):
@@ -60,19 +65,18 @@ class BoxVoltageDatabase:
         }
         return self.dict_box_voltage
 
-
-numbers_list = [15]
-project02 = BoxVoltageDatabase()
-data = project02.extraction_data_box_voltage(3)
-data_cal = project02.excavation_cal_box_voltage(0.8, 0.2, numbers_list)
-
-dict_box_voltage = project02.generate_dict_box_voltage(data_cal, numbers_list)
-Dict = round_dict_numbers(dict_box_voltage, dict_box_voltage['numbers_box_voltage'])
-
-docx_box = ['cr8', 'result_chapter8']
-save_path = r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8'
-readpath = os.path.join(save_path, '%s.docx') % docx_box[0]
-savepath = os.path.join(save_path, '%s.docx') % docx_box[1]
-tpl = DocxTemplate(readpath)
-tpl.render(Dict)
-tpl.save(savepath)
+# numbers_list = [15]
+# project02 = BoxVoltageDatabase()
+# data = project02.extraction_data_box_voltage(3)
+# data_cal = project02.excavation_cal_box_voltage(0.8, 0.2, numbers_list)
+#
+# dict_box_voltage = project02.generate_dict_box_voltage(data_cal, numbers_list)
+# Dict = round_dict_numbers(dict_box_voltage, dict_box_voltage['numbers_box_voltage'])
+#
+# docx_box = ['cr8', 'result_chapter8']
+# save_path = r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8'
+# readpath = os.path.join(save_path, '%s.docx') % docx_box[0]
+# savepath = os.path.join(save_path, '%s.docx') % docx_box[1]
+# tpl = DocxTemplate(readpath)
+# tpl.render(Dict)
+# tpl.save(savepath)

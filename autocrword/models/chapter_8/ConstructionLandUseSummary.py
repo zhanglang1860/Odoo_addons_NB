@@ -75,15 +75,15 @@ class ConstructionLandUseSummary:
         }
         return dict_construction_land_use_summary
 
-
-project05 = ConstructionLandUseSummary()
-project05.extraction_data(3, 15)
-Dict = round_dict(project05.generate_dict())
-print(Dict)
-filename_box = ['cr8', 'result_chapter8']
-save_path = r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8'
-read_path = os.path.join(save_path, '%s.docx') % filename_box[0]
-save_path = os.path.join(save_path, '%s.docx') % filename_box[1]
-tpl = DocxTemplate(read_path)
-tpl.render(Dict)
-tpl.save(save_path)
+#
+# project05 = ConstructionLandUseSummary()
+# project05.extraction_data(3, 15)
+# Dict = round_dict(project05.generate_dict())
+# print(Dict)
+# filename_box = ['cr8', 'result_chapter8']
+# save_path = r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8'
+# read_path = os.path.join(save_path, '%s.docx') % filename_box[0]
+# save_path = os.path.join(save_path, '%s.docx') % filename_box[1]
+# tpl = DocxTemplate(read_path)
+# tpl.render(Dict)
+# tpl.save(save_path)

@@ -18,7 +18,7 @@ class RoadBasementDatabase:
 
         self.numbers_list, self.bridge_3, self.grade, self.capacity, self.slope_area, self.terrain_type = [], 0, 0, 0, 0, ''
 
-    def extraction_data(self, terrain_type):
+    def extraction_data_road_basement(self, terrain_type):
         self.terrain_type = terrain_type
         col_name_1 = ['TerrainType', 'GradedGravelPavement_1', 'RoundTubeCulvert_1', 'StoneMasonryDrainageDitch_1',
                       'MortarStoneRetainingWall_1', 'TurfSlopeProtection_1']
@@ -50,8 +50,8 @@ class RoadBasementDatabase:
         self.data_road_base_4 = DataRoadBasement_4.loc[DataRoadBasement_4['TerrainType'] == self.terrain_type]
         return self.data_road_base_1, self.data_road_base_2, self.data_road_base_3, self.data_road_base_4
 
-    def excavation_cal(self, data1, data2, data3, data4, terrain_type, road_basic_earthwork_ratio,
-                       road_basic_stone_ratio):
+    def excavation_cal_road_basement(self, data1, data2, data3, data4, terrain_type, road_basic_earthwork_ratio,
+                                     road_basic_stone_ratio, numbers_list):
         self.terrain_type = terrain_type
         self.road_basic_earthwork_ratio = road_basic_earthwork_ratio
         self.road_basic_stone_ratio = road_basic_stone_ratio
@@ -156,6 +156,10 @@ class RoadBasementDatabase:
             self.stone_road_base_excavation_4 = self.road_basic_stone_ratio * self.data_road_base_4[
                 'GeneralSiteLeveling_4'] * 4
             self.earthwork_road_base_backfill_4 = self.data_road_base_4['GeneralSiteLeveling_4'] * 0.5
+        self.earth_road_base_excavation_3 = self.earth_road_base_excavation_2
+        self.stone_road_base_excavation_3 = self.stone_road_base_excavation_2
+        self.earthwork_road_base_backfill_3 = self.earthwork_road_base_backfill_2
+
 
         self.data_road_base_1['EarthExcavation_RoadBase_1'] = self.earth_road_base_excavation_1
         self.data_road_base_1['StoneExcavation_RoadBase_1'] = self.stone_road_base_excavation_1
@@ -168,15 +172,28 @@ class RoadBasementDatabase:
         self.data_road_base_3['EarthExcavation_RoadBase_3'] = self.earth_road_base_excavation_2
         self.data_road_base_3['StoneExcavation_RoadBase_3'] = self.stone_road_base_excavation_2
         self.data_road_base_3['EarthWorkBackFill_RoadBase_3'] = self.earthwork_road_base_backfill_2
-        self.data_road_base_3['Bridge_3'] = self.bridge_3
+        self.data_road_base_3['Bridge_3'] = 0
 
         self.data_road_base_4['EarthExcavation_RoadBase_4'] = self.earth_road_base_excavation_4
         self.data_road_base_4['StoneExcavation_RoadBase_4'] = self.stone_road_base_excavation_4
         self.data_road_base_4['EarthWorkBackFill_RoadBase_4'] = self.earthwork_road_base_backfill_4
 
+        self.earth_road_base_excavation_1_numbers = self.earth_road_base_excavation_1 * numbers_list[0]
+        self.stone_road_base_excavation_1_numbers = self.stone_road_base_excavation_1 * numbers_list[0]
+        self.earthwork_road_base_backfill_1_numbers = self.earthwork_road_base_backfill_1 * numbers_list[0]
+        self.earth_road_base_excavation_2_numbers = self.earth_road_base_excavation_2 * numbers_list[1]
+        self.stone_road_base_excavation_2_numbers = self.stone_road_base_excavation_2 * numbers_list[1]
+        self.earthwork_road_base_backfill_2_numbers = self.earthwork_road_base_backfill_2 * numbers_list[1]
+        self.earth_road_base_excavation_3_numbers = self.earth_road_base_excavation_3 * numbers_list[2]
+        self.stone_road_base_excavation_3_numbers = self.stone_road_base_excavation_3 * numbers_list[2]
+        self.earthwork_road_base_backfill_3_numbers = self.earthwork_road_base_backfill_3 * numbers_list[2]
+        self.earth_road_base_excavation_4_numbers = self.earth_road_base_excavation_4 * numbers_list[3]
+        self.stone_road_base_excavation_4_numbers = self.stone_road_base_excavation_4 * numbers_list[3]
+        self.earthwork_road_base_backfill_4_numbers = self.earthwork_road_base_backfill_4 * numbers_list[3]
+
         return self.data_road_base_1, self.data_road_base_2, self.data_road_base_3, self.data_road_base_4
 
-    def generate_dict(self, data1, data2, data3, data4, numbers_list):
+    def generate_dict_road_basement(self, data1, data2, data3, data4, numbers_list):
         self.data_road_base_1 = data1
         self.data_road_base_2 = data2
         self.data_road_base_3 = data3
@@ -234,27 +251,26 @@ class RoadBasementDatabase:
         }
         return dict_road_base_1, dict_road_base_2, dict_road_base_3, dict_road_base_4
 
-
 numberslist = [5, 1.5, 10, 15]
 project04 = RoadBasementDatabase()
-data_1, data_2, data_3, data_4 = project04.extraction_data('陡坡低山')
-data_cal, data_ca2, data_ca3, data_ca4 = project04.excavation_cal(data_1, data_2, data_3, data_4, '陡坡低山', 0.8, 0.2)
-dict_road_base_1, dict_road_base_2, dict_road_base_3, dict_road_base_4 = project04.generate_dict(data_cal, data_ca2,
+data_1, data_2, data_3, data_4 = project04.extraction_data_road_basement('陡坡低山')
+data_cal, data_ca2, data_ca3, data_ca4 = project04.excavation_cal_road_basement(data_1, data_2, data_3, data_4, '陡坡低山', 0.8, 0.2,numberslist)
+dict_road_base_1, dict_road_base_2, dict_road_base_3, dict_road_base_4 = project04.generate_dict_road_basement(data_cal, data_ca2,
                                                                                                  data_ca3, data_ca4,
                                                                                                  numberslist)
-Dict_1 = round_dict_numbers(dict_road_base_1, dict_road_base_1['numbers_1'])
-Dict_2 = round_dict_numbers(dict_road_base_2, dict_road_base_2['numbers_2'])
-Dict_3 = round_dict_numbers(dict_road_base_3, dict_road_base_3['numbers_3'])
-Dict_4 = round_dict_numbers(dict_road_base_4, dict_road_base_4['numbers_4'])
-Dict = dict(Dict_1, **Dict_2, **Dict_3, **Dict_4)
-
-print(Dict)
-print("=======================")
-filename_box = ['cr8', 'result_chapter8']
-save_path = r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8'
-read_path = os.path.join(save_path, '%s.docx') % filename_box[0]
-save_path = os.path.join(save_path, '%s.docx') % filename_box[1]
-tpl = DocxTemplate(read_path)
-tpl.render(Dict)
-tpl.save(save_path)
-print("==========finished=============")
+# Dict_1 = round_dict_numbers(dict_road_base_1, dict_road_base_1['numbers_1'])
+# Dict_2 = round_dict_numbers(dict_road_base_2, dict_road_base_2['numbers_2'])
+# Dict_3 = round_dict_numbers(dict_road_base_3, dict_road_base_3['numbers_3'])
+# Dict_4 = round_dict_numbers(dict_road_base_4, dict_road_base_4['numbers_4'])
+# Dict = dict(Dict_1, **Dict_2, **Dict_3, **Dict_4)
+#
+# print(Dict)
+# print("=======================")
+# filename_box = ['cr8', 'result_chapter8']
+# save_path = r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8'
+# read_path = os.path.join(save_path, '%s.docx') % filename_box[0]
+# save_path = os.path.join(save_path, '%s.docx') % filename_box[1]
+# tpl = DocxTemplate(read_path)
+# tpl.render(Dict)
+# tpl.save(save_path)
+# print("==========finished=============")

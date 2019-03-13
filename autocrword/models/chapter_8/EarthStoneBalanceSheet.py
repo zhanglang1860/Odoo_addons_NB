@@ -1,8 +1,6 @@
-import pandas as pd
-import numpy as np
-from RoundUp import round_up, round_dict
+from RoundUp import round_dict
 from docxtpl import DocxTemplate
-import math, os
+import os
 from WindResourceDatabase import WindResourceDatabase
 from BoxVoltageDatabase import BoxVoltageDatabase
 from BoosterStationDatabase import BoosterStationDatabase
@@ -17,74 +15,112 @@ class EarthStoneBalanceSheet(WindResourceDatabase, BoxVoltageDatabase, BoosterSt
         self.booster_station_engineering_excavation, self.booster_station_engineering_backfill, \
         self.booster_station_engineering_spoil = 0, 0, 0
 
-        self.road_engineering_excavation
-    # self.capacity, self.turbine_numbers = 0, 0
-    # self.material_warehouse_1, self.temporary_residential_office_1, self.steel_processing_plant_1, \
-    # self.equipment_storage_1, self.construction_machinery_parking_1, self.total_1 = 0, 0, 0, 0, 0, 0
-    #
-    # self.material_warehouse_2, self.temporary_residential_office_2, self.steel_processing_plant_2, \
-    # self.equipment_storage_2, self.construction_machinery_parking_2, self.total_2 = 0, 0, 0, 0, 0, 0
-    #
-    # self.data = pd.DataFrame()
+        self.road_engineering_excavation, self.road_engineering_backfill, self.road_engineering_spoil = 0, 0, 0
+        self.hoisting_platform_excavation, self.hoisting_platform_backfill, self.hoisting_platform_spoil = 0, 0, 0
+        self.total_line_excavation, self.total_line_filling, self.total_line_spoil = 0, 0, 0
+        self.sum_EarthStoneBalance_excavation, self.sum_EarthStoneBalance_backfill, self.sum_EarthStoneBalance_spoil = 0, 0, 0
 
-    def extraction_data_earth_stone_balance(self):
-        # self.capacity = capacity
+    def extraction_data_earth_stone_balance(self, total_line_excavation, total_line_backfill):
+        # **********
+        self.turbine_foundation_box_voltage_excavation = self.earth_excavation_wind_resource_numbers.iat[0] + \
+                                                         self.stone_excavation_wind_resource_numbers.iat[0] + \
+                                                         self.earth_excavation_box_voltage_numbers.iat[0] + \
+                                                         self.stone_excavation_box_voltage_numbers.iat[0]
 
-        self.turbine_foundation_box_voltage_excavation = \
-            self.data_wind_resource.at[self.data_wind_resource.index[0], 'EarthExcavation_Turbine_Numbers'] + \
-            self.data_wind_resource.at[self.data_wind_resource.index[0], 'StoneExcavation_Turbine_Numbers'] + \
-            self.data_box_voltage.at[self.data_box_voltage.index[0], 'EarthExcavation_BoxVoltage_Numbers'] + \
-            self.data_box_voltage.at[self.data_box_voltage.index[0], 'StoneExcavation_BoxVoltage_Numbers']
-        self.turbine_foundation_box_voltage_backfill = \
-            self.data_wind_resource.at[self.data_wind_resource.index[0], 'EarthWorkBackFill_Turbine_Numbers'] + \
-            self.data_box_voltage.at[self.data_box_voltage.index[0], 'EarthWorkBackFill_BoxVoltage_Numbers']
+        self.turbine_foundation_box_voltage_backfill = self.earth_work_back_fill_wind_resource_numbers.iat[0] + \
+                                                       self.earthwork_back_fill_box_voltage_numbers.iat[0]
+
         self.turbine_foundation_box_voltage_spoil = \
             self.turbine_foundation_box_voltage_excavation - self.turbine_foundation_box_voltage_backfill
 
-        self.booster_station_engineering_excavation = self.earth_excavation_booster_station + self.stone_excavation_booster_station
-        self.booster_station_engineering_backfill = self.earthwork_backfill_booster_station
+        # **********
+        self.booster_station_engineering_excavation = self.earth_excavation_booster_station.iat[0] + \
+                                                      self.stone_excavation_booster_station.iat[0]
+        self.booster_station_engineering_backfill = self.earthwork_backfill_booster_station.iat[0]
         self.booster_station_engineering_spoil = self.booster_station_engineering_excavation - self.booster_station_engineering_backfill
 
-        self.road_engineering_excavation = self.earth_road_base_excavation_1 + self.stone_road_base_excavation_1 + \
-                                           self.earth_road_base_excavation_2 + self.stone_road_base_excavation_2 + \
-                                           self.earth_road_base_excavation_3 + self.stone_road_base_excavation_3
-        self.road_engineering_backfill = self.earthwork_road_base_backfill_1 + self.earthwork_road_base_backfill_2 + \
-                                           self.earthwork_road_base_backfill_3
+        # **********
+        self.road_engineering_excavation = \
+            self.earth_road_base_excavation_1_numbers + self.stone_road_base_excavation_1_numbers + \
+            self.earth_road_base_excavation_2_numbers + self.stone_road_base_excavation_2_numbers + \
+            self.earth_road_base_excavation_3_numbers + self.stone_road_base_excavation_3_numbers
 
+        self.road_engineering_backfill = \
+            self.earthwork_road_base_backfill_1_numbers + self.earthwork_road_base_backfill_2_numbers + \
+            self.earthwork_road_base_backfill_3_numbers
+        self.road_engineering_spoil = self.road_engineering_excavation - self.road_engineering_backfill
 
-    # def generate_dict(self):
-    #     dict_construction_land_use_summary = {
-    #         '材料仓库_1': self.material_warehouse_1,
-    #         '材料仓库_2': self.material_warehouse_2,
-    #         '临时住宅及办公室施工生活区_1': self.temporary_residential_office_1,
-    #         '临时住宅及办公室施工生活区_2': self.temporary_residential_office_2,
-    #         '钢筋加工厂_1': self.steel_processing_plant_1,
-    #         '钢筋加工厂_2': self.steel_processing_plant_2,
-    #         '设备存放场_1': self.equipment_storage_1,
-    #         '设备存放场_2': self.equipment_storage_2,
-    #         '施工机械停放场_1': self.construction_machinery_parking_1,
-    #         '施工机械停放场_2': self.construction_machinery_parking_2,
-    #         '合计_1': self.total_1,
-    #         '合计_2': self.total_2,
-    #     }
-    #     return dict_construction_land_use_summary
-    #
+        # **********
+        self.hoisting_platform_excavation = self.earth_road_base_excavation_4_numbers.iat[0]\
+                                            + self.stone_road_base_excavation_4_numbers.iat[0]
+        self.hoisting_platform_backfill = self.earthwork_road_base_backfill_4_numbers.iat[0]
+        self.hoisting_platform_spoil = self.hoisting_platform_excavation - self.hoisting_platform_backfill
 
+        # **********
+        self.total_line_excavation = total_line_excavation
+        self.total_line_backfill = total_line_backfill
+        self.total_line_spoil = self.total_line_excavation - self.total_line_backfill
 
-project06 = EarthStoneBalanceSheet()
-data1 = project06.extraction_data_turbine(basic_type='扩展基础', ultimate_load=70000, fortification_intensity=7)
-numbers_list = [15]
-data_cal1 = project06.excavation_cal_turbine(0.8, 0.2, numbers_list)
+        # **********
+        self.sum_EarthStoneBalance_excavation = self.turbine_foundation_box_voltage_excavation + \
+                                                self.booster_station_engineering_excavation + \
+                                                self.road_engineering_excavation + \
+                                                self.hoisting_platform_excavation + self.total_line_excavation
 
-data2 = project06.extraction_data_box_voltage(3)
-data_cal2 = project06.excavation_cal_box_voltage(0.8, 0.2, numbers_list)
-project06.extraction_data_earth_stone_balance()
+        self.sum_EarthStoneBalance_backfill = self.turbine_foundation_box_voltage_backfill + \
+                                              self.booster_station_engineering_backfill + \
+                                              self.road_engineering_backfill + \
+                                              self.hoisting_platform_backfill + self.total_line_backfill
 
-print(project06.turbine_foundation_box_voltage_excavation, project06.turbine_foundation_box_voltage_backfill,
-      project06.turbine_foundation_box_voltage_spoil)
+        self.sum_EarthStoneBalance_spoil = self.turbine_foundation_box_voltage_spoil + \
+                                           self.booster_station_engineering_spoil + \
+                                           self.road_engineering_spoil + \
+                                           self.hoisting_platform_spoil + self.total_line_spoil
+
+    def generate_dict_earth_stone_balance(self):
+        dict_earth_stone_balance = {
+            '风机基础及箱变_开挖': self.turbine_foundation_box_voltage_excavation,
+            '风机基础及箱变_回填': self.turbine_foundation_box_voltage_backfill,
+            '风机基础及箱变_弃土': self.turbine_foundation_box_voltage_spoil,
+            '升压站工程_开挖': self.booster_station_engineering_excavation,
+            '升压站工程_回填': self.booster_station_engineering_backfill,
+            '升压站工程_弃土': self.booster_station_engineering_spoil,
+            '道路工程_开挖': self.road_engineering_excavation,
+            '道路工程_回填': self.road_engineering_backfill,
+            '道路工程_弃土': self.road_engineering_spoil,
+            '吊装平台_开挖': self.hoisting_platform_excavation,
+            '吊装平台_回填': self.hoisting_platform_backfill,
+            '吊装平台_弃土': self.hoisting_platform_spoil,
+            '集电线路_开挖': self.total_line_excavation,
+            '集电线路_回填': self.total_line_backfill,
+            '集电线路_弃土': self.total_line_spoil,
+            '合计_开挖': self.sum_EarthStoneBalance_excavation,
+            '合计_回填': self.sum_EarthStoneBalance_backfill,
+            '合计_弃土': self.sum_EarthStoneBalance_spoil,
+        }
+        return dict_earth_stone_balance
+
 #
-# project05.extraction_data(3, 15)
-# Dict = round_dict(project05.generate_dict())
+# project06 = EarthStoneBalanceSheet()
+# data1 = project06.extraction_data_wind_resource(basic_type='扩展基础', ultimate_load=70000, fortification_intensity=7)
+# numbers_list = [15]
+# data_cal1 = project06.excavation_cal_wind_resource(data1, 0.8, 0.2, numbers_list)
+#
+# data2 = project06.extraction_data_box_voltage(3)
+# data_cal2 = project06.excavation_cal_box_voltage(data2, 0.8, 0.2, numbers_list)
+#
+# data3 = project06.extraction_data_booster_station('新建', 110, 100)
+# data_cal = project06.excavation_cal_booster_station(data3, 0.8, 0.2, '陡坡低山')
+#
+# numbers_list = [5, 1.5, 10, 15]
+# data_1, data_2, data_3, data_4 = project06.extraction_data_road_basement('陡坡低山')
+# data_ca1, data_ca2, data_ca3, data_ca4 = project06.excavation_cal_road_basement(data_1, data_2, data_3, data_4, '陡坡低山',
+#                                                                                 0.8, 0.2, numbers_list)
+#
+# line_data = [15000, 10000]
+# project06.extraction_data_earth_stone_balance(line_data[0], line_data[1])
+#
+# Dict = round_dict(project06.generate_dict_earth_stone_balance())
 # print(Dict)
 # filename_box = ['cr8', 'result_chapter8']
 # save_path = r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8'
