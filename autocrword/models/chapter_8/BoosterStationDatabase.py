@@ -11,19 +11,20 @@ class BoosterStationDatabase:
         self.road_basic_earthwork_ratio, self.road_basic_stone_ratio = 0, 0
         self.data = 0
         self.grade, self.capacity, self.slope_area, self.terrain_type = 0, 0, 0, []
+        self.DataBoosterStation=pd.DataFrame()
 
     def extraction_data(self, status, grade, capacity):
         self.status = status
         self.grade = grade
         self.capacity = capacity
-        col_name = ['status', 'grade', 'capacity', 'long', 'width', 'Innerwallarea', 'Walllength', 'Stonemasonryfoot',
-                    'Stonemasonrydrainageditch', 'Roadarea', 'Greenarea', 'Comprehensivebuilding', 'Equipmentbuilding',
-                    'Affiliatedbuilding', 'C30concrete', 'C15concretecushion', 'Maintransformerfoundation',
-                    'AccidentoilpoolC30concrete', 'AccidentoilpoolC15cushion', 'Accidentoilpoolreinforcement',
-                    'FoundationC25Concrete', 'Outdoorstructure', 'Precastconcretepole', 'lightningrod'
+        col_name = ['Status', 'Grade', 'Capacity', 'Long', 'Width', 'InnerWallArea', 'WallLength', 'StoneMasonryFoot',
+                    'StoneMasonryDrainageDitch', 'RoadArea', 'Greenarea', 'ComprehensiveBuilding', 'EquipmentBuilding',
+                    'AffiliatedBuilding', 'C30Concrete', 'C15ConcreteCushion', 'MaintransFormerFoundation',
+                    'AccidentOilPoolC30Concrete', 'AccidentOilPoolC15Cushion', 'AccidentOilPoolReinforcement',
+                    'FoundationC25Concrete', 'OutdoorStructure', 'PrecastConcretePole', 'LightningRod'
                     ]
 
-        Data = pd.read_excel(
+        self.DataBoosterStation = pd.read_excel(
             r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8\chapter8database.xlsx',
             header=2, sheet_name='升压站基础数据', usecols=col_name)
 

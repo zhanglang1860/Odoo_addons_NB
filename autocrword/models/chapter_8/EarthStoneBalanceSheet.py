@@ -35,6 +35,8 @@ class EarthStoneBalanceSheet(WindResourceDatabase, BoxVoltageDatabase):
         self.turbine_foundation_box_voltage_spoil = \
             self.turbine_foundation_box_voltage_Excavation - self.turbine_foundation_box_voltage_Backfill
 
+
+
     # def generate_dict(self):
     #     dict_construction_land_use_summary = {
     #         '材料仓库_1': self.material_warehouse_1,
