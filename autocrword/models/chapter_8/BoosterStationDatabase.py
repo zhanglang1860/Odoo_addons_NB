@@ -54,45 +54,48 @@ class BoosterStationDatabase:
         self.data_booster_station['Earthexcavation_BoosterStation'] = self.earth_excavation_booster_station
         self.data_booster_station['Stoneexcavation_BoosterStation'] = self.stone_excavation_booster_station
         self.data_booster_station['Earthworkbackfill_BoosterStation'] = self.earthwork_backfill_booster_station
-        self.data_booster_station['slope_area'] = self.slope_area
+        self.data_booster_station['SlopeArea'] = self.slope_area
 
         return self.data_booster_station
 
-    def generate_dict(self, data):
-        self.data = data
-        print(self.data)
-        dict_booster_station = {'变电站围墙内面积': self.data.at[self.data.index[0], 'Innerwallarea'],
-                                '含放坡面积': self.data.at[self.data.index[0], 'slope_area'],
-                                '道路面积': self.data.at[self.data.index[0], 'Roadarea'],
-                                '围墙长度': self.data.at[self.data.index[0], 'Walllength'],
-                                '绿化面积': self.data.at[self.data.index[0], 'Greenarea'],
-                                '土方开挖_升压站': self.data.at[self.data.index[0], 'Earthexcavation'],
-                                '综合楼': self.data.at[self.data.index[0], 'Comprehensivebuilding'],
-                                '石方开挖_升压站': self.data.at[self.data.index[0], 'Stoneexcavation'],
-                                '设备楼': self.data.at[self.data.index[0], 'Equipmentbuilding'],
-                                '土方回填_升压站': self.data.at[self.data.index[0], 'Earthworkbackfill'],
-                                '附属楼': self.data.at[self.data.index[0], 'Affiliatedbuilding'],
-                                '浆砌石护脚': self.data.at[self.data.index[0], 'Stonemasonryfoot'],
-                                '主变基础C3self.data.index[0]混凝土': self.data.at[self.data.index[0], 'C30concrete'],
-                                '浆砌石排水沟': self.data.at[self.data.index[0], 'Stonemasonrydrainageditch'],
-                                'C15混凝土垫层': self.data.at[self.data.index[0], 'C15concretecushion'],
-                                '主变压器基础钢筋': self.data.at[self.data.index[0], 'Maintransformerfoundation'],
-                                '事故油池C15垫层': self.data.at[self.data.index[0], 'AccidentoilpoolC15cushion'],
-                                '事故油池C3self.data.index[0]混凝土': self.data.at[
-                                    self.data.index[0], 'AccidentoilpoolC30concrete'],
-                                '事故油池钢筋': self.data.at[self.data.index[0], 'Accidentoilpoolreinforcement'],
-                                '设备及架构基础C25混凝土': self.data.at[self.data.index[0], 'FoundationC25Concrete'],
-                                '室外架构': self.data.at[self.data.index[0], 'Outdoorstructure'],
-                                '预制混凝土杆': self.data.at[self.data.index[0], 'Precastconcretepole'],
-                                '避雷针': self.data.at[self.data.index[0], 'lightningrod'], }
+    def generate_dict_booster_station(self, data_booster_station):
+        self.data_booster_station = data_booster_station
+        dict_booster_station = {
+            '变电站围墙内面积': self.data_booster_station.at[self.data_booster_station.index[0], 'InnerWallArea'],
+            '含放坡面积': self.data_booster_station.at[self.data_booster_station.index[0], 'SlopeArea'],
+            '道路面积': self.data_booster_station.at[self.data_booster_station.index[0], 'RoadArea'],
+            '围墙长度': self.data_booster_station.at[self.data_booster_station.index[0], 'WallLength'],
+            '绿化面积': self.data_booster_station.at[self.data_booster_station.index[0], 'GreenArea'],
+            '土方开挖_升压站': self.data_booster_station.at[
+                self.data_booster_station.index[0], 'Earthexcavation_BoosterStation'],
+            '综合楼': self.data_booster_station.at[self.data_booster_station.index[0], 'ComprehensiveBuilding'],
+            '石方开挖_升压站': self.data_booster_station.at[
+                self.data_booster_station.index[0], 'Stoneexcavation_BoosterStation'],
+            '设备楼': self.data_booster_station.at[self.data_booster_station.index[0], 'EquipmentBuilding'],
+            '土方回填_升压站': self.data_booster_station.at[
+                self.data_booster_station.index[0], 'Earthworkbackfill_BoosterStation'],
+            '附属楼': self.data_booster_station.at[self.data_booster_station.index[0], 'AffiliatedBuilding'],
+            '浆砌石护脚': self.data_booster_station.at[self.data_booster_station.index[0], 'StoneMasonryFoot'],
+            '主变基础C30混凝土': self.data_booster_station.at[self.data_booster_station.index[0], 'C30Concrete'],
+            '浆砌石排水沟': self.data_booster_station.at[self.data_booster_station.index[0], 'StoneMasonryDrainageDitch'],
+            'C15混凝土垫层': self.data_booster_station.at[self.data_booster_station.index[0], 'C15ConcreteCushion'],
+            '主变压器基础钢筋': self.data_booster_station.at[self.data_booster_station.index[0], 'MainTransformerFoundation'],
+            '事故油池C15垫层': self.data_booster_station.at[self.data_booster_station.index[0], 'AccidentOilPoolC15Cushion'],
+            '事故油池C30混凝土': self.data_booster_station.at[
+                self.data_booster_station.index[0], 'AccidentOilPoolC30Concrete'],
+            '事故油池钢筋': self.data_booster_station.at[self.data_booster_station.index[0], 'AccidentOilPoolReinforcement'],
+            '设备及架构基础C25混凝土': self.data_booster_station.at[self.data_booster_station.index[0], 'FoundationC25Concrete'],
+            '室外架构': self.data_booster_station.at[self.data_booster_station.index[0], 'OutdoorStructure'],
+            '预制混凝土杆': self.data_booster_station.at[self.data_booster_station.index[0], 'PrecastConcretePole'],
+            '避雷针': self.data_booster_station.at[self.data_booster_station.index[0], 'LightningRod'], }
         return dict_booster_station
 
 
 project03 = BoosterStationDatabase()
-data = project03.extraction_data('新建', 110, 100)
-data_cal = project03.excavation_cal(0.8, 0.2, '平原')
+data = project03.extraction_data_booster_station('新建', 110, 100)
+data_cal = project03.excavation_cal_booster_station(data,0.8, 0.2, '平原')
 
-Dict = round_dict(project03.generate_dict(data_cal))
+Dict = round_dict(project03.generate_dict_booster_station(data_cal))
 print(Dict)
 filename_box = ['cr8', 'result_chapter8']
 save_path = r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8'

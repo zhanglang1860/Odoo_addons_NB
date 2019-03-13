@@ -5,11 +5,15 @@ from docxtpl import DocxTemplate
 import math, os
 from WindResourceDatabase import WindResourceDatabase
 from BoxVoltageDatabase import BoxVoltageDatabase
+from BoosterStationDatabase import BoosterStationDatabase
+from RoadBasementDatabase import RoadBasementDatabase
 
-
-class EarthStoneBalanceSheet(WindResourceDatabase, BoxVoltageDatabase):
+class EarthStoneBalanceSheet(WindResourceDatabase, BoxVoltageDatabase, BoosterStationDatabase,RoadBasementDatabase):
     def __init__(self):
-        self.turbine_foundation_box_voltage = 0
+        self.turbine_foundation_box_voltage_excavation, self.turbine_foundation_box_voltage_backfill, \
+        self.turbine_foundation_box_voltage_spoil = 0, 0, 0
+
+        self.booster_station_engineering_excavation,
 
     # self.capacity, self.turbine_numbers = 0, 0
     # self.material_warehouse_1, self.temporary_residential_office_1, self.steel_processing_plant_1, \
@@ -22,19 +26,23 @@ class EarthStoneBalanceSheet(WindResourceDatabase, BoxVoltageDatabase):
 
     def extraction_data_earth_stone_balance(self):
         # self.capacity = capacity
+
         self.turbine_foundation_box_voltage_excavation = \
             self.data_wind_resource.at[self.data_wind_resource.index[0], 'EarthExcavation_Turbine_Numbers'] + \
             self.data_wind_resource.at[self.data_wind_resource.index[0], 'StoneExcavation_Turbine_Numbers'] + \
             self.data_box_voltage.at[self.data_box_voltage.index[0], 'EarthExcavation_BoxVoltage_Numbers'] + \
             self.data_box_voltage.at[self.data_box_voltage.index[0], 'StoneExcavation_BoxVoltage_Numbers']
-
         self.turbine_foundation_box_voltage_backfill = \
             self.data_wind_resource.at[self.data_wind_resource.index[0], 'EarthWorkBackFill_Turbine_Numbers'] + \
             self.data_box_voltage.at[self.data_box_voltage.index[0], 'EarthWorkBackFill_BoxVoltage_Numbers']
-
         self.turbine_foundation_box_voltage_spoil = \
-            self.turbine_foundation_box_voltage_Excavation - self.turbine_foundation_box_voltage_Backfill
+            self.turbine_foundation_box_voltage_excavation - self.turbine_foundation_box_voltage_backfill
 
+        self.booster_station_engineering_excavation = self.earth_excavation_booster_station + self.stone_excavation_booster_station
+        self.booster_station_engineering_backfill = self.earthwork_backfill_booster_station
+        self.booster_station_engineering_spoil = self.booster_station_engineering_excavation - self.booster_station_engineering_backfill
+
+        self.road_engineering_excavation=self.
 
 
     # def generate_dict(self):

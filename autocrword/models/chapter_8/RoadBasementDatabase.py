@@ -7,53 +7,51 @@ import math, os
 
 class RoadBasementDatabase:
     def __init__(self):
-        self.earth_excavation_1, self.stone_excavation_1, self.earthwork_backfill_1 = 0, 0, 0
-        self.earth_excavation_2, self.stone_excavation_2, self.earthwork_backfill_2 = 0, 0, 0
-        self.earth_excavation_3, self.stone_excavation_3, self.earthwork_backfill_3 = 0, 0, 0
-        self.earth_excavation_4, self.stone_excavation_4, self.earthwork_backfill_4 = 0, 0, 0
+        self.earth_road_base_excavation_1, self.stone_road_base_excavation_1, self.earthwork_road_base_backfill_1 = 0, 0, 0
+        self.earth_road_base_excavation_2, self.stone_road_base_excavation_2, self.earthwork_road_base_backfill_2 = 0, 0, 0
+        self.earth_road_base_excavation_3, self.stone_road_base_excavation_3, self.earthwork_road_base_backfill_3 = 0, 0, 0
+        self.earth_road_base_excavation_4, self.stone_road_base_excavation_4, self.earthwork_road_base_backfill_4 = 0, 0, 0
         self.earth_excavation_numbers_1 = 0
         self.road_basic_earthwork_ratio, self.road_basic_stone_ratio = 0, 0
-        self.data_1 = pd.DataFrame()
-        self.data_2 = pd.DataFrame()
-        self.data_3 = pd.DataFrame()
-        self.data_4 = pd.DataFrame()
-        self.data_timesnumber = pd.DataFrame()
+        self.data_road_base_1, self.data_road_base_2, self.data_road_base_3, self.data_road_base_4 \
+            = pd.DataFrame(), pd.DataFrame(), pd.DataFrame(), pd.DataFrame()
+
         self.numbers, self.bridge_3, self.grade, self.capacity, self.slope_area, self.terrain_type = 0, 0, 0, 0, 0, []
 
     def extraction_data(self, terrain_type):
         self.terrain_type = terrain_type
-        col_name_1 = ['terrain_type', 'Gradedgravelpavement_1', 'roundtubeculvert_1', 'Stonemasonrydrainageditch_1',
-                      'mortarstoneretainingwall_1', 'Turfslopeprotection_1']
-        col_name_2 = ['terrain_type', 'Gradedgravelbase_2', 'C30concretepavement_2', 'roundtubeculvert_2',
-                      'Stonemasonrydrainageditch_2', 'mortarstoneretainingwall_2', 'Turfslopeprotection_2', 'Signage_2',
-                      'Waveguardrail_2']
-        col_name_3 = ['terrain_type', 'Mountainpavement_3', 'C30concretepavement_3', 'roundtubeculvert_3',
-                      'Stonemasonrydrainageditch_3', 'mortarstoneretainingwall_3', 'Turfslopeprotection_3', 'Signage_3',
-                      'Waveguardrail_3', 'Landuse_3']
-        col_name_4 = ['terrain_type', 'Generalsiteleveling_4', 'Stonemasonrydrainageditch_4',
-                      'mortarstoneprotectionslope_4', 'Turfslopeprotection_4']
+        col_name_1 = ['TerrainType', 'GradedGravelPavement_1', 'RoundTubeCulvert_1', 'StoneMasonryDrainageDitch_1',
+                      'MortarStoneRetainingWall_1', 'TurfSlopeProtection_1']
+        col_name_2 = ['TerrainType', 'GradedGravelBase_2', 'C30ConcretePavement_2', 'RoundTubeCulvert_2',
+                      'StoneMasonryDrainageDitch_2', 'MortarStonereTainingWall_2', 'TurfSlopeProtection_2', 'Signage_2',
+                      'WaveGuardrail_2']
+        col_name_3 = ['TerrainType', 'MountainPavement_3', 'C30ConcretePavement_3', 'RoundTubeCulvert_3',
+                      'StoneMasonryDrainageDitch_3', 'MortarStoneRetainingWall_3', 'TurfSlopeProtection_3', 'Signage_3',
+                      'WaveGuardrail_3', 'LandUse_3']
+        col_name_4 = ['TerrainType', 'GeneralSiteLeveling_4', 'StoneMasonryDrainageDitch_4',
+                      'MortarStoneProtectionSlope_4', 'TurfSlopeProtection_4']
 
-        Data_1 = pd.read_excel(
+        DataRoadBasement_1 = pd.read_excel(
             r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8\chapter8database.xlsx',
             header=2, sheet_name='道路基础数据1', usecols=col_name_1)
-        Data_2 = pd.read_excel(
+        DataRoadBasement_2 = pd.read_excel(
             r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8\chapter8database.xlsx',
             header=2, sheet_name='道路基础数据2', usecols=col_name_2)
-        Data_3 = pd.read_excel(
+        DataRoadBasement_3 = pd.read_excel(
             r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8\chapter8database.xlsx',
             header=2, sheet_name='道路基础数据3', usecols=col_name_3)
-        Data_4 = pd.read_excel(
+        DataRoadBasement_4 = pd.read_excel(
             r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8\chapter8database.xlsx',
             header=2, sheet_name='道路基础数据4', usecols=col_name_4)
 
-        self.data_1 = Data_1.loc[Data_1['terrain_type'] == self.terrain_type]
-        self.data_2 = Data_2.loc[Data_2['terrain_type'] == self.terrain_type]
-        self.data_3 = Data_3.loc[Data_3['terrain_type'] == self.terrain_type]
-        self.data_4 = Data_4.loc[Data_4['terrain_type'] == self.terrain_type]
-        return self.data_1, self.data_2, self.data_3, self.data_4
+        self.data_road_base_1 = DataRoadBasement_1.loc[DataRoadBasement_1['TerrainType'] == self.terrain_type]
+        self.data_road_base_2 = DataRoadBasement_2.loc[DataRoadBasement_2['TerrainType'] == self.terrain_type]
+        self.data_road_base_3 = DataRoadBasement_3.loc[DataRoadBasement_3['TerrainType'] == self.terrain_type]
+        self.data_road_base_4 = DataRoadBasement_4.loc[DataRoadBasement_4['TerrainType'] == self.terrain_type]
+        return self.data_road_base_1, self.data_road_base_2, self.data_road_base_3, self.data_road_base_4
 
-    def excavation_cal(self, terrain_type, road_basic_earthwork_ratio, road_basic_stone_ratio, data1, data2, data3,
-                       data4):
+    def excavation_cal(self, data1, data2, data3, data4, terrain_type, road_basic_earthwork_ratio,
+                       road_basic_stone_ratio):
         self.terrain_type = terrain_type
         self.road_basic_earthwork_ratio = road_basic_earthwork_ratio
         self.road_basic_stone_ratio = road_basic_stone_ratio
