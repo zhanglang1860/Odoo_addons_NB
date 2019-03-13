@@ -22,11 +22,18 @@ class EarthStoneBalanceSheet(WindResourceDatabase, BoxVoltageDatabase):
 
     def extraction_data_earth_stone_balance(self):
         # self.capacity = capacity
-        self.turbine_foundation_box_voltage = \
+        self.turbine_foundation_box_voltage_excavation = \
             self.data_wind_resource.at[self.data_wind_resource.index[0], 'EarthExcavation_Turbine_Numbers'] + \
             self.data_wind_resource.at[self.data_wind_resource.index[0], 'StoneExcavation_Turbine_Numbers'] + \
             self.data_box_voltage.at[self.data_box_voltage.index[0], 'EarthExcavation_BoxVoltage_Numbers'] + \
             self.data_box_voltage.at[self.data_box_voltage.index[0], 'StoneExcavation_BoxVoltage_Numbers']
+
+        self.turbine_foundation_box_voltage_backfill = \
+            self.data_wind_resource.at[self.data_wind_resource.index[0], 'EarthWorkBackFill_Turbine_Numbers'] + \
+            self.data_box_voltage.at[self.data_box_voltage.index[0], 'EarthWorkBackFill_BoxVoltage_Numbers']
+
+        self.turbine_foundation_box_voltage_spoil = \
+            self.turbine_foundation_box_voltage_Excavation - self.turbine_foundation_box_voltage_Backfill
 
     # def generate_dict(self):
     #     dict_construction_land_use_summary = {
@@ -50,13 +57,14 @@ class EarthStoneBalanceSheet(WindResourceDatabase, BoxVoltageDatabase):
 project06 = EarthStoneBalanceSheet()
 data1 = project06.extraction_data_turbine(basic_type='扩展基础', ultimate_load=70000, fortification_intensity=7)
 numbers_list = [15]
-data_cal1 = project06.excavation_cal_turbine(0.8, 0.2,numbers_list)
+data_cal1 = project06.excavation_cal_turbine(0.8, 0.2, numbers_list)
 
 data2 = project06.extraction_data_box_voltage(3)
-data_cal2 = project06.excavation_cal_box_voltage(0.8, 0.2,numbers_list)
+data_cal2 = project06.excavation_cal_box_voltage(0.8, 0.2, numbers_list)
 project06.extraction_data_earth_stone_balance()
 
-print(project06.turbine_foundation_box_voltage)
+print(project06.turbine_foundation_box_voltage_excavation, project06.turbine_foundation_box_voltage_backfill,
+      project06.turbine_foundation_box_voltage_spoil)
 #
 # project05.extraction_data(3, 15)
 # Dict = round_dict(project05.generate_dict())
