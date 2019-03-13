@@ -21,7 +21,8 @@ class BoxVoltageDatabase:
         self.data_box_voltage = self.DataBoxVoltage.loc[self.DataBoxVoltage['TurbineCapacity'] == self.TurbineCapacity]
         return self.data_box_voltage
 
-    def excavation_cal_box_voltage(self, road_earthwork_ratio, road_stone_ratio, numbers_list):
+    def excavation_cal_box_voltage(self,data_box_voltage, road_earthwork_ratio, road_stone_ratio, numbers_list):
+        self.data_box_voltage=data_box_voltage
         self.road_earthwork_ratio = road_earthwork_ratio
         self.road_stone_ratio = road_stone_ratio
         self.earth_excavation_box_voltage = (self.data_box_voltage['Long'] + 0.5 * 2) * (
@@ -44,8 +45,8 @@ class BoxVoltageDatabase:
             'EarthWorkBackFill_BoxVoltage_Numbers'] = self.earthwork_back_fill_box_voltage * numbers_list
         return self.data_box_voltage
 
-    def generate_dict_box_voltage(self, datalist, numbers_list):
-        self.data_box_voltage = datalist
+    def generate_dict_box_voltage(self, data_box_voltage, numbers_list):
+        self.data_box_voltage = data_box_voltage
         self.numbers_list = numbers_list
         self.dict_box_voltage = {
             'numbers_box_voltage': int(self.numbers_list[0]),

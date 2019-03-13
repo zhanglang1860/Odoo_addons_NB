@@ -7,19 +7,19 @@ import math, os
 
 class BoosterStationDatabase:
     def __init__(self):
-        self.status, self.earth_excavation, self.stone_excavation, self.earthwork_backfill = 0, 0, 0, 0
+        self.status, self.earth_excavation_booster_station, self.stone_excavation_booster_station, self.earthwork_backfill_booster_station = 0, 0, 0, 0
         self.road_basic_earthwork_ratio, self.road_basic_stone_ratio = 0, 0
         self.data = 0
         self.grade, self.capacity, self.slope_area, self.terrain_type = 0, 0, 0, []
-        self.DataBoosterStation=pd.DataFrame()
+        self.DataBoosterStation, self.data_booster_station = pd.DataFrame(), pd.DataFrame()
 
-    def extraction_data(self, status, grade, capacity):
+    def extraction_data_booster_station(self, status, grade, capacity):
         self.status = status
         self.grade = grade
         self.capacity = capacity
         col_name = ['Status', 'Grade', 'Capacity', 'Long', 'Width', 'InnerWallArea', 'WallLength', 'StoneMasonryFoot',
-                    'StoneMasonryDrainageDitch', 'RoadArea', 'Greenarea', 'ComprehensiveBuilding', 'EquipmentBuilding',
-                    'AffiliatedBuilding', 'C30Concrete', 'C15ConcreteCushion', 'MaintransFormerFoundation',
+                    'StoneMasonryDrainageDitch', 'RoadArea', 'GreenArea', 'ComprehensiveBuilding', 'EquipmentBuilding',
+                    'AffiliatedBuilding', 'C30Concrete', 'C15ConcreteCushion', 'MainTransformerFoundation',
                     'AccidentOilPoolC30Concrete', 'AccidentOilPoolC15Cushion', 'AccidentOilPoolReinforcement',
                     'FoundationC25Concrete', 'OutdoorStructure', 'PrecastConcretePole', 'LightningRod'
                     ]
@@ -28,33 +28,35 @@ class BoosterStationDatabase:
             r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8\chapter8database.xlsx',
             header=2, sheet_name='升压站基础数据', usecols=col_name)
 
-        self.data = Data.loc[Data['status'] == self.status].loc[Data['grade'] == self.grade].loc[
-            Data['capacity'] == self.capacity]
+        self.data_booster_station = self.DataBoosterStation.loc[self.DataBoosterStation['Status'] == self.status].loc[
+            self.DataBoosterStation['Grade'] == self.grade].loc[self.DataBoosterStation['Capacity'] == self.capacity]
 
-        return self.data
+        return self.data_booster_station
 
-    def excavation_cal(self, road_basic_earthwork_ratio, road_basic_stone_ratio, terrain_type):
+    def excavation_cal_booster_station(self, data_booster_station, road_basic_earthwork_ratio, road_basic_stone_ratio,
+                                       terrain_type):
+        self.data_booster_station = data_booster_station
         self.road_basic_earthwork_ratio = road_basic_earthwork_ratio
         self.road_basic_stone_ratio = road_basic_stone_ratio
         self.terrain_type = terrain_type
 
         if self.terrain_type == '平原':
-            self.slope_area = (self.data['long'] + 5) * (self.data['width'] + 5)
-            self.earth_excavation = self.slope_area * 0.3 * self.road_basic_earthwork_ratio / 10
-            self.stone_excavation = self.slope_area * 0.3 * self.road_basic_stone_ratio / 10
-            self.earthwork_backfill = self.slope_area * 2
+            self.slope_area = (self.data_booster_station['Long'] + 5) * (self.data_booster_station['Width'] + 5)
+            self.earth_excavation_booster_station = self.slope_area * 0.3 * self.road_basic_earthwork_ratio / 10
+            self.stone_excavation_booster_station = self.slope_area * 0.3 * self.road_basic_stone_ratio / 10
+            self.earthwork_backfill_booster_station = self.slope_area * 2
         else:
-            self.slope_area = (self.data['long'] + 10) * (self.data['width'] + 10)
-            self.earth_excavation = self.slope_area * 3 * self.road_basic_earthwork_ratio
-            self.stone_excavation = self.slope_area * 3 * self.road_basic_stone_ratio
-            self.earthwork_backfill = self.slope_area * 0.5
+            self.slope_area = (self.data_booster_station['Long'] + 10) * (self.data_booster_station['Width'] + 10)
+            self.earth_excavation_booster_station = self.slope_area * 3 * self.road_basic_earthwork_ratio
+            self.stone_excavation_booster_station = self.slope_area * 3 * self.road_basic_stone_ratio
+            self.earthwork_backfill_booster_station = self.slope_area * 0.5
 
-        self.data['Earthexcavation'] = self.earth_excavation
-        self.data['Stoneexcavation'] = self.stone_excavation
-        self.data['Earthworkbackfill'] = self.earthwork_backfill
-        self.data['slope_area'] = self.slope_area
-        print(self.data['Earthexcavation'])
-        return self.data
+        self.data_booster_station['Earthexcavation_BoosterStation'] = self.earth_excavation_booster_station
+        self.data_booster_station['Stoneexcavation_BoosterStation'] = self.stone_excavation_booster_station
+        self.data_booster_station['Earthworkbackfill_BoosterStation'] = self.earthwork_backfill_booster_station
+        self.data_booster_station['slope_area'] = self.slope_area
+
+        return self.data_booster_station
 
     def generate_dict(self, data):
         self.data = data
