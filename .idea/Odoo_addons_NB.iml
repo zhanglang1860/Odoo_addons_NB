@@ -9,7 +9,7 @@
       <sourceFolder url="file://$MODULE_DIR$/autocrword/models/chapter_6" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/autocrword/models/chapter_8" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.6 (server)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.6 (dox_project)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PyDocumentationSettings">

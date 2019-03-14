@@ -50,7 +50,7 @@ class TemporaryLandAreaSheet(ConstructionLandUseSummary, PermanentLandAreaSheet,
             '架空线路_临时用地面积': self.overhead_line_land,
             '电缆沟_临时用地面积': self.direct_buried_cable_land,
             '合计_临时用地面积': self.sum_temporary_land_area,
-            '合计亩_临时用地面积': self.sum_temporary_land_area,
+            '合计亩_临时用地面积': self.sum_acres_temporary_land_area,
         }
         return dict_temporary_land_area
 
@@ -75,10 +75,9 @@ overhead_line = 1500
 direct_buried_cable = 3000
 project09.extraction_data_construction_land_use_summary(turbine_capacity, turbine_numbers)
 project09.extraction_data_permanent_land_area()
-project09.extraction_data_waste_slag()
 line_data = [15000, 10000]
 project09.extraction_data_earth_stone_balance(line_data[0], line_data[1])
-
+project09.extraction_data_waste_slag()
 project09.extraction_data_temporary_land_area(numbers_list_road, overhead_line, direct_buried_cable)
 
 Dict = round_dict(project09.generate_dict_temporary_land_area())
