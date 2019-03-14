@@ -38,16 +38,50 @@ class TemporaryLandAreaSheet(ConstructionLandUseSummary, RoadBasementDatabase, P
                                        self.construction_road + self.waste_slag_yard + self.approach_road + self.overhead_line_land + \
                                        self.direct_buried_cable_land
 
+        self.sum_acres_temporary_land_area = self.sum_temporary_land_area / 666.667
 
-def generate_dict_permanent_land_area(self):
-    dict_permanent_land_area = {
-        '施工辅企_临时用地面积': self.wind_turbine_foundation,
-        '风电机组安装平台_临时用地面积': self.box_voltage_foundation,
-        '施工道路_临时用地面积': self.booster_station_foundation,
-        '弃渣场_临时用地面积': self.sum_foundation,
-        '进场道路_临时用地面积': self.sum_acres_foundation,
-        '架空线路_临时用地面积': self.sum_foundation,
-        '电缆沟_临时用地面积': self.sum_acres_foundation,
-        '合计_临时用地面积': self.sum_acres_foundation,
+def generate_dict_temporary_land_area(self):
+    dict_temporary_land_area = {
+        '施工辅企_临时用地面积': self.construction_auxiliary_enterprise,
+        '风电机组安装平台_临时用地面积': self.wind_turbine_installation_platform,
+        '施工道路_临时用地面积': self.construction_road,
+        '弃渣场_临时用地面积': self.waste_slag_yard,
+        '进场道路_临时用地面积': self.approach_road,
+        '架空线路_临时用地面积': self.overhead_line_land,
+        '电缆沟_临时用地面积': self.direct_buried_cable_land,
+        '合计_临时用地面积': self.sum_temporary_land_area,
+        '合计亩_临时用地面积': self.sum_temporary_land_area,
     }
-    return dict_permanent_land_area
+    return dict_temporary_land_area
+
+
+project09 = TemporaryLandAreaSheet()
+data1 = project09.extraction_data_wind_resource(basic_type='扩展基础', ultimate_load=70000, fortification_intensity=7)
+numbers_list = [15]
+data_cal1 = project09.excavation_cal_wind_resource(data1, 0.8, 0.2, numbers_list)
+
+data2 = project09.extraction_data_box_voltage(3)
+data_cal2 = project09.excavation_cal_box_voltage(data2, 0.8, 0.2, numbers_list)
+
+data3 = project09.extraction_data_booster_station('新建', 110, 100)
+data_cal = project09.excavation_cal_booster_station(data3, 0.8, 0.2, '陡坡低山')
+
+numbers_list = [5, 1.5, 10, 15]
+data_1, data_2, data_3, data_4 = project09.extraction_data_road_basement('陡坡低山')
+data_ca1, data_ca2, data_ca3, data_ca4 = project09.excavation_cal_road_basement(data_1, data_2, data_3, data_4, '陡坡低山',
+                                                                                0.8, 0.2, numbers_list)
+
+overhead_line=1500
+direct_buried_cable=3000
+
+project09.extraction_data_temporary_land_area(numbers_list,overhead_line,direct_buried_cable)
+
+Dict = round_dict(project09.generate_dict_temporary_land_area())
+print(Dict)
+filename_box = ['cr8', 'result_chapter8']
+save_path = r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8'
+read_path = os.path.join(save_path, '%s.docx') % filename_box[0]
+save_path = os.path.join(save_path, '%s.docx') % filename_box[1]
+tpl = DocxTemplate(read_path)
+tpl.render(Dict)
+tpl.save(save_path)
