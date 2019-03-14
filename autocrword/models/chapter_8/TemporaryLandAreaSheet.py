@@ -40,19 +40,19 @@ class TemporaryLandAreaSheet(ConstructionLandUseSummary, PermanentLandAreaSheet,
         self.sum_acres_temporary_land_area = self.sum_temporary_land_area / 666.667
 
 
-def generate_dict_temporary_land_area(self):
-    dict_temporary_land_area = {
-        '施工辅企_临时用地面积': self.construction_auxiliary_enterprise,
-        '风电机组安装平台_临时用地面积': self.wind_turbine_installation_platform,
-        '施工道路_临时用地面积': self.construction_road,
-        '弃渣场_临时用地面积': self.waste_slag_yard,
-        '进场道路_临时用地面积': self.approach_road,
-        '架空线路_临时用地面积': self.overhead_line_land,
-        '电缆沟_临时用地面积': self.direct_buried_cable_land,
-        '合计_临时用地面积': self.sum_temporary_land_area,
-        '合计亩_临时用地面积': self.sum_temporary_land_area,
-    }
-    return dict_temporary_land_area
+    def generate_dict_temporary_land_area(self):
+        dict_temporary_land_area = {
+            '施工辅企_临时用地面积': self.construction_auxiliary_enterprise,
+            '风电机组安装平台_临时用地面积': self.wind_turbine_installation_platform,
+            '施工道路_临时用地面积': self.construction_road,
+            '弃渣场_临时用地面积': self.waste_slag_yard,
+            '进场道路_临时用地面积': self.approach_road,
+            '架空线路_临时用地面积': self.overhead_line_land,
+            '电缆沟_临时用地面积': self.direct_buried_cable_land,
+            '合计_临时用地面积': self.sum_temporary_land_area,
+            '合计亩_临时用地面积': self.sum_temporary_land_area,
+        }
+        return dict_temporary_land_area
 
 
 project09 = TemporaryLandAreaSheet()
