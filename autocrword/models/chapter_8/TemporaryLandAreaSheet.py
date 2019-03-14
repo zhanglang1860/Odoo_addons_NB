@@ -41,10 +41,13 @@ class TemporaryLandAreaSheet(ConstructionLandUseSummary, RoadBasementDatabase, P
 
 def generate_dict_permanent_land_area(self):
     dict_permanent_land_area = {
-        '风电机组基础_永久用地面积': self.wind_turbine_foundation,
-        '箱变基础_永久用地面积': self.box_voltage_foundation,
-        '变电站_永久用地面积': self.booster_station_foundation,
-        '合计_永久用地面积': self.sum_foundation,
-        '合计亩_永久用地面积': self.sum_acres_foundation,
+        '施工辅企_临时用地面积': self.wind_turbine_foundation,
+        '风电机组安装平台_临时用地面积': self.box_voltage_foundation,
+        '施工道路_临时用地面积': self.booster_station_foundation,
+        '弃渣场_临时用地面积': self.sum_foundation,
+        '进场道路_临时用地面积': self.sum_acres_foundation,
+        '架空线路_临时用地面积': self.sum_foundation,
+        '电缆沟_临时用地面积': self.sum_acres_foundation,
+        '合计_临时用地面积': self.sum_acres_foundation,
     }
     return dict_permanent_land_area
