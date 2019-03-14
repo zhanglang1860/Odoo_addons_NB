@@ -6,7 +6,7 @@ from docxtpl import DocxTemplate
 
 class ConstructionLandUseSummary:
     def __init__(self):
-        self.capacity, self.turbine_numbers = 0, 0
+        self.turbine_capacity, self.turbine_numbers = 0, 0
         self.material_warehouse_1, self.temporary_residential_office_1, self.steel_processing_plant_1, \
         self.equipment_storage_1, self.construction_machinery_parking_1, self.total_1 = 0, 0, 0, 0, 0, 0
 
@@ -15,11 +15,11 @@ class ConstructionLandUseSummary:
 
         self.data = pd.DataFrame()
 
-    def extraction_data(self, capacity, turbine_numbers):
-        self.capacity = capacity
+    def extraction_data_construction_land_use_summary(self, turbine_capacity, turbine_numbers):
+        self.turbine_capacity = turbine_capacity
         self.turbine_numbers = turbine_numbers
 
-        if self.capacity * self.turbine_numbers <= 50:
+        if self.turbine_capacity * self.turbine_numbers <= 50:
             self.material_warehouse_1 = 200
             self.material_warehouse_2 = 1000
             self.temporary_residential_office_1 = 1800
@@ -31,7 +31,7 @@ class ConstructionLandUseSummary:
             self.construction_machinery_parking_1 = 100
             self.construction_machinery_parking_2 = 1200
 
-        elif self.capacity * self.turbine_numbers >= 100:
+        elif self.turbine_capacity * self.turbine_numbers >= 100:
             self.material_warehouse_1 = 400
             self.material_warehouse_2 = 2000
             self.temporary_residential_office_1 = 2200
@@ -58,7 +58,7 @@ class ConstructionLandUseSummary:
         self.total_2 = self.material_warehouse_2 + self.temporary_residential_office_2 + self.steel_processing_plant_2 + \
                        self.equipment_storage_2 + self.construction_machinery_parking_2
 
-    def generate_dict(self):
+    def generate_dict_construction_land_use_summary(self):
         dict_construction_land_use_summary = {
             '材料仓库_1': self.material_warehouse_1,
             '材料仓库_2': self.material_warehouse_2,
@@ -77,7 +77,7 @@ class ConstructionLandUseSummary:
 
 #
 # project05 = ConstructionLandUseSummary()
-# project05.extraction_data(3, 15)
+# project05.extraction_data_construction_land_use_summary(3, 15)
 # Dict = round_dict(project05.generate_dict())
 # print(Dict)
 # filename_box = ['cr8', 'result_chapter8']

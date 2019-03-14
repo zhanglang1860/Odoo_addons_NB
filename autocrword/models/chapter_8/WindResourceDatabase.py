@@ -33,8 +33,8 @@ class WindResourceDatabase:
                 self.DataWindResource['UltimateLoad'] == self.UltimateLoad]
         return self.data_wind_resource
 
-    def excavation_cal_wind_resource(self, data_wind_resource, basic_earthwork_ratio, basic_stone_ratio, numbers_li):
-        self.numbers_list = numbers_li
+    def excavation_cal_wind_resource(self, data_wind_resource, basic_earthwork_ratio, basic_stone_ratio, turbine_num):
+        self.turbine_numbers = turbine_num
         self.data_wind_resource = data_wind_resource
         self.basic_earthwork_ratio = basic_earthwork_ratio
         self.basic_stone_ratio = basic_stone_ratio
@@ -58,9 +58,9 @@ class WindResourceDatabase:
         # self.data_wind_resource['StoneExcavation_Turbine_Numbers'] = self.stone_excavation_tur * numbers_list[0]
         # self.data_wind_resource['EarthWorkBackFill_Turbine_Numbers'] = self.earth_work_back_fill_tur * numbers_list[0]
 
-        self.earth_excavation_wind_resource_numbers = self.earth_excavation_wind_resource * self.numbers_list[0]
-        self.stone_excavation_wind_resource_numbers = self.stone_excavation_wind_resource * self.numbers_list[0]
-        self.earth_work_back_fill_wind_resource_numbers = self.earth_work_back_fill_wind_resource * self.numbers_list[0]
+        self.earth_excavation_wind_resource_numbers = self.earth_excavation_wind_resource * self.turbine_numbers
+        self.stone_excavation_wind_resource_numbers = self.stone_excavation_wind_resource * self.turbine_numbers
+        self.earth_work_back_fill_wind_resource_numbers = self.earth_work_back_fill_wind_resource * self.turbine_numbers
 
         self.data_wind_resource['Reinforcement'] = self.data_wind_resource['Volume'] * 0.1
         return self.data_wind_resource
@@ -87,9 +87,9 @@ class WindResourceDatabase:
 
 # project01 = WindResourceDatabase()
 # data = project01.extraction_data_wind_resource(basic_type='扩展基础', ultimate_load=70000, fortification_intensity=7)
-# numbers_list = [15]
-# data_cal = project01.excavation_cal_wind_resource(data,0.8, 0.2, numbers_list)
-# dict_wind_resource = project01.generate_dict_wind_resource(data_cal, numbers_list)
+# turbine_numbers = 15
+# data_cal = project01.excavation_cal_wind_resource(data,0.8, 0.2, turbine_numbers)
+# dict_wind_resource = project01.generate_dict_wind_resource(data_cal, turbine_numbers)
 # Dict = round_dict_numbers(dict_wind_resource, dict_wind_resource['numbers_tur'])
 #
 # docx_box = ['cr8', 'result_chapter8']

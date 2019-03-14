@@ -4,11 +4,10 @@ import os, math
 from ConstructionLandUseSummary import ConstructionLandUseSummary
 from EarthStoneBalanceSheet import EarthStoneBalanceSheet
 from PermanentLandAreaSheet import PermanentLandAreaSheet
-from RoadBasementDatabase import RoadBasementDatabase
+from WasteSlagEngineeringSheet import WasteSlagEngineeringSheet
 
 
-class TemporaryLandAreaSheet(ConstructionLandUseSummary, RoadBasementDatabase, PermanentLandAreaSheet,
-                             EarthStoneBalanceSheet):
+class TemporaryLandAreaSheet(ConstructionLandUseSummary, PermanentLandAreaSheet,WasteSlagEngineeringSheet, EarthStoneBalanceSheet):
     def __init__(self):
         self.numbers_list_road, self.construction_auxiliary_enterprise, self.wind_turbine_installation_platform, \
         self.construction_road, self.waste_slag_yard, self.approach_road, self.overhead_line_land, \
@@ -16,7 +15,7 @@ class TemporaryLandAreaSheet(ConstructionLandUseSummary, RoadBasementDatabase, P
 
     def extraction_data_temporary_land_area(self, numbers_list_road, overhead_line, direct_buried_cable):
         self.numbers_list_road = numbers_list_road
-
+        print(self.numbers_list_road)
         self.construction_auxiliary_enterprise = self.total_2
 
         self.wind_turbine_installation_platform = \
@@ -40,6 +39,7 @@ class TemporaryLandAreaSheet(ConstructionLandUseSummary, RoadBasementDatabase, P
 
         self.sum_acres_temporary_land_area = self.sum_temporary_land_area / 666.667
 
+
 def generate_dict_temporary_land_area(self):
     dict_temporary_land_area = {
         '施工辅企_临时用地面积': self.construction_auxiliary_enterprise,
@@ -57,24 +57,29 @@ def generate_dict_temporary_land_area(self):
 
 project09 = TemporaryLandAreaSheet()
 data1 = project09.extraction_data_wind_resource(basic_type='扩展基础', ultimate_load=70000, fortification_intensity=7)
-numbers_list = [15]
-data_cal1 = project09.excavation_cal_wind_resource(data1, 0.8, 0.2, numbers_list)
+turbine_numbers = 15
+data_cal1 = project09.excavation_cal_wind_resource(data1, 0.8, 0.2, turbine_numbers)
 
 data2 = project09.extraction_data_box_voltage(3)
-data_cal2 = project09.excavation_cal_box_voltage(data2, 0.8, 0.2, numbers_list)
+data_cal2 = project09.excavation_cal_box_voltage(data2, 0.8, 0.2, turbine_numbers)
 
 data3 = project09.extraction_data_booster_station('新建', 110, 100)
 data_cal = project09.excavation_cal_booster_station(data3, 0.8, 0.2, '陡坡低山')
 
-numbers_list = [5, 1.5, 10, 15]
+numbers_list_road = [5, 1.5, 10, 15]
 data_1, data_2, data_3, data_4 = project09.extraction_data_road_basement('陡坡低山')
 data_ca1, data_ca2, data_ca3, data_ca4 = project09.excavation_cal_road_basement(data_1, data_2, data_3, data_4, '陡坡低山',
-                                                                                0.8, 0.2, numbers_list)
+                                                                                0.8, 0.2, numbers_list_road)
+turbine_capacity = 3
+overhead_line = 1500
+direct_buried_cable = 3000
+project09.extraction_data_construction_land_use_summary(turbine_capacity, turbine_numbers)
+project09.extraction_data_permanent_land_area()
+project09.extraction_data_waste_slag()
+line_data = [15000, 10000]
+project09.extraction_data_earth_stone_balance(line_data[0], line_data[1])
 
-overhead_line=1500
-direct_buried_cable=3000
-
-project09.extraction_data_temporary_land_area(numbers_list,overhead_line,direct_buried_cable)
+project09.extraction_data_temporary_land_area(numbers_list_road, overhead_line, direct_buried_cable)
 
 Dict = round_dict(project09.generate_dict_temporary_land_area())
 print(Dict)
