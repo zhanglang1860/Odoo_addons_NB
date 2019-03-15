@@ -6,11 +6,12 @@ from docxtpl import DocxTemplate
 
 class BoxVoltageDatabase:
     def __init__(self):
-        self.earth_excavation_box_voltage, self.stone_excavation_box_voltage, self.earthwork_back_fill_box_voltage = 0, 0, 0
-        self.TurbineCapacity, self.road_earthwork_ratio, self.road_stone_ratio, self.dict_box_voltage = 0, 0, 0, {}
-        self.DataBoxVoltage, self.data_box_voltage = pd.DataFrame(), pd.DataFrame()
-        self.numbers_list = []
-        self.c35_box_voltage_numbers, self.c15_box_voltage_numbers = 0, 0
+        # ===========selecting parameters=============
+        self.TurbineCapacity = 0
+        # ===========basic parameters==============
+
+
+
 
     def extraction_data_box_voltage(self, turbine_capacity):
         self.TurbineCapacity = turbine_capacity
