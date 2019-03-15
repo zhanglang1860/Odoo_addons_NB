@@ -67,6 +67,10 @@ class WindResourceDatabase:
                                          * self.turbine_numbers
 
         self.data_wind_resource['Reinforcement'] = self.data_wind_resource['Volume'] * 0.1
+
+        self.reinforcement_wind_resource_numbers=\
+            self.data_wind_resource.at[self.data_wind_resource.index[0], 'Reinforcement']*self.turbine_numbers
+
         return self.data_wind_resource
 
     def generate_dict_wind_resource(self, data, numbers_list):

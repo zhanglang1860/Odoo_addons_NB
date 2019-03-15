@@ -160,7 +160,6 @@ class RoadBasementDatabase:
         self.stone_road_base_excavation_3 = self.stone_road_base_excavation_2
         self.earthwork_road_base_backfill_3 = self.earthwork_road_base_backfill_2
 
-
         self.data_road_base_1['EarthExcavation_RoadBase_1'] = self.earth_road_base_excavation_1
         self.data_road_base_1['StoneExcavation_RoadBase_1'] = self.stone_road_base_excavation_1
         self.data_road_base_1['EarthWorkBackFill_RoadBase_1'] = self.earthwork_road_base_backfill_1
@@ -181,15 +180,40 @@ class RoadBasementDatabase:
         self.earth_road_base_excavation_1_numbers = self.earth_road_base_excavation_1 * numbers_list[0]
         self.stone_road_base_excavation_1_numbers = self.stone_road_base_excavation_1 * numbers_list[0]
         self.earthwork_road_base_backfill_1_numbers = self.earthwork_road_base_backfill_1 * numbers_list[0]
+        self.StoneMasonryDrainageDitch_1_numbers = self.data_road_base_1.at[
+                                                       self.data_road_base_1.index[0], 'StoneMasonryDrainageDitch_1'] * \
+                                                   numbers_list[0]
+        self.MortarStoneRetainingWall_1_numbers = self.data_road_base_1.at[
+                                                      self.data_road_base_1.index[0], 'MortarStoneRetainingWall_1'] * \
+                                                  numbers_list[0]
+
         self.earth_road_base_excavation_2_numbers = self.earth_road_base_excavation_2 * numbers_list[1]
         self.stone_road_base_excavation_2_numbers = self.stone_road_base_excavation_2 * numbers_list[1]
         self.earthwork_road_base_backfill_2_numbers = self.earthwork_road_base_backfill_2 * numbers_list[1]
+        self.c30_road_base_2_numbers = self.data_road_base_2.at[self.data_road_base_2.index[0], 'C30ConcretePavement_2'] \
+                                       * numbers_list[1]
+        self.StoneMasonryDrainageDitch_2_numbers = \
+            self.data_road_base_2.at[self.data_road_base_2.index[0], 'StoneMasonryDrainageDitch_2'] * numbers_list[1]
+        self.MortarStoneRetainingWall_2_numbers = \
+            self.data_road_base_2.at[self.data_road_base_2.index[0], 'MortarStoneRetainingWall_2'] * numbers_list[1]
+
         self.earth_road_base_excavation_3_numbers = self.earth_road_base_excavation_3 * numbers_list[2]
         self.stone_road_base_excavation_3_numbers = self.stone_road_base_excavation_3 * numbers_list[2]
         self.earthwork_road_base_backfill_3_numbers = self.earthwork_road_base_backfill_3 * numbers_list[2]
+        self.c30_road_base_3_numbers = self.data_road_base_3.at[self.data_road_base_3.index[0], 'C30ConcretePavement_3'] \
+                                       * numbers_list[2]
+        self.StoneMasonryDrainageDitch_3_numbers = \
+            self.data_road_base_3.at[self.data_road_base_3.index[0], 'StoneMasonryDrainageDitch_3'] * numbers_list[2]
+        self.MortarStoneRetainingWall_3_numbers = \
+            self.data_road_base_3.at[self.data_road_base_3.index[0], 'MortarStoneRetainingWall_3'] * numbers_list[2]
+
         self.earth_road_base_excavation_4_numbers = self.earth_road_base_excavation_4 * numbers_list[3]
         self.stone_road_base_excavation_4_numbers = self.stone_road_base_excavation_4 * numbers_list[3]
         self.earthwork_road_base_backfill_4_numbers = self.earthwork_road_base_backfill_4 * numbers_list[3]
+        self.StoneMasonryDrainageDitch_4_numbers = \
+            self.data_road_base_4.at[self.data_road_base_4.index[0], 'StoneMasonryDrainageDitch_4'] * numbers_list[3]
+        self.MortarStoneRetainingWall_4_numbers = \
+            self.data_road_base_4.at[self.data_road_base_4.index[0], 'MortarStoneProtectionSlope_4'] * numbers_list[3]
 
         return self.data_road_base_1, self.data_road_base_2, self.data_road_base_3, self.data_road_base_4
 
@@ -251,13 +275,17 @@ class RoadBasementDatabase:
         }
         return dict_road_base_1, dict_road_base_2, dict_road_base_3, dict_road_base_4
 
+
 numberslist = [5, 1.5, 10, 15]
 project04 = RoadBasementDatabase()
 data_1, data_2, data_3, data_4 = project04.extraction_data_road_basement('陡坡低山')
-data_cal, data_ca2, data_ca3, data_ca4 = project04.excavation_cal_road_basement(data_1, data_2, data_3, data_4, '陡坡低山', 0.8, 0.2,numberslist)
-dict_road_base_1, dict_road_base_2, dict_road_base_3, dict_road_base_4 = project04.generate_dict_road_basement(data_cal, data_ca2,
-                                                                                                 data_ca3, data_ca4,
-                                                                                                 numberslist)
+data_cal, data_ca2, data_ca3, data_ca4 = project04.excavation_cal_road_basement(data_1, data_2, data_3, data_4, '陡坡低山',
+                                                                                0.8, 0.2, numberslist)
+dict_road_base_1, dict_road_base_2, dict_road_base_3, dict_road_base_4 = project04.generate_dict_road_basement(data_cal,
+                                                                                                               data_ca2,
+                                                                                                               data_ca3,
+                                                                                                               data_ca4,
+                                                                                                               numberslist)
 # Dict_1 = round_dict_numbers(dict_road_base_1, dict_road_base_1['numbers_1'])
 # Dict_2 = round_dict_numbers(dict_road_base_2, dict_road_base_2['numbers_2'])
 # Dict_3 = round_dict_numbers(dict_road_base_3, dict_road_base_3['numbers_3'])

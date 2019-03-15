@@ -66,6 +66,13 @@ class BoosterStationDatabase:
         self.c25_foundation_booster_station = self.data_booster_station.at[
             self.data_booster_station.index[0], 'FoundationC25Concrete']
 
+        self.reinforcement_booster_station=\
+            self.data_booster_station.at[self.data_booster_station.index[0], 'MainTransformerFoundation']+\
+            self.data_booster_station.at[self.data_booster_station.index[0], 'AccidentOilPoolReinforcement']+\
+            self.data_booster_station.at[self.data_booster_station.index[0], 'LightningRod']
+
+
+
         return self.data_booster_station
 
     def generate_dict_booster_station(self, data_booster_station):
