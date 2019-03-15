@@ -4,10 +4,11 @@ import os, math
 from ConstructionLandUseSummary import ConstructionLandUseSummary
 from EarthStoneBalanceSheet import EarthStoneBalanceSheet
 from PermanentLandAreaSheet import PermanentLandAreaSheet
-from WasteSlagEngineeringSheet import WasteSlagEngineeringSheet
+from WasteSlagSheet import WasteSlagSheet
 
 
-class TemporaryLandAreaSheet(ConstructionLandUseSummary, PermanentLandAreaSheet,WasteSlagEngineeringSheet, EarthStoneBalanceSheet):
+class TemporaryLandAreaSheet(ConstructionLandUseSummary, PermanentLandAreaSheet, WasteSlagSheet,
+                             EarthStoneBalanceSheet):
     def __init__(self):
         self.numbers_list_road, self.construction_auxiliary_enterprise, self.wind_turbine_installation_platform, \
         self.construction_road, self.waste_slag_yard, self.approach_road, self.overhead_line_land, \
@@ -38,7 +39,6 @@ class TemporaryLandAreaSheet(ConstructionLandUseSummary, PermanentLandAreaSheet,
                                        self.direct_buried_cable_land
 
         self.sum_acres_temporary_land_area = self.sum_temporary_land_area / 666.667
-
 
     def generate_dict_temporary_land_area(self):
         dict_temporary_land_area = {

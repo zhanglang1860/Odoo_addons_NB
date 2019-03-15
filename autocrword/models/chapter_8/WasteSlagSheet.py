@@ -4,7 +4,7 @@ from EarthStoneBalanceSheet import EarthStoneBalanceSheet
 from docxtpl import DocxTemplate
 
 
-class WasteSlagEngineeringSheet(EarthStoneBalanceSheet):
+class WasteSlagSheet(EarthStoneBalanceSheet):
     def __init__(self):
         self.waste_slag_area, self.waste_slag_volume, self.waste_slag_grass_area, self.waste_slag_drainage_ditches, \
         self.waste_slag_gutter, self.waste_slag_M75_retaining_wall = 0, 0, 0, 0, 0, 0
@@ -29,7 +29,7 @@ class WasteSlagEngineeringSheet(EarthStoneBalanceSheet):
         return dict_waste_slag
 
 
-# project07 = WasteSlagEngineeringSheet()
+# project07 = WasteSlagSheet()
 # data1 = project07.extraction_data_wind_resource(basic_type='扩展基础', ultimate_load=70000, fortification_intensity=7)
 # numbers_list = [15]
 # data_cal1 = project07.excavation_cal_wind_resource(data1, 0.8, 0.2, numbers_list)

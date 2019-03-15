@@ -276,16 +276,16 @@ class RoadBasementDatabase:
         return dict_road_base_1, dict_road_base_2, dict_road_base_3, dict_road_base_4
 
 
-numberslist = [5, 1.5, 10, 15]
-project04 = RoadBasementDatabase()
-data_1, data_2, data_3, data_4 = project04.extraction_data_road_basement('陡坡低山')
-data_cal, data_ca2, data_ca3, data_ca4 = project04.excavation_cal_road_basement(data_1, data_2, data_3, data_4, '陡坡低山',
-                                                                                0.8, 0.2, numberslist)
-dict_road_base_1, dict_road_base_2, dict_road_base_3, dict_road_base_4 = project04.generate_dict_road_basement(data_cal,
-                                                                                                               data_ca2,
-                                                                                                               data_ca3,
-                                                                                                               data_ca4,
-                                                                                                               numberslist)
+# numberslist = [5, 1.5, 10, 15]
+# project04 = RoadBasementDatabase()
+# data_1, data_2, data_3, data_4 = project04.extraction_data_road_basement('陡坡低山')
+# data_cal, data_ca2, data_ca3, data_ca4 = project04.excavation_cal_road_basement(data_1, data_2, data_3, data_4, '陡坡低山',
+#                                                                                 0.8, 0.2, numberslist)
+# dict_road_base_1, dict_road_base_2, dict_road_base_3, dict_road_base_4 = project04.generate_dict_road_basement(data_cal,
+#                                                                                                                data_ca2,
+#                                                                                                                data_ca3,
+#                                                                                                                data_ca4,
+#                                                                                                                numberslist)
 # Dict_1 = round_dict_numbers(dict_road_base_1, dict_road_base_1['numbers_1'])
 # Dict_2 = round_dict_numbers(dict_road_base_2, dict_road_base_2['numbers_2'])
 # Dict_3 = round_dict_numbers(dict_road_base_3, dict_road_base_3['numbers_3'])
