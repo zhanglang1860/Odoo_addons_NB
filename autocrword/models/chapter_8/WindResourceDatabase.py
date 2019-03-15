@@ -10,7 +10,7 @@ class WindResourceDatabase:
         # ===========selecting parameters=============
         self.FortificationIntensity, self.BasicType, self.UltimateLoad = '', 0, 0
         # ===========basic parameters==============
-        self.data_wind_resource = pd.DataFrame()
+        self.data_wind_resource,self.DataWindResource = pd.DataFrame(),pd.DataFrame()
         self.basic_earthwork_ratio, self.basic_stone_ratio, self.turbine_numbers = 0, 0, 0
         # ===========Calculated parameters==============
         self.earth_excavation_wind_resource, self.stone_excavation_wind_resource, \
