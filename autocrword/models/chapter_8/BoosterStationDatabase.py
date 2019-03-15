@@ -7,16 +7,22 @@ import math, os
 
 class BoosterStationDatabase:
     def __init__(self):
-        self.status, self.earth_excavation_booster_station, self.stone_excavation_booster_station, self.earthwork_backfill_booster_station = 0, 0, 0, 0
-        self.road_basic_earthwork_ratio, self.road_basic_stone_ratio = 0, 0
-        self.data = 0
-        self.grade, self.capacity, self.slope_area, self.terrain_type = 0, 0, 0, []
+        # ===========selecting parameters=============
+        self.Status, self.Grade, self.Capacity = 0, 0, 0
+        # ===========basic parameters==============
         self.DataBoosterStation, self.data_booster_station = pd.DataFrame(), pd.DataFrame()
+        self.road_basic_earthwork_ratio, self.road_basic_stone_ratio, self.terrain_type = 0, 0, []
+        self.dict_booster_station={}
+        # ===========Calculated parameters==============
+        self.slope_area, self.earth_excavation_booster_station, self.stone_excavation_booster_station = 0, 0, 0
+        self.earthwork_backfill_booster_station, self.c30_booster_station, self.c15_booster_station = 0, 0, 0
+        self.c15_oil_pool_booster_station, self.c30_oil_pool_booster_station = 0, 0
+        self.c25_foundation_booster_station, self.reinforcement_booster_station = 0, 0
 
     def extraction_data_booster_station(self, status, grade, capacity):
-        self.status = status
-        self.grade = grade
-        self.capacity = capacity
+        self.Status = status
+        self.Grade = grade
+        self.Capacity = capacity
         col_name = ['Status', 'Grade', 'Capacity', 'Long', 'Width', 'InnerWallArea', 'WallLength', 'StoneMasonryFoot',
                     'StoneMasonryDrainageDitch', 'RoadArea', 'GreenArea', 'ComprehensiveBuilding', 'EquipmentBuilding',
                     'AffiliatedBuilding', 'C30Concrete', 'C15ConcreteCushion', 'MainTransformerFoundation',
@@ -28,8 +34,8 @@ class BoosterStationDatabase:
             r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8\chapter8database.xlsx',
             header=2, sheet_name='升压站基础数据', usecols=col_name)
 
-        self.data_booster_station = self.DataBoosterStation.loc[self.DataBoosterStation['Status'] == self.status].loc[
-            self.DataBoosterStation['Grade'] == self.grade].loc[self.DataBoosterStation['Capacity'] == self.capacity]
+        self.data_booster_station = self.DataBoosterStation.loc[self.DataBoosterStation['Status'] == self.Status].loc[
+            self.DataBoosterStation['Grade'] == self.Grade].loc[self.DataBoosterStation['Capacity'] == self.Capacity]
 
         return self.data_booster_station
 
@@ -51,33 +57,35 @@ class BoosterStationDatabase:
             self.stone_excavation_booster_station = self.slope_area * 3 * self.road_basic_stone_ratio
             self.earthwork_backfill_booster_station = self.slope_area * 0.5
 
+        self.c30_booster_station = self.data_booster_station.at[self.data_booster_station.index[0], 'C30Concrete']
+
+        self.c15_booster_station = \
+            self.data_booster_station.at[self.data_booster_station.index[0], 'C15ConcreteCushion']
+
+        self.c15_oil_pool_booster_station = \
+            self.data_booster_station.at[self.data_booster_station.index[0], 'AccidentOilPoolC15Cushion']
+
+        self.c30_oil_pool_booster_station = \
+            self.data_booster_station.at[self.data_booster_station.index[0], 'AccidentOilPoolC30Concrete']
+
+        self.c25_foundation_booster_station = \
+            self.data_booster_station.at[self.data_booster_station.index[0], 'FoundationC25Concrete']
+
+        self.reinforcement_booster_station = \
+            self.data_booster_station.at[self.data_booster_station.index[0], 'MainTransformerFoundation'] + \
+            self.data_booster_station.at[self.data_booster_station.index[0], 'AccidentOilPoolReinforcement'] + \
+            self.data_booster_station.at[self.data_booster_station.index[0], 'LightningRod']
+
         self.data_booster_station['EarthExcavation_BoosterStation'] = self.earth_excavation_booster_station
         self.data_booster_station['StoneExcavation_BoosterStation'] = self.stone_excavation_booster_station
         self.data_booster_station['EarthWorkBackFill_BoosterStation'] = self.earthwork_backfill_booster_station
         self.data_booster_station['SlopeArea'] = self.slope_area
 
-        self.c30_booster_station = self.data_booster_station.at[self.data_booster_station.index[0], 'C30Concrete']
-        self.c15_booster_station = self.data_booster_station.at[
-            self.data_booster_station.index[0], 'C15ConcreteCushion']
-        self.c15_oil_pool_booster_station = self.data_booster_station.at[
-            self.data_booster_station.index[0], 'AccidentOilPoolC15Cushion']
-        self.c30_oil_pool_booster_station = self.data_booster_station.at[
-            self.data_booster_station.index[0], 'AccidentOilPoolC30Concrete']
-        self.c25_foundation_booster_station = self.data_booster_station.at[
-            self.data_booster_station.index[0], 'FoundationC25Concrete']
-
-        self.reinforcement_booster_station=\
-            self.data_booster_station.at[self.data_booster_station.index[0], 'MainTransformerFoundation']+\
-            self.data_booster_station.at[self.data_booster_station.index[0], 'AccidentOilPoolReinforcement']+\
-            self.data_booster_station.at[self.data_booster_station.index[0], 'LightningRod']
-
-
-
         return self.data_booster_station
 
     def generate_dict_booster_station(self, data_booster_station):
         self.data_booster_station = data_booster_station
-        dict_booster_station = {
+        self.dict_booster_station = {
             '变电站围墙内面积': self.data_booster_station.at[self.data_booster_station.index[0], 'InnerWallArea'],
             '含放坡面积': self.data_booster_station.at[self.data_booster_station.index[0], 'SlopeArea'],
             '道路面积': self.data_booster_station.at[self.data_booster_station.index[0], 'RoadArea'],
@@ -105,7 +113,7 @@ class BoosterStationDatabase:
             '室外架构': self.data_booster_station.at[self.data_booster_station.index[0], 'OutdoorStructure'],
             '预制混凝土杆': self.data_booster_station.at[self.data_booster_station.index[0], 'PrecastConcretePole'],
             '避雷针': self.data_booster_station.at[self.data_booster_station.index[0], 'LightningRod'], }
-        return dict_booster_station
+        return self.dict_booster_station
 
 #
 # project03 = BoosterStationDatabase()
