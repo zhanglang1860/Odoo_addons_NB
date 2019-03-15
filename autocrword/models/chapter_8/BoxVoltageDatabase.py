@@ -1,5 +1,7 @@
 # import os
 import pandas as pd
+
+
 # from RoundUp import round_dict_numbers
 # from docxtpl import DocxTemplate
 
@@ -11,13 +13,13 @@ class BoxVoltageDatabase:
         # ===========basic parameters==============
         self.data_box_voltage, self.DataBoxVoltage = pd.DataFrame(), pd.DataFrame()
         self.road_earthwork_ratio, self.road_stone_ratio, self.turbine_numbers = 0, 0, 0
-        self.dict_box_voltage={}
+        self.dict_box_voltage = {}
         # ===========Calculated parameters==============
         self.earth_excavation_box_voltage, self.stone_excavation_box_voltage = 0, 0
-        self.earthwork_back_fill_box_voltage,self.earth_excavation_box_voltage_numbers = 0,0
-        self.stone_excavation_box_voltage_numbers,self.earthwork_back_fill_box_voltage_numbers=0,0
+        self.earthwork_back_fill_box_voltage, self.earth_excavation_box_voltage_numbers = 0, 0
+        self.stone_excavation_box_voltage_numbers, self.earthwork_back_fill_box_voltage_numbers = 0, 0
 
-        self.c35_box_voltage_numbers,self.c15_box_voltage_numbers,self.reinforcement_box_voltage_numbers=0,0,0
+        self.c35_box_voltage_numbers, self.c15_box_voltage_numbers, self.reinforcement_box_voltage_numbers = 0, 0, 0
 
     def extraction_data_box_voltage(self, turbine_capacity):
         self.TurbineCapacity = turbine_capacity
@@ -51,10 +53,10 @@ class BoxVoltageDatabase:
         self.stone_excavation_box_voltage_numbers = self.stone_excavation_box_voltage * self.turbine_numbers
         self.earthwork_back_fill_box_voltage_numbers = self.earthwork_back_fill_box_voltage * self.turbine_numbers
 
-        self.c35_box_voltage_numbers = self.data_box_voltage.at[self.data_box_voltage.index[0], 'C35ConcreteTop'] \
-                                       * self.turbine_numbers
-        self.c15_box_voltage_numbers = self.data_box_voltage.at[self.data_box_voltage.index[0], 'C15Cushion'] \
-                                       * self.turbine_numbers
+        self.c35_box_voltage_numbers = \
+            self.data_box_voltage.at[self.data_box_voltage.index[0], 'C35ConcreteTop'] * self.turbine_numbers
+        self.c15_box_voltage_numbers = \
+            self.data_box_voltage.at[self.data_box_voltage.index[0], 'C15Cushion'] * self.turbine_numbers
 
         self.reinforcement_box_voltage_numbers = \
             self.data_box_voltage.at[self.data_box_voltage.index[0], 'Reinforcement'] * self.turbine_numbers
