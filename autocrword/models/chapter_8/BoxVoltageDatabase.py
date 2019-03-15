@@ -10,7 +10,10 @@ class BoxVoltageDatabase:
         self.TurbineCapacity = 0
         # ===========basic parameters==============
         self.data_box_voltage, self.DataBoxVoltage = pd.DataFrame(), pd.DataFrame()
-        self.road_earthwork_ratio, self.road_stone_ratio, self.turbine_num = 0, 0, 0
+        self.road_earthwork_ratio, self.road_stone_ratio, self.turbine_numbers = 0, 0, 0
+
+        self.earth_excavation_box_voltage, self.stone_excavation_box_voltage = 0, 0
+        self.earthwork_back_fill_box_voltage = 0
 
     def extraction_data_box_voltage(self, turbine_capacity):
         self.TurbineCapacity = turbine_capacity
@@ -28,24 +31,18 @@ class BoxVoltageDatabase:
         self.road_stone_ratio = road_stone_ratio
         self.turbine_numbers = turbine_num
 
-        self.earth_excavation_box_voltage = (self.data_box_voltage['Long'] + 0.5 * 2) * (
-                self.data_box_voltage['Width'] + 0.5 * 2) * (
-                                                    self.data_box_voltage['High'] - 0.2) * self.road_earthwork_ratio
-        self.stone_excavation_box_voltage = (self.data_box_voltage['Long'] + 0.5 * 2) * (
-                self.data_box_voltage['Width'] + 0.5 * 2) * (
-                                                    self.data_box_voltage['High'] - 0.2) * self.road_stone_ratio
-        self.earthwork_back_fill_box_voltage = self.earth_excavation_box_voltage + self.stone_excavation_box_voltage - \
-                                               self.data_box_voltage['Long'] * self.data_box_voltage[
-                                                   'Width'] * (self.data_box_voltage['High'] - 0.2)
-        self.data_box_voltage = self.data_box_voltage.copy()
-        self.data_box_voltage['EarthExcavation_BoxVoltage'] = self.earth_excavation_box_voltage
-        self.data_box_voltage['StoneExcavation_BoxVoltage'] = self.stone_excavation_box_voltage
-        self.data_box_voltage['EarthWorkBackFill_BoxVoltage'] = self.earthwork_back_fill_box_voltage
+        self.earth_excavation_box_voltage = \
+            (self.data_box_voltage['Long'] + 0.5 * 2) * (self.data_box_voltage['Width'] + 0.5 * 2) * \
+            (self.data_box_voltage['High'] - 0.2) * self.road_earthwork_ratio
+        self.stone_excavation_box_voltage = \
+            (self.data_box_voltage['Long'] + 0.5 * 2) * (self.data_box_voltage['Width'] + 0.5 * 2) * \
+            (self.data_box_voltage['High'] - 0.2) * self.road_stone_ratio
+        self.earthwork_back_fill_box_voltage = \
+            self.earth_excavation_box_voltage + self.stone_excavation_box_voltage - self.data_box_voltage['Long'] * \
+            self.data_box_voltage['Width'] * (self.data_box_voltage['High'] - 0.2)
 
-        # self.data_box_voltage['EarthExcavation_BoxVoltage_Numbers'] = self.earth_excavation_box_voltage * numbers_list
-        # self.data_box_voltage['StoneExcavation_BoxVoltage_Numbers'] = self.stone_excavation_box_voltage * numbers_list
-        # self.data_box_voltage[
-        #     'EarthWorkBackFill_BoxVoltage_Numbers'] = self.earthwork_back_fill_box_voltage * numbers_list
+        self.data_box_voltage = self.data_box_voltage.copy()
+
         self.earth_excavation_box_voltage_numbers = self.earth_excavation_box_voltage * self.turbine_numbers
         self.stone_excavation_box_voltage_numbers = self.stone_excavation_box_voltage * self.turbine_numbers
         self.earthwork_back_fill_box_voltage_numbers = self.earthwork_back_fill_box_voltage * self.turbine_numbers
@@ -57,6 +54,10 @@ class BoxVoltageDatabase:
 
         self.reinforcement_box_voltage_numbers = \
             self.data_box_voltage.at[self.data_box_voltage.index[0], 'Reinforcement'] * self.turbine_numbers
+
+        self.data_box_voltage['EarthExcavation_BoxVoltage'] = self.earth_excavation_box_voltage
+        self.data_box_voltage['StoneExcavation_BoxVoltage'] = self.stone_excavation_box_voltage
+        self.data_box_voltage['EarthWorkBackFill_BoxVoltage'] = self.earthwork_back_fill_box_voltage
 
         return self.data_box_voltage
 
