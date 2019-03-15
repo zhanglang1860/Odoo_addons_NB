@@ -1,7 +1,7 @@
-import os
+# import os
 import pandas as pd
-from RoundUp import round_dict_numbers
-from docxtpl import DocxTemplate
+# from RoundUp import round_dict_numbers
+# from docxtpl import DocxTemplate
 
 
 class BoxVoltageDatabase:
@@ -11,9 +11,13 @@ class BoxVoltageDatabase:
         # ===========basic parameters==============
         self.data_box_voltage, self.DataBoxVoltage = pd.DataFrame(), pd.DataFrame()
         self.road_earthwork_ratio, self.road_stone_ratio, self.turbine_numbers = 0, 0, 0
-
+        self.dict_box_voltage={}
+        # ===========Calculated parameters==============
         self.earth_excavation_box_voltage, self.stone_excavation_box_voltage = 0, 0
-        self.earthwork_back_fill_box_voltage = 0
+        self.earthwork_back_fill_box_voltage,self.earth_excavation_box_voltage_numbers = 0,0
+        self.stone_excavation_box_voltage_numbers,self.earthwork_back_fill_box_voltage_numbers=0,0
+
+        self.c35_box_voltage_numbers,self.c15_box_voltage_numbers,self.reinforcement_box_voltage_numbers=0,0,0
 
     def extraction_data_box_voltage(self, turbine_capacity):
         self.TurbineCapacity = turbine_capacity
@@ -61,11 +65,11 @@ class BoxVoltageDatabase:
 
         return self.data_box_voltage
 
-    def generate_dict_box_voltage(self, data_box_voltage, numbers_list):
+    def generate_dict_box_voltage(self, data_box_voltage, turbine_num):
         self.data_box_voltage = data_box_voltage
-        self.numbers_list = numbers_list
+        self.turbine_numbers = turbine_num
         self.dict_box_voltage = {
-            'numbers_box_voltage': int(self.numbers_list[0]),
+            'numbers_box_voltage': int(self.turbine_numbers),
             '土方开挖_箱变': self.data_box_voltage.at[self.data_box_voltage.index[0], 'EarthExcavation_BoxVoltage'],
             '石方开挖_箱变': self.data_box_voltage.at[self.data_box_voltage.index[0], 'StoneExcavation_BoxVoltage'],
             '土石方回填_箱变': self.data_box_voltage.at[self.data_box_voltage.index[0], 'EarthWorkBackFill_BoxVoltage'],
