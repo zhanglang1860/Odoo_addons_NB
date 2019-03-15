@@ -9,9 +9,8 @@ class BoxVoltageDatabase:
         # ===========selecting parameters=============
         self.TurbineCapacity = 0
         # ===========basic parameters==============
-
-
-
+        self.data_box_voltage, self.DataBoxVoltage = pd.DataFrame(), pd.DataFrame()
+        self.road_earthwork_ratio, self.road_stone_ratio, self.turbine_num = 0, 0, 0
 
     def extraction_data_box_voltage(self, turbine_capacity):
         self.TurbineCapacity = turbine_capacity
@@ -24,10 +23,11 @@ class BoxVoltageDatabase:
         return self.data_box_voltage
 
     def excavation_cal_box_voltage(self, data_box_voltage, road_earthwork_ratio, road_stone_ratio, turbine_num):
-        self.turbine_numbers = turbine_num
         self.data_box_voltage = data_box_voltage
         self.road_earthwork_ratio = road_earthwork_ratio
         self.road_stone_ratio = road_stone_ratio
+        self.turbine_numbers = turbine_num
+
         self.earth_excavation_box_voltage = (self.data_box_voltage['Long'] + 0.5 * 2) * (
                 self.data_box_voltage['Width'] + 0.5 * 2) * (
                                                     self.data_box_voltage['High'] - 0.2) * self.road_earthwork_ratio
