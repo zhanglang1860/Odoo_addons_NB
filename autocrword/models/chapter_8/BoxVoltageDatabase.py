@@ -10,6 +10,7 @@ class BoxVoltageDatabase:
         self.TurbineCapacity, self.road_earthwork_ratio, self.road_stone_ratio, self.dict_box_voltage = 0, 0, 0, {}
         self.DataBoxVoltage, self.data_box_voltage = pd.DataFrame(), pd.DataFrame()
         self.numbers_list = []
+        self.c35_box_voltage_numbers,self.c15_box_voltage_numbers=0,0
 
     def extraction_data_box_voltage(self, turbine_capacity):
         self.TurbineCapacity = turbine_capacity
@@ -47,6 +48,11 @@ class BoxVoltageDatabase:
         self.earth_excavation_box_voltage_numbers = self.earth_excavation_box_voltage * self.turbine_numbers
         self.stone_excavation_box_voltage_numbers = self.stone_excavation_box_voltage * self.turbine_numbers
         self.earthwork_back_fill_box_voltage_numbers = self.earthwork_back_fill_box_voltage * self.turbine_numbers
+
+        self.c35_box_voltage_numbers = self.data_box_voltage.at[self.data_box_voltage.index[0], 'C35ConcreteTop'] \
+                                         * self.turbine_numbers
+        self.c15_box_voltage_numbers = self.data_box_voltage.at[self.data_box_voltage.index[0], 'C15Cushion'] \
+                                         * self.turbine_numbers
 
         return self.data_box_voltage
 

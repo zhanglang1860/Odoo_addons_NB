@@ -9,10 +9,10 @@ class WindResourceDatabase:
     def __init__(self):
         self.BasicType, self.FortificationIntensity, self.UltimateLoad = '', 0, 0
         self.numbers_list, self.dict_wind_resource, self.basic_earthwork_ratio, self.basic_stone_ratio = [], {}, 0, 0
-        self.earth_excavation_wind_resource, self.stone_excavation_wind_resource, \
-        self.earth_work_back_fill_wind_resource = 0, 0, 0
+        self.earth_excavation_wind_resource, self.stone_excavation_wind_resource, self.c40_wind_resource_numbers, \
+        self.c40_wind_resource_numbers, self.c80_wind_resource_numbers, self.earth_work_back_fill_wind_resource, \
         self.earth_excavation_wind_resource_numbers, self.stone_excavation_wind_resource_numbers, \
-        self.earth_work_back_fill_wind_resource_numbers = 0, 0, 0
+        self.earth_work_back_fill_wind_resource_numbers = 0, 0, 0, 0, 0, 0, 0, 0
         self.data_wind_resource, self.DataWindResource = pd.DataFrame(), pd.DataFrame()
 
     def extraction_data_wind_resource(self, fortification_intensity, basic_type, ultimate_load):
@@ -54,13 +54,17 @@ class WindResourceDatabase:
         self.data_wind_resource['StoneExcavation_WindResource'] = self.stone_excavation_wind_resource
         self.data_wind_resource['EarthWorkBackFill_WindResource'] = self.earth_work_back_fill_wind_resource
 
-        # self.data_wind_resource['EarthExcavation_Turbine_Numbers'] = self.earth_excavation_tur * numbers_list[0]
-        # self.data_wind_resource['StoneExcavation_Turbine_Numbers'] = self.stone_excavation_tur * numbers_list[0]
-        # self.data_wind_resource['EarthWorkBackFill_Turbine_Numbers'] = self.earth_work_back_fill_tur * numbers_list[0]
-
         self.earth_excavation_wind_resource_numbers = self.earth_excavation_wind_resource * self.turbine_numbers
         self.stone_excavation_wind_resource_numbers = self.stone_excavation_wind_resource * self.turbine_numbers
         self.earth_work_back_fill_wind_resource_numbers = self.earth_work_back_fill_wind_resource * self.turbine_numbers
+
+        self.c40_wind_resource_numbers = self.data_wind_resource.at[self.data_wind_resource.index[0], 'Volume'] \
+                                         * self.turbine_numbers
+        self.c15_wind_resource_numbers = self.data_wind_resource.at[self.data_wind_resource.index[0], 'Cushion'] \
+                                         * self.turbine_numbers
+        self.c80_wind_resource_numbers = self.data_wind_resource.at[
+                                             self.data_wind_resource.index[0], 'C80SecondaryGrouting'] \
+                                         * self.turbine_numbers
 
         self.data_wind_resource['Reinforcement'] = self.data_wind_resource['Volume'] * 0.1
         return self.data_wind_resource
@@ -83,7 +87,6 @@ class WindResourceDatabase:
             'C80二次灌浆_风机': self.data_wind_resource.at[self.data_wind_resource.index[0], 'C80SecondaryGrouting'],
         }
         return self.dict_wind_resource
-
 
 # project01 = WindResourceDatabase()
 # data = project01.extraction_data_wind_resource(basic_type='扩展基础', ultimate_load=70000, fortification_intensity=7)
