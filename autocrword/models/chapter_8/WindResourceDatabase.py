@@ -71,13 +71,12 @@ class WindResourceDatabase:
         self.c80_wind_resource_numbers = \
             self.data_wind_resource.at[self.data_wind_resource.index[0], 'C80SecondaryGrouting'] * \
             self.TurbineNumbers
-        self.reinforcement_wind_resource_numbers = \
-            self.data_wind_resource.at[self.data_wind_resource.index[0], 'Reinforcement'] * self.TurbineNumbers
-
         self.data_wind_resource['EarthExcavation_WindResource'] = self.earth_excavation_wind_resource
         self.data_wind_resource['StoneExcavation_WindResource'] = self.stone_excavation_wind_resource
         self.data_wind_resource['EarthWorkBackFill_WindResource'] = self.earth_work_back_fill_wind_resource
         self.data_wind_resource['Reinforcement'] = self.data_wind_resource['Volume'] * 0.1
+        self.reinforcement_wind_resource_numbers = \
+            self.data_wind_resource.at[self.data_wind_resource.index[0], 'Reinforcement'] * self.TurbineNumbers
 
         return self.data_wind_resource
 
