@@ -10,7 +10,7 @@ import pandas as pd
 class RoadBasementDatabase:
     def __init__(self):
         # ===========selecting parameters=============
-        self.terrain_type = ''
+        self.TerrainType = ''
         # ===========basic parameters==============
         self.DataRoadBasement_1, self.DataRoadBasement_2 = pd.DataFrame(), pd.DataFrame()
         self.DataRoadBasement_3, self.DataRoadBasement_4 = pd.DataFrame(), pd.DataFrame()
@@ -40,7 +40,7 @@ class RoadBasementDatabase:
         self.c30_road_base_3_numbers, self.c30_road_base_4_numbers = 0, 0
 
     def extraction_data_road_basement(self, terrain_type):
-        self.terrain_type = terrain_type
+        self.TerrainType = terrain_type
         col_name_1 = ['TerrainType', 'GradedGravelPavement_1', 'RoundTubeCulvert_1', 'StoneMasonryDrainageDitch_1',
                       'MortarStoneRetainingWall_1', 'TurfSlopeProtection_1']
         col_name_2 = ['TerrainType', 'GradedGravelBase_2', 'C30ConcretePavement_2', 'RoundTubeCulvert_2',
@@ -65,22 +65,22 @@ class RoadBasementDatabase:
             r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8\chapter8database.xlsx',
             header=2, sheet_name='道路基础数据4', usecols=col_name_4)
 
-        self.data_road_base_1 = self.DataRoadBasement_1.loc[self.DataRoadBasement_1['TerrainType'] == self.terrain_type]
-        self.data_road_base_2 = self.DataRoadBasement_2.loc[self.DataRoadBasement_2['TerrainType'] == self.terrain_type]
-        self.data_road_base_3 = self.DataRoadBasement_3.loc[self.DataRoadBasement_3['TerrainType'] == self.terrain_type]
-        self.data_road_base_4 = self.DataRoadBasement_4.loc[self.DataRoadBasement_4['TerrainType'] == self.terrain_type]
+        self.data_road_base_1 = self.DataRoadBasement_1.loc[self.DataRoadBasement_1['TerrainType'] == self.TerrainType]
+        self.data_road_base_2 = self.DataRoadBasement_2.loc[self.DataRoadBasement_2['TerrainType'] == self.TerrainType]
+        self.data_road_base_3 = self.DataRoadBasement_3.loc[self.DataRoadBasement_3['TerrainType'] == self.TerrainType]
+        self.data_road_base_4 = self.DataRoadBasement_4.loc[self.DataRoadBasement_4['TerrainType'] == self.TerrainType]
         return self.data_road_base_1, self.data_road_base_2, self.data_road_base_3, self.data_road_base_4
 
     def excavation_cal_road_basement(self, data1, data2, data3, data4, road_basic_earthwork_ratio,
                                      road_basic_stone_ratio, terrain_type, km_li):
-        self.terrain_type = terrain_type
+        self.TerrainType = terrain_type
         self.road_basic_earthwork_ratio = road_basic_earthwork_ratio
         self.road_basic_stone_ratio = road_basic_stone_ratio
         self.data_road_base_1, self.data_road_base_2 = data1, data2
         self.data_road_base_3, self.data_road_base_4 = data3, data4
         self.KM_list = km_li
 
-        if self.terrain_type == '平原':
+        if self.TerrainType == '平原':
             self.earth_road_base_excavation_1 = self.road_basic_earthwork_ratio * 2.5 * 1000 * 0.4
             self.stone_road_base_excavation_1 = self.road_basic_stone_ratio * 2.5 * 1000 * 0.4
             self.earthwork_road_base_backfill_1 = 2.5 * 1000 * 0.4
@@ -92,7 +92,7 @@ class RoadBasementDatabase:
             self.stone_road_base_excavation_4 = self.road_basic_stone_ratio * self.data_road_base_4[
                 'GeneralSiteLeveling_4'] * 0.2
             self.earthwork_road_base_backfill_4 = self.data_road_base_4['GeneralSiteLeveling_4'] * 0.2
-        elif self.terrain_type == '丘陵':
+        elif self.TerrainType == '丘陵':
             self.earth_road_base_excavation_1 = self.road_basic_earthwork_ratio * 2.5 * 1000 * 0.4
             self.stone_road_base_excavation_1 = self.road_basic_stone_ratio * 2.5 * 1000 * 0.4
             self.earthwork_road_base_backfill_1 = 2.5 * 1000 * 0.4
@@ -104,7 +104,7 @@ class RoadBasementDatabase:
             self.stone_road_base_excavation_4 = self.road_basic_stone_ratio * self.data_road_base_4[
                 'GeneralSiteLeveling_4'] * 2
             self.earthwork_road_base_backfill_4 = self.data_road_base_4['GeneralSiteLeveling_4'] * 1
-        elif self.terrain_type == '缓坡低山':
+        elif self.TerrainType == '缓坡低山':
             self.earth_road_base_excavation_1 = self.road_basic_earthwork_ratio * 2.5 * 1000 * 1
             self.stone_road_base_excavation_1 = self.road_basic_stone_ratio * 2.5 * 1000 * 1
             self.earthwork_road_base_backfill_1 = 2.5 * 1000 * 0.5
@@ -116,7 +116,7 @@ class RoadBasementDatabase:
             self.stone_road_base_excavation_4 = self.road_basic_stone_ratio * self.data_road_base_4[
                 'GeneralSiteLeveling_4'] * 2
             self.earthwork_road_base_backfill_4 = self.data_road_base_4['GeneralSiteLeveling_4'] * 1
-        elif self.terrain_type == '陡坡低山':
+        elif self.TerrainType == '陡坡低山':
             self.earth_road_base_excavation_1 = self.road_basic_earthwork_ratio * 2.5 * 1000 * 2
             self.stone_road_base_excavation_1 = self.road_basic_stone_ratio * 2.5 * 1000 * 2
             self.earthwork_road_base_backfill_1 = 2.5 * 1000 * 0.5
@@ -128,7 +128,7 @@ class RoadBasementDatabase:
             self.stone_road_base_excavation_4 = self.road_basic_stone_ratio * self.data_road_base_4[
                 'GeneralSiteLeveling_4'] * 3
             self.earthwork_road_base_backfill_4 = self.data_road_base_4['GeneralSiteLeveling_4'] * 0.5
-        elif self.terrain_type == '缓坡中山':
+        elif self.TerrainType == '缓坡中山':
             self.earth_road_base_excavation_1 = self.road_basic_earthwork_ratio * 2.5 * 1000 * 1.5
             self.stone_road_base_excavation_1 = self.road_basic_stone_ratio * 2.5 * 1000 * 1.5
             self.earthwork_road_base_backfill_1 = 2.5 * 1000 * 0.5
@@ -140,7 +140,7 @@ class RoadBasementDatabase:
             self.stone_road_base_excavation_4 = self.road_basic_stone_ratio * self.data_road_base_4[
                 'GeneralSiteLeveling_4'] * 2.5
             self.earthwork_road_base_backfill_4 = self.data_road_base_4['GeneralSiteLeveling_4'] * 1
-        elif self.terrain_type == '陡坡中山':
+        elif self.TerrainType == '陡坡中山':
             self.earth_road_base_excavation_1 = self.road_basic_earthwork_ratio * 2.5 * 1000 * 2.5
             self.stone_road_base_excavation_1 = self.road_basic_stone_ratio * 2.5 * 1000 * 2.5
             self.earthwork_road_base_backfill_1 = 2.5 * 1000 * 0.5
@@ -152,7 +152,7 @@ class RoadBasementDatabase:
             self.stone_road_base_excavation_4 = self.road_basic_stone_ratio * self.data_road_base_4[
                 'GeneralSiteLeveling_4'] * 3.5
             self.earthwork_road_base_backfill_4 = self.data_road_base_4['GeneralSiteLeveling_4'] * 0.5
-        elif self.terrain_type == '缓坡高山':
+        elif self.TerrainType == '缓坡高山':
             self.earth_road_base_excavation_1 = self.road_basic_earthwork_ratio * 2.5 * 1000 * 2
             self.stone_road_base_excavation_1 = self.road_basic_stone_ratio * 2.5 * 1000 * 2
             self.earthwork_road_base_backfill_1 = 2.5 * 1000 * 0.5
@@ -164,7 +164,7 @@ class RoadBasementDatabase:
             self.stone_road_base_excavation_4 = self.road_basic_stone_ratio * self.data_road_base_4[
                 'GeneralSiteLeveling_4'] * 2.5
             self.earthwork_road_base_backfill_4 = self.data_road_base_4['GeneralSiteLeveling_4'] * 1
-        elif self.terrain_type == '陡坡高山':
+        elif self.TerrainType == '陡坡高山':
             self.earth_road_base_excavation_1 = self.road_basic_earthwork_ratio * 2.5 * 1000 * 3
             self.stone_road_base_excavation_1 = self.road_basic_stone_ratio * 2.5 * 1000 * 3
             self.earthwork_road_base_backfill_1 = 2.5 * 1000 * 0.5

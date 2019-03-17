@@ -20,7 +20,7 @@ class TemporaryLandAreaSheet(ConstructionLandUseSummary, PermanentLandAreaSheet,
         self.construction_auxiliary_enterprise = self.total_2
 
         self.wind_turbine_installation_platform = \
-            self.turbine_numbers * self.data_road_base_4.at[self.data_road_base_4.index[0], 'GeneralSiteLeveling_4'] - \
+            self.TurbineNumbers * self.data_road_base_4.at[self.data_road_base_4.index[0], 'GeneralSiteLeveling_4'] - \
             self.wind_turbine_foundation - self.box_voltage_foundation
 
         self.construction_road = self.numbers_list_road[0] * 2.5 * 1000 + self.numbers_list_road[2] * \
