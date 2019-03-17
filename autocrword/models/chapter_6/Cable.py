@@ -58,23 +58,23 @@ class Cable(ElectricalCircuit):
         for i in range(0, len(self.cable_project_list)):
             Cable.cable_model(self, self.cable_project_list[i], self.cable_model_list[i])
 
-cable_project_list = ['高压电缆', '高压电缆', '电缆沟', '电缆终端', '电缆终端']
-cable_model_list = ['YJLV22_26_35_3_95_gaoya', 'YJV22_26_35_1_300_gaoya', '电缆沟长度', 'YJLV22_26_35_3_95_dianlanzhongduan', 'YJV22_26_35_1_300_dianlanzhongduan']
-
-project_chapter6_type = ['山地']
-project02 = Cable(project_chapter6_type, 19, 22, 8, 1.5, 40, 6)
-
-project02.sum_cal_cable(cable_project_list, cable_model_list)
-
-print(project02.cable_model_YJLV22_26_35_3_95_gaoya, project02.cable_model_YJV22_26_35_1_300_gaoya,
-      project02.cable_model_cable_duct,
-      project02.cable_model_YJLV22_26_35_3_95_dianlanzhongduan, project02.cable_model_YJV22_26_35_1_300_dianlanzhongduan)
-
-project_chapter6_type = ['平地']
-project02 = Cable(project_chapter6_type, 25.3, 23.6, 1.55, 3, 31, 5)
-
-project02.sum_cal_cable(cable_project_list, cable_model_list)
-
-print(project02.cable_model_YJLV22_26_35_3_95_gaoya, project02.cable_model_YJV22_26_35_1_300_gaoya,
-      project02.cable_model_cable_duct,
-      project02.cable_model_YJLV22_26_35_3_95_dianlanzhongduan, project02.cable_model_YJV22_26_35_1_300_dianlanzhongduan)
+# cable_project_list = ['高压电缆', '高压电缆', '电缆沟', '电缆终端', '电缆终端']
+# cable_model_list = ['YJLV22_26_35_3_95_gaoya', 'YJV22_26_35_1_300_gaoya', '电缆沟长度', 'YJLV22_26_35_3_95_dianlanzhongduan', 'YJV22_26_35_1_300_dianlanzhongduan']
+#
+# project_chapter6_type = ['山地']
+# project02 = Cable(project_chapter6_type, 19, 22, 8, 1.5, 40, 6)
+#
+# project02.sum_cal_cable(cable_project_list, cable_model_list)
+#
+# print(project02.cable_model_YJLV22_26_35_3_95_gaoya, project02.cable_model_YJV22_26_35_1_300_gaoya,
+#       project02.cable_model_cable_duct,
+#       project02.cable_model_YJLV22_26_35_3_95_dianlanzhongduan, project02.cable_model_YJV22_26_35_1_300_dianlanzhongduan)
+#
+# project_chapter6_type = ['平地']
+# project02 = Cable(project_chapter6_type, 25.3, 23.6, 1.55, 3, 31, 5)
+#
+# project02.sum_cal_cable(cable_project_list, cable_model_list)
+#
+# print(project02.cable_model_YJLV22_26_35_3_95_gaoya, project02.cable_model_YJV22_26_35_1_300_gaoya,
+#       project02.cable_model_cable_duct,
+#       project02.cable_model_YJLV22_26_35_3_95_dianlanzhongduan, project02.cable_model_YJV22_26_35_1_300_dianlanzhongduan)

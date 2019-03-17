@@ -12,7 +12,7 @@ class BoosterStationDatabase:
         self.Status, self.Grade, self.Capacity = 0, 0, 0
         # ===========basic parameters==============
         self.DataBoosterStation, self.data_booster_station = pd.DataFrame(), pd.DataFrame()
-        self.road_basic_earthwork_ratio, self.road_basic_stone_ratio, self.terrain_type = 0, 0, []
+        self.road_basic_earthwork_ratio, self.road_basic_stone_ratio, self.TerrainType = 0, 0, []
         self.dict_booster_station = {}
         # ===========Calculated parameters==============
         self.slope_area, self.earth_excavation_booster_station, self.stone_excavation_booster_station = 0, 0, 0
@@ -45,9 +45,9 @@ class BoosterStationDatabase:
         self.data_booster_station = data_booster_station
         self.road_basic_earthwork_ratio = road_basic_earthwork_ratio
         self.road_basic_stone_ratio = road_basic_stone_ratio
-        self.terrain_type = terrain_type
+        self.TerrainType = terrain_type
 
-        if self.terrain_type == '平原':
+        if self.TerrainType == '平原':
             self.slope_area = (self.data_booster_station['Long'] + 5) * (self.data_booster_station['Width'] + 5)
             self.earth_excavation_booster_station = self.slope_area * 0.3 * self.road_basic_earthwork_ratio / 10
             self.stone_excavation_booster_station = self.slope_area * 0.3 * self.road_basic_stone_ratio / 10

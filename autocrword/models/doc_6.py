@@ -1,13 +1,12 @@
 from docxtpl import DocxTemplate
-from WireRod import WireRod
-from ElectricalInsulator import ElectricalInsulator
-from TowerType import TowerType
-from TowerBase import TowerBase
-from Cable import Cable
+from chapter_6.WireRod import WireRod
+from chapter_6.ElectricalInsulator import ElectricalInsulator
+from chapter_6.TowerType import TowerType
+from chapter_6.TowerBase import TowerBase
+from chapter_6.Cable import Cable
 
 def generate_electrical_docx(project_chapter6_type,args):
-    # **********************************************
-    print("*" * 30)
+
     # step:1
     # 载入参数
     print("---------step:1  载入参数--------")
