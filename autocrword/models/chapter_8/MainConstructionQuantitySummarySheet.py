@@ -1,6 +1,6 @@
 from docxtpl import DocxTemplate
 import os
-from __init__ import RoundUp
+from __init__ import round_dict
 from TemporaryLandAreaSheet import TemporaryLandAreaSheet
 
 
