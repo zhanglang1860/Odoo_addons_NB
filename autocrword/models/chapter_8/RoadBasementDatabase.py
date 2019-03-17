@@ -216,6 +216,11 @@ class RoadBasementDatabase:
         self.MortarStoneRetainingWall_4_numbers = \
             self.data_road_base_4.at[self.data_road_base_4.index[0], 'MortarStoneProtectionSlope_4'] * self.KM_list[3]
 
+        self.data_road_base_1 = self.data_road_base_1.copy()
+        self.data_road_base_2 = self.data_road_base_2.copy()
+        self.data_road_base_3 = self.data_road_base_3.copy()
+        self.data_road_base_4 = self.data_road_base_4.copy()
+
         self.data_road_base_1['EarthExcavation_RoadBase_1'] = self.earth_road_base_excavation_1
         self.data_road_base_1['StoneExcavation_RoadBase_1'] = self.stone_road_base_excavation_1
         self.data_road_base_1['EarthWorkBackFill_RoadBase_1'] = self.earthwork_road_base_back_fill_1
