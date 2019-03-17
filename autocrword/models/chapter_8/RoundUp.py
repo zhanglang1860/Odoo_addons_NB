@@ -1,3 +1,11 @@
+def round_dict(dic):
+    for key in dic:
+        if type(dic[key]).__name__ != 'int':
+            dic[key] = round_up(dic[key], 2)
+
+    return dic
+
+
 def round_up(value, dec_digits=2):
     result = str(value).strip()
     if result != '':
@@ -35,12 +43,7 @@ def round_dict_numbers(dic, numbers):
     return dic
 
 
-def round_dict(dic):
-    for key in dic:
-        if type(dic[key]).__name__ != 'int':
-            dic[key] = round_up(dic[key], 2)
 
-    return dic
 # print(round_up(2.55, dec_digits=1))
 #
 # result = str(2.55).strip()

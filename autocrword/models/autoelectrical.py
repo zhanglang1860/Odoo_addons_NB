@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
-from  generate_chapter6_docx import generate_electrical_docx
+from generate_chapter6_docx import generate_electrical_docx
 import base64, os
 from . import connect_sql
 from . import generate_dict

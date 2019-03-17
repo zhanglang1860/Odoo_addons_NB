@@ -1,4 +1,4 @@
-from RoundUp import round_dict
+# from RoundUp import round_dict
 from docxtpl import DocxTemplate
 import os, math
 from ConstructionLandUseSummary import ConstructionLandUseSummary
@@ -10,14 +10,17 @@ from WasteSlagSheet import WasteSlagSheet
 class TemporaryLandAreaSheet(ConstructionLandUseSummary, PermanentLandAreaSheet, WasteSlagSheet,
                              EarthStoneBalanceSheet):
     def __init__(self):
-        self.numbers_list_road, self.construction_auxiliary_enterprise, self.wind_turbine_installation_platform, \
-        self.construction_road, self.waste_slag_yard, self.approach_road, self.overhead_line_land, \
-        self.direct_buried_cable_land, self.sum_temporary_land_area = 0, 0, 0, 0, 0, 0, 0, 0, 0
+        super().__init__()
+        # ===========basic parameters==============
+        self.numbers_list_road, self.construction_auxiliary_enterprise = 0, 0
+        self.overhead_line_land, self.direct_buried_cable_land = 0, 0
+        # ===========Calculated parameters==============
+        self.wind_turbine_installation_platform, self.construction_road, self.waste_slag_yard = 0, 0, 0
+        self.approach_road, self.sum_temporary_land_area, self.sum_acres_temporary_land_area = 0, 0, 0
 
     def extraction_data_temporary_land_area(self, numbers_list_road, overhead_line, direct_buried_cable):
         self.numbers_list_road = numbers_list_road
-        # print(self.numbers_list_road)
-        self.construction_auxiliary_enterprise = self.total_2
+        self.construction_auxiliary_enterprise = self.total_2_construction_land_use_summary
 
         self.wind_turbine_installation_platform = \
             self.TurbineNumbers * self.data_road_base_4.at[self.data_road_base_4.index[0], 'GeneralSiteLeveling_4'] - \

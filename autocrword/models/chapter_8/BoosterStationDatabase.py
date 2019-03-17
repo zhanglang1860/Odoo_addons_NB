@@ -6,7 +6,6 @@ import pandas as pd
 # from docxtpl import DocxTemplate
 # import math, os
 
-
 class BoosterStationDatabase:
     def __init__(self):
         # ===========selecting parameters=============
@@ -17,7 +16,7 @@ class BoosterStationDatabase:
         self.dict_booster_station = {}
         # ===========Calculated parameters==============
         self.slope_area, self.earth_excavation_booster_station, self.stone_excavation_booster_station = 0, 0, 0
-        self.earthwork_backfill_booster_station, self.c30_booster_station, self.c15_booster_station = 0, 0, 0
+        self.earthwork_back_fill_booster_station, self.c30_booster_station, self.c15_booster_station = 0, 0, 0
         self.c15_oil_pool_booster_station, self.c30_oil_pool_booster_station = 0, 0
         self.c25_foundation_booster_station, self.reinforcement_booster_station = 0, 0
 
@@ -52,12 +51,12 @@ class BoosterStationDatabase:
             self.slope_area = (self.data_booster_station['Long'] + 5) * (self.data_booster_station['Width'] + 5)
             self.earth_excavation_booster_station = self.slope_area * 0.3 * self.road_basic_earthwork_ratio / 10
             self.stone_excavation_booster_station = self.slope_area * 0.3 * self.road_basic_stone_ratio / 10
-            self.earthwork_backfill_booster_station = self.slope_area * 2
+            self.earthwork_back_fill_booster_station = self.slope_area * 2
         else:
             self.slope_area = (self.data_booster_station['Long'] + 10) * (self.data_booster_station['Width'] + 10)
             self.earth_excavation_booster_station = self.slope_area * 3 * self.road_basic_earthwork_ratio
             self.stone_excavation_booster_station = self.slope_area * 3 * self.road_basic_stone_ratio
-            self.earthwork_backfill_booster_station = self.slope_area * 0.5
+            self.earthwork_back_fill_booster_station = self.slope_area * 0.5
 
         self.c30_booster_station = self.data_booster_station.at[self.data_booster_station.index[0], 'C30Concrete']
 
@@ -80,7 +79,7 @@ class BoosterStationDatabase:
 
         self.data_booster_station['EarthExcavation_BoosterStation'] = self.earth_excavation_booster_station
         self.data_booster_station['StoneExcavation_BoosterStation'] = self.stone_excavation_booster_station
-        self.data_booster_station['EarthWorkBackFill_BoosterStation'] = self.earthwork_backfill_booster_station
+        self.data_booster_station['EarthWorkBackFill_BoosterStation'] = self.earthwork_back_fill_booster_station
         self.data_booster_station['SlopeArea'] = self.slope_area
 
         return self.data_booster_station

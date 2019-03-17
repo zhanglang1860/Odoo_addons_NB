@@ -1,10 +1,8 @@
 # import os
 import pandas as pd
 
-
 # from RoundUp import round_dict_numbers
 # from docxtpl import DocxTemplate
-
 
 class BoxVoltageDatabase:
     def __init__(self):

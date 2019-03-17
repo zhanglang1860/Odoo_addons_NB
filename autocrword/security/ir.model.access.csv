@@ -57,3 +57,5 @@ access_civil_user,ProjectUser,model_autoreport_civil,autocrword_group_user,1,0,0
 access_electrical_user,ProjectUser,model_autoreport_electrical,autocrword_group_user,1,0,0,0
 access_economic_user,ProjectUser,model_autoreport_economic,autocrword_group_user,1,0,0,0
 access_generator_user,ProjectUser,model_autoreport_generator,autocrword_group_user,1,0,0,0
+
+

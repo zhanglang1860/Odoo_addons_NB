@@ -1,27 +1,30 @@
-from RoundUp import round_dict
 from docxtpl import DocxTemplate
-import os, math
+import os
+from __init__ import round_dict
 from TemporaryLandAreaSheet import TemporaryLandAreaSheet
 
 
 class MainConstructionQuantitySummarySheet(TemporaryLandAreaSheet):
     def __init__(self):
-        self.construction_area, self.main_booster_station_num, self.overhead_line_num, \
-        self.direct_buried_cable_num, self.earthwork_excavation, self.earthwork_backfill, self.concrete, \
-        self.reinforcement, self.stone_masonry = 0, 0, 0, 0, 0, 0, 0, 0, 0
+        super().__init__()
+        # ===========basic parameters==============
+        self.main_booster_station_num, self.overhead_line_num, self.direct_buried_cable_num = 0, 0, 0
+        self.construction_area, self.turbine_numbers = 0, 0
+        # ===========Calculated parameters==============
+        self.earthwork_excavation, self.earthwork_back_fill, self.concrete, self.reinforcement = 0, 0, 0, 0
+        self.stone_masonry = 0
 
-    def extraction_data_main_construction_quantity_summary(self, main_booster_station_num, overhead_line_num,
-                                                           direct_buried_cable_num):
+    def extraction_data_main_construction_quantity_summary(self, station_num, overhead_num, buried_num):
         self.construction_area = \
             self.data_booster_station.at[self.data_booster_station.index[0], 'ComprehensiveBuilding'] + \
             self.data_booster_station.at[self.data_booster_station.index[0], 'EquipmentBuilding'] + \
             self.data_booster_station.at[self.data_booster_station.index[0], 'AffiliatedBuilding']
 
-        self.main_booster_station_num = main_booster_station_num
-        self.overhead_line_num = overhead_line_num
-        self.direct_buried_cable_num = direct_buried_cable_num
+        self.main_booster_station_num = station_num
+        self.overhead_line_num = overhead_num
+        self.direct_buried_cable_num = buried_num
         self.earthwork_excavation = self.sum_EarthStoneBalance_excavation / 10000
-        self.earthwork_backfill = self.sum_EarthStoneBalance_backfill / 10000
+        self.earthwork_back_fill = self.sum_EarthStoneBalance_back_fill / 10000
 
         self.concrete = \
             (self.c40_wind_resource_numbers + self.c15_wind_resource_numbers + self.c80_wind_resource_numbers +
@@ -49,7 +52,7 @@ class MainConstructionQuantitySummarySheet(TemporaryLandAreaSheet):
             '架空线路_主要施工工程量': self.overhead_line_num,
             '直埋电缆_主要施工工程量': self.direct_buried_cable_num,
             '土石方开挖_主要施工工程量': self.earthwork_excavation,
-            '土石方回填_主要施工工程量': self.earthwork_backfill,
+            '土石方回填_主要施工工程量': self.earthwork_back_fill,
             '混凝土_主要施工工程量': self.concrete,
             '钢筋_主要施工工程量': self.reinforcement,
             '浆砌石_主要施工工程量': self.stone_masonry,
