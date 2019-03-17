@@ -1,6 +1,6 @@
 from RoundUp import round_dict
-from docxtpl import DocxTemplate
-import os
+# from docxtpl import DocxTemplate
+# import os
 from WindResourceDatabase import WindResourceDatabase
 from BoxVoltageDatabase import BoxVoltageDatabase
 from BoosterStationDatabase import BoosterStationDatabase
@@ -9,6 +9,8 @@ from RoadBasementDatabase import RoadBasementDatabase
 
 class EarthStoneBalanceSheet(WindResourceDatabase, BoxVoltageDatabase, BoosterStationDatabase, RoadBasementDatabase):
     def __init__(self):
+
+
         self.turbine_foundation_box_voltage_excavation, self.turbine_foundation_box_voltage_backfill, \
         self.turbine_foundation_box_voltage_spoil = 0, 0, 0
 
