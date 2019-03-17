@@ -1,6 +1,6 @@
 # from RoundUp import round_dict
-from docxtpl import DocxTemplate
-import os, math
+# from docxtpl import DocxTemplate
+import math
 from ConstructionLandUseSummary import ConstructionLandUseSummary
 from EarthStoneBalanceSheet import EarthStoneBalanceSheet
 from PermanentLandAreaSheet import PermanentLandAreaSheet
@@ -37,9 +37,10 @@ class TemporaryLandAreaSheet(ConstructionLandUseSummary, PermanentLandAreaSheet,
         self.overhead_line_land = overhead_line
         self.direct_buried_cable_land = direct_buried_cable
 
-        self.sum_temporary_land_area = self.construction_auxiliary_enterprise + self.wind_turbine_installation_platform + \
-                                       self.construction_road + self.waste_slag_yard + self.approach_road + self.overhead_line_land + \
-                                       self.direct_buried_cable_land
+        self.sum_temporary_land_area = \
+            self.construction_auxiliary_enterprise + self.wind_turbine_installation_platform + \
+            self.construction_road + self.waste_slag_yard + self.approach_road + \
+            self.overhead_line_land + self.direct_buried_cable_land
 
         self.sum_acres_temporary_land_area = self.sum_temporary_land_area / 666.667
 
@@ -71,8 +72,8 @@ class TemporaryLandAreaSheet(ConstructionLandUseSummary, PermanentLandAreaSheet,
 #
 # numbers_list_road = [5, 1.5, 10, 15]
 # data_1, data_2, data_3, data_4 = project09.extraction_data_road_basement('陡坡低山')
-# data_ca1, data_ca2, data_ca3, data_ca4 = project09.excavation_cal_road_basement(data_1, data_2, data_3, data_4, '陡坡低山',
-#                                                                                 0.8, 0.2, numbers_list_road)
+# data_ca1, data_ca2, data_ca3, data_ca4 = \
+#     project09.excavation_cal_road_basement(data_1, data_2, data_3, data_4, '陡坡低山', 0.8, 0.2, numbers_list_road)
 # turbine_capacity = 3
 # overhead_line = 1500
 # direct_buried_cable = 3000

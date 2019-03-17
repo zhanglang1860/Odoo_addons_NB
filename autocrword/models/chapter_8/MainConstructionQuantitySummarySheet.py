@@ -8,7 +8,7 @@ class MainConstructionQuantitySummarySheet(TemporaryLandAreaSheet):
         super().__init__()
         # ===========basic parameters==============
         self.main_booster_station_num, self.overhead_line_num, self.direct_buried_cable_num = 0, 0, 0
-        self.construction_area, self.turbine_numbers = 0, 0
+        self.construction_area, self.TurbineNumbers = 0, 0
         # ===========Calculated parameters==============
         self.earthwork_excavation, self.earthwork_back_fill, self.concrete, self.reinforcement = 0, 0, 0, 0
         self.stone_masonry = 0
@@ -45,7 +45,7 @@ class MainConstructionQuantitySummarySheet(TemporaryLandAreaSheet):
 
     def generate_dict_main_construction_quantity_summary(self):
         dict_main_construction_quantity_summary = {
-            '风机机组_主要施工工程量': self.turbine_numbers,
+            '风机机组_主要施工工程量': self.TurbineNumbers,
             '建筑面积_主要施工工程量': self.construction_area,
             '主变压器_主要施工工程量': self.main_booster_station_num,
             '架空线路_主要施工工程量': self.overhead_line_num,
