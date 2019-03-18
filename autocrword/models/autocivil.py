@@ -13,7 +13,7 @@ class civil_specialty(models.Model):
     beating_capacity = fields.Selection(
         [(60, "60"), (80, "80"), (100, "100"), (120, "120"), (140, "140"), (160, "160"), (180, "180"), (200, "200"),
          (220, "220"), (240, "240"), (260, "260")], string=u"地基承载力(kpa)", required=True)
-    base_form = fields.Selection([('sf', u'扩展基础'), ('ppcf', u'预制承台基础'), ('cpcf', u'灌注桩承台基础'), ('cf', u'复合地基')],
+    base_form = fields.Selection([('扩展基础', u'扩展基础'), ('扩展基础', u'扩展基础'), ('灌注桩承台基础', u'灌注桩承台基础'), ('复合地基', u'复合地基')],
                                  string=u'基础形式', required=True)
     ultimate_load = fields.Selection(
         [(50000, "50000"), (60000, "60000"), (70000, "70000"), (80000, "80000"), (90000, "90000"), (100000, "100000"),
