@@ -9,18 +9,43 @@ class civil_specialty(models.Model):
     _rec_name = 'project_id'
     project_id = fields.Many2one('autoreport.project', string='项目名', required=True)
     version_id = fields.Char(u'版本', required=True, default="1.0")
-    fort_intensity = fields.Selection([(6, "6"), (7, "7"), (8, "8"), (9, "9")], string=u"设防烈度", required=True)
-    beating_capacity = fields.Selection(
-        [(60, "60"), (80, "80"), (100, "100"), (120, "120"), (140, "140"), (160, "160"), (180, "180"), (200, "200"),
-         (220, "220"), (240, "240"), (260, "260")], string=u"地基承载力(kpa)", required=True)
-    base_form = fields.Selection([('扩展基础', u'扩展基础'), ('扩展基础', u'扩展基础'), ('灌注桩承台基础', u'灌注桩承台基础'), ('复合地基', u'复合地基')],
-                                 string=u'基础形式', required=True)
+
+    turbine_numbers=fields.Float(u'风机台数')
+    basic_type = fields.Selection(
+        [('扩展基础', u'扩展基础'), ('预制桩承台基础', u'预制桩承台基础'), ('灌注桩承台基础', u'灌注桩承台基础'), ('复合地基', u'复合地基')],
+        string=u'基础形式', required=True)
     ultimate_load = fields.Selection(
         [(50000, "50000"), (60000, "60000"), (70000, "70000"), (80000, "80000"), (90000, "90000"), (100000, "100000"),
          (110000, "110000"), (120000, "120000")], string=u"极限载荷", required=True)
-    Earthrock_ratio = fields.Selection(
-        [(0, "0"), (1, "1"), (2, "2"), (3, "3"), (4, "4"), (5, "5"), (6, "6"), (7, "7"), (8, "8"), (9, "9"),
-         (10, '10')], string=u"土石方比", required=True)
+    fortification_intensity = fields.Selection([(6, "6"), (7, "7"), (8, "8"), (9, "9")], string=u"设防烈度", required=True)
+    basic_earthwork_ratio = fields.Selection(
+        [(0, "0"), (0.1, "10%"), (0.2, "20%"), (0.3, "30%"), (0.4, "40%"), (0.5, "50%"), (0.6, "60%"), (0.7, "70%"),
+         (0.8, "80%"), (0.9, "90%"), (1, '100%')], string=u"基础土方比", required=True)
+    basic_stone_ratio = fields.Selection(
+        [(0, "0"), (0.1, "10%"), (0.2, "20%"), (0.3, "30%"), (0.4, "40%"), (0.5, "50%"), (0.6, "60%"), (0.7, "70%"),
+         (0.8, "80%"), (0.9, "90%"), (1, '100%')], string=u"基础石方比", required=True)
+    TurbineCapacity = fields.Selection(
+        [(2, "2MW"), (2.2, "2.2MW"), (2.5, "2.5MW"), (3, "3MW"), (3.2, "3.2MW"), (3.3, "3.3MW"), (3.4, "3.4MW"),
+         (3.6, "3.6MW")], string=u"风机容量", required=True)
+    road_earthwork_ratio= = fields.Selection(
+        [(0, "0"), (0.1, "10%"), (0.2, "20%"), (0.3, "30%"), (0.4, "40%"), (0.5, "50%"), (0.6, "60%"), (0.7, "70%"),
+         (0.8, "80%"), (0.9, "90%"), (1, '100%')], string=u"道路土方比", required=True)
+    road_stone_ratio= fields.Selection(
+        [(0, "0"), (0.1, "10%"), (0.2, "20%"), (0.3, "30%"), (0.4, "40%"), (0.5, "50%"), (0.6, "60%"), (0.7, "70%"),
+         (0.8, "80%"), (0.9, "90%"), (1, '100%')], string=u"道路石方比", required=True)
+    ####箱变
+    TurbineCapacity = fields.Selection(
+        [(2, "2MW"), (2.2, "2.2MW"), (2.5, "2.5MW"), (3, "3MW"),(3.2, "3.2MW"),(3.3, "3.3MW"),(3.4, "3.4MW"),
+            (3.6, "3.6MW")], string=u"风机容量", required=True)
+    ####升压站
+    Status = fields.Selection([("新建", u"新建"), ("利用原有", u"利用原有")], string=u"状态", required=True)
+    Grade = fields.Selection([(110, "110"), (220, "220")], string=u"等级", required=True)
+    Capacity = fields.Selection([(50, "50"), (100, "100"), (150, "150"), (200, "200")], string=u"容量", required=True)
+
+    ####道路
+    TerrainType = fields.Selection(
+        [("平原", u"平原"), ("丘陵", u"丘陵"), ("缓坡低山", u"缓坡低山"), ("陡坡低山", u"陡坡低山"), ("缓坡中山", u"缓坡中山"),
+         ("陡坡中山", u"陡坡中山"), ("缓坡高山", u"缓坡高山"), ("陡坡高山", u"陡坡高山")], string=u"山地类型", required=True)
 
     @api.multi
     def button_civil(self):
@@ -37,7 +62,8 @@ class civil_windbase(models.Model):
     BearingCapacity = fields.Selection(
         [(60, "60"), (80, "80"), (100, "100"), (120, "120"), (140, "140"), (160, "160"), (180, "180"), (200, "200"),
          (220, "220"), (240, "240"), (260, "260")], string=u"地基承载力(kpa)", required=True)
-    BasicType = fields.Selection([('扩展基础', u'扩展基础'), ('预制承台基础', u'预制承台基础'), ('灌注桩承台基础', u'灌注桩承台基础'), ('复合地基', u'复合地基')],
+    BasicType = fields.Selection(
+        [('扩展基础', u'扩展基础'), ('预制桩承台基础', u'预制桩承台基础'), ('灌注桩承台基础', u'灌注桩承台基础'), ('复合地基', u'复合地基')],
                                  string=u'基础形式', required=True)
     UltimateLoad = fields.Selection(
         [(50000, "50000"), (60000, "60000"), (70000, "70000"), (80000, "80000"), (90000, "90000"),
