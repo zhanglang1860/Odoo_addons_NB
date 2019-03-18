@@ -124,7 +124,9 @@ class civil_road1(models.Model):
 class civil_road2(models.Model):
     _name = 'civil.road2'
     _description = 'Civil road2'
-    TerrainType = fields.Float(u'山地类型')
+    TerrainType = fields.Selection(
+        [("平原", u"平原"), ("丘陵", u"丘陵"), ("缓坡低山", u"缓坡低山"), ("陡坡低山", u"陡坡低山"), ("缓坡中山", u"缓坡中山"),
+         ("陡坡中山", u"陡坡中山"), ("缓坡高山", u"缓坡高山"), ("陡坡高山", u"陡坡高山")], string=u"山地类型", required=True)
     GradedGravelBase_2 = fields.Float(u'级配碎石基层(20cm厚)')
     C30ConcretePavement_2 = fields.Float(u'C30混凝土路面(20cm厚)')
     RoundTubeCulvert_2 = fields.Float(u'D1000mm圆管涵')
@@ -137,7 +139,9 @@ class civil_road2(models.Model):
 class civil_road3(models.Model):
     _name = 'civil.road3'
     _description = 'Civil road3'
-    TerrainType = fields.Float(u'山地类型')
+    TerrainType = fields.Selection(
+        [("平原", u"平原"), ("丘陵", u"丘陵"), ("缓坡低山", u"缓坡低山"), ("陡坡低山", u"陡坡低山"), ("缓坡中山", u"缓坡中山"),
+         ("陡坡中山", u"陡坡中山"), ("缓坡高山", u"缓坡高山"), ("陡坡高山", u"陡坡高山")], string=u"山地类型", required=True)
     MountainPavement_3 = fields.Float(u'山皮石路面(20cm厚)')
     C30ConcretePavement_3 = fields.Float(u'C30混凝土路面(20cm厚)')
     RoundTubeCulvert_3 = fields.Float(u'D1000mm圆管涵')
@@ -151,7 +155,9 @@ class civil_road3(models.Model):
 class civil_road4(models.Model):
     _name = 'civil.road4'
     _description = 'Civil road4'
-    TerrainType = fields.Float(u'山地类型')
+    TerrainType = fields.Selection(
+        [("平原", u"平原"), ("丘陵", u"丘陵"), ("缓坡低山", u"缓坡低山"), ("陡坡低山", u"陡坡低山"), ("缓坡中山", u"缓坡中山"),
+         ("陡坡中山", u"陡坡中山"), ("缓坡高山", u"缓坡高山"), ("陡坡高山", u"陡坡高山")], string=u"山地类型", required=True)
     GeneralSiteLeveling_4 = fields.Float(u'一般场地平整')
     StoneMasonryDrainageDitch_4 = fields.Float(u'浆砌石排水沟')
     MortarStoneProtectionSlope_4 = fields.Float(u'M7.5浆砌片石护坡')
