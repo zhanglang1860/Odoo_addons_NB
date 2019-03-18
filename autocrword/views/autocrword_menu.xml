@@ -84,17 +84,110 @@
     />
                 <!-- Action to open the input list -->
 
-    <!--<act_window id="action_windresourcedatabase_civil"-->
-        <!--name="WindResourceDatabase"-->
-        <!--res_model="windresourcedatabase.civil"-->
-        <!--view_mode="tree,form"-->
-    <!--/>-->
+    <act_window id="action_windbase_civil"
+        name="风机基础"
+        res_model="civil.windbase"
+        view_mode="tree,form"
+    />
 
-    <!--&lt;!&ndash; Menu item to open the input list &ndash;&gt;-->
+    <!-- Menu item to open the input list -->
 
-    <!--<menuitem id="menu_windresourcedatabase_civil"-->
-        <!--name="windresourcedatabase"-->
-        <!--parent="menu_autocrword"-->
-        <!--action="action_windresourcedatabase_civil"-->
-    <!--/>-->
+    <menuitem id="menu_windbase_civil"
+        name="风机基础"
+        parent="menu_autocrword"
+        action="action_windbase_civil"
+    />
+    
+                    <!-- Action to open the input list -->
+
+    <act_window id="action_convertbase_civil"
+        name="相变基础"
+        res_model="civil.convertbase"
+        view_mode="tree,form"
+    />
+
+    <!-- Menu item to open the input list -->
+
+    <menuitem id="menu_convertbase_civil"
+        name="相变基础"
+        parent="menu_autocrword"
+        action="action_convertbase_civil"
+    />
+                        <!-- Action to open the input list -->
+
+    <act_window id="action_boosterstation_civil"
+        name="升压站"
+        res_model="civil.boosterstation"
+        view_mode="tree,form"
+    />
+
+    <!-- Menu item to open the input list -->
+
+    <menuitem id="menu_boosterstation_civil"
+        name="升压站"
+        parent="menu_autocrword"
+        action="action_boosterstation_civil"
+    />
+    
+                    <!-- Action to open the input list -->
+
+    <act_window id="action_road1_civil"
+        name="road1"
+        res_model="civil.road1"
+        view_mode="tree,form"
+    />
+
+    <!-- Menu item to open the input list -->
+
+    <menuitem id="menu_road1_civil"
+        name="road1"
+        parent="menu_autocrword"
+        action="action_road1_civil"
+    />
+                        <!-- Action to open the input list -->
+
+    <act_window id="action_road2_civil"
+        name="road2"
+        res_model="civil.road2"
+        view_mode="tree,form"
+    />
+
+    <!-- Menu item to open the input list -->
+
+    <menuitem id="menu_road2_civil"
+        name="road2"
+        parent="menu_autocrword"
+        action="action_road2_civil"
+    />
+                        <!-- Action to open the input list -->
+
+    <act_window id="action_road3_civil"
+        name="road3"
+        res_model="civil.road3"
+        view_mode="tree,form"
+    />
+
+    <!-- Menu item to open the input list -->
+
+    <menuitem id="menu_road3_civil"
+        name="road3"
+        parent="menu_autocrword"
+        action="action_road3_civil"
+    />
+                        <!-- Action to open the input list -->
+
+    <act_window id="action_road4_civil"
+        name="road4"
+        res_model="civil.road4"
+        view_mode="tree,form"
+    />
+
+    <!-- Menu item to open the input list -->
+
+    <menuitem id="menu_road4_civil"
+        name="road4"
+        parent="menu_autocrword"
+        action="action_road4_civil"
+    />   
+    
 </odoo>
