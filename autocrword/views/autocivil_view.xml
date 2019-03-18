@@ -18,11 +18,21 @@
                             <field name="version_id" />
                          </group>
                          <group name="group_right">
-                            <field name="fort_intensity" />
-                            <field name="beating_capacity" />
-                            <field name="base_form" />
+                            <field name="turbine_numbers" />
+                            <field name="basic_type" />
                             <field name="ultimate_load" />
-                            <field name="Earthrock_ratio" />
+                            <field name="fortification_intensity" />
+                            <field name="basic_earthwork_ratio" />
+                            <field name="basic_stone_ratio" />
+                            <field name="TurbineCapacity" />
+                            <field name="road_earthwork_ratio" />
+                            <field name="road_stone_ratio" />
+                            <field name="TurbineCapacity" />
+                            <field name="Status" />
+                            <field name="Grade" />
+                            <field name="Capacity" />
+                            <field name="TerrainType" />
+                            <field name="report_attachment_id" />
                         </group>
                     </group>
                 </sheet>

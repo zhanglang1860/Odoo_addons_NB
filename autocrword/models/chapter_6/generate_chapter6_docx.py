@@ -184,5 +184,5 @@ def generate_electrical_docx(project_chapter6_type,args):
     tpl = DocxTemplate(r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_6\CR_chapter6_template.docx')
     tpl.render(Dict_6)
 
-    tpl.save(r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_6\result_chapter6_d.docx')
+    tpl.save(r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_6\result_chapter6_e.docx')
     print("---------chapter 6 生成完毕--------")

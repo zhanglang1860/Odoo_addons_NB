@@ -24,7 +24,9 @@
                         <field name="lenth_doublejL240" />
                         <field name="yjlv95" />
                         <field name="yjv300" />
+                        <field name="turbine_numbers" />
                         <field name="circuit_number" />
+                        <field name="report_attachment_id" />
                     </group>
                 </sheet>
             </form>

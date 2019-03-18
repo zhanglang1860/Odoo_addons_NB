@@ -14,10 +14,26 @@ def get_dict(np, dict_keys):
     dict = {}
     for i in range(0, len(dict_keys)):
         key_dict = dict_keys[i]
+        print(key_dict,np[:, i])
         value_dict = np[:, i]
         dict[key_dict] = value_dict
     return dict
 
+
+def get_dict_8(np, dict_keys):
+    """
+    结合传入np数组和dict_keys关键字参数，创建字典。注意一一对应。
+    :param np:  传入数组
+    :param dict_keys: 关键字字典
+    :return: 返回字典
+
+    """
+    dict = {}
+    for i in range(0, len(dict_keys)):
+        key_dict = dict_keys[i]
+        value_dict = np[i]
+        dict[key_dict] = value_dict
+    return dict
 
 def generate_civil_docx(turbine_numbers=0, basic_type='', ultimate_load=0, fortification_intensity=0,
                         basic_earthwork_ratio=0, basic_stone_ratio=0, TurbineCapacity=0, road_earthwork_ratio=0,

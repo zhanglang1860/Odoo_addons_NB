@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
-
+from doc_8 import generate_civil_docx,get_dict_8
+import base64
+import numpy
 
 class civil_specialty(models.Model):
     _name = 'autoreport.civil'
@@ -9,6 +11,7 @@ class civil_specialty(models.Model):
     _rec_name = 'project_id'
     project_id = fields.Many2one('autoreport.project', string='项目名', required=True)
     version_id = fields.Char(u'版本', required=True, default="1.0")
+    report_attachment_id = fields.Many2one('ir.attachment', string=u'可研报告土建章节')
 
     turbine_numbers=fields.Float(u'风机台数')
     basic_type = fields.Selection(
@@ -19,20 +22,20 @@ class civil_specialty(models.Model):
          (110000, "110000"), (120000, "120000")], string=u"极限载荷", required=True)
     fortification_intensity = fields.Selection([(6, "6"), (7, "7"), (8, "8"), (9, "9")], string=u"设防烈度", required=True)
     basic_earthwork_ratio = fields.Selection(
-        [(0, "0"), (0.1, "10%"), (0.2, "20%"), (0.3, "30%"), (0.4, "40%"), (0.5, "50%"), (0.6, "60%"), (0.7, "70%"),
-         (0.8, "80%"), (0.9, "90%"), (1, '100%')], string=u"基础土方比", required=True)
+        [(0, "0"), (1, "10%"), (2, "20%"), (3, "30%"), (4, "40%"), (5, "50%"), (6, "60%"), (7, "70%"),
+         (8, "80%"), (9, "90%"), (1, '100%')], string=u"基础土方比", required=True)
     basic_stone_ratio = fields.Selection(
-        [(0, "0"), (0.1, "10%"), (0.2, "20%"), (0.3, "30%"), (0.4, "40%"), (0.5, "50%"), (0.6, "60%"), (0.7, "70%"),
-         (0.8, "80%"), (0.9, "90%"), (1, '100%')], string=u"基础石方比", required=True)
+        [(0, "0"), (1, "10%"), (2, "20%"), (3, "30%"), (4, "40%"), (5, "50%"), (6, "60%"), (7, "70%"),
+         (8, "80%"), (9, "90%"), (1, '100%')], string=u"基础石方比", required=True)
     TurbineCapacity = fields.Selection(
         [(2, "2MW"), (2.2, "2.2MW"), (2.5, "2.5MW"), (3, "3MW"), (3.2, "3.2MW"), (3.3, "3.3MW"), (3.4, "3.4MW"),
          (3.6, "3.6MW")], string=u"风机容量", required=True)
-    road_earthwork_ratio= = fields.Selection(
-        [(0, "0"), (0.1, "10%"), (0.2, "20%"), (0.3, "30%"), (0.4, "40%"), (0.5, "50%"), (0.6, "60%"), (0.7, "70%"),
-         (0.8, "80%"), (0.9, "90%"), (1, '100%')], string=u"道路土方比", required=True)
+    road_earthwork_ratio = fields.Selection(
+        [(0, "0"), (1, "10%"), (2, "20%"), (3, "30%"), (4, "40%"), (5, "50%"), (6, "60%"), (7, "70%"),
+         (8, "80%"), (9, "90%"), (1, '100%')], string=u"道路土方比", required=True)
     road_stone_ratio= fields.Selection(
-        [(0, "0"), (0.1, "10%"), (0.2, "20%"), (0.3, "30%"), (0.4, "40%"), (0.5, "50%"), (0.6, "60%"), (0.7, "70%"),
-         (0.8, "80%"), (0.9, "90%"), (1, '100%')], string=u"道路石方比", required=True)
+        [(0, "0"), (1, "10%"), (2, "20%"), (3, "30%"), (4, "40%"), (5, "50%"), (6, "60%"), (7, "70%"),
+         (8, "80%"), (9, "90%"), (1, '100%')], string=u"道路石方比", required=True)
     ####箱变
     TurbineCapacity = fields.Selection(
         [(2, "2MW"), (2.2, "2.2MW"), (2.5, "2.5MW"), (3, "3MW"),(3.2, "3.2MW"),(3.3, "3.3MW"),(3.4, "3.4MW"),
@@ -53,6 +56,59 @@ class civil_specialty(models.Model):
         projectname.civil_attachment_id = self
         projectname.civil_attachment_ok = u"已提交,版本：" + self.version_id
         return True
+
+    def civil_generate(self):
+        self.numbers_list_road = [5, 1.5, 10, 15]
+        self.line_data = [15000, 10000]
+        self.overhead_line=1500
+        self.direct_buried_cable=3000
+        self.overhead_line_num=20
+        self.direct_buried_cable_num=2
+        self.main_booster_station_num=2
+        list = [self.turbine_numbers,self.basic_type,self.ultimate_load, self.fortification_intensity,
+                self.basic_earthwork_ratio, self.basic_stone_ratio,self.TurbineCapacity,self.road_earthwork_ratio,
+              self.road_stone_ratio,self.Status,self.Grade,self.Capacity,self.TerrainType,self.numbers_list_road,
+              self.overhead_line,self.direct_buried_cable,self.line_data,self.main_booster_station_num,
+                self.overhead_line_num,self.direct_buried_cable_num]
+        np=numpy.array(list)
+        dict_keys=['turbine_numbers','basic_type','ultimate_load','fortification_intensity','basic_earthwork_ratio',
+                   'basic_stone_ratio','TurbineCapacity','road_earthwork_ratio','road_stone_ratio','Status',
+                   'Grade','Capacity','TerrainType','numbers_list_road','overhead_line','direct_buried_cable',
+                   'line_data','main_booster_station_num','overhead_line_num','direct_buried_cable_num']
+
+        dict_8=get_dict_8(np,dict_keys)
+        print(dict_8)
+        generate_civil_docx(**dict_8)
+        reportfile_name = open(
+            file=r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8\result_chapter8.docx', mode='rb')
+        byte = reportfile_name.read()
+        reportfile_name.close()
+        print('file lenth=', len(byte))
+        base64.standard_b64encode(byte)
+        if (str(self.report_attachment_id) == 'ir.attachment()'):
+            Attachments = self.env['ir.attachment']
+            print('开始创建新纪录')
+            New = Attachments.create({
+                'name': self.project_id.project_name + '可研报告土建章节下载页',
+                'datas_fname': self.project_id.project_name + '可研报告土建章节.docx',
+                'datas': base64.standard_b64encode(byte),
+                'display_name': self.project_id.project_name + '可研报告土建章节',
+                'create_date': fields.date.today(),
+                'public': True,  # 此处需设置为true 否则attachments.read  读不到
+                # 'mimetype': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                # 'res_model': 'autoreport.project'
+                # 'res_field': 'report_attachment_id'
+            })
+            print('已创建新纪录：', New)
+            print('new dataslen：', len(New.datas))
+            self.report_attachment_id = New
+        else:
+            self.report_attachment_id.datas = base64.standard_b64encode(byte)
+
+        print('new attachment：', self.report_attachment_id)
+        print('new datas len：', len(self.report_attachment_id.datas))
+        return True
+
 
 
 class civil_windbase(models.Model):

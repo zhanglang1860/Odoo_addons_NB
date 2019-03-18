@@ -46,6 +46,8 @@ class WindResourceDatabase:
         self.basic_stone_ratio = basic_stone_ratio
         self.TurbineNumbers = turbine_num
 
+        print(self.basic_earthwork_ratio,self.TurbineNumbers)
+
         self.earth_excavation_wind_resource = \
             math.pi * (self.data_wind_resource['FloorRadiusR'] + 1.3) ** 2 * \
             (self.data_wind_resource['H1'] + self.data_wind_resource['H2'] + self.data_wind_resource['H3'] + 0.15) \

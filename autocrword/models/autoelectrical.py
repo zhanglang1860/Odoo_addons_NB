@@ -18,15 +18,17 @@ class electrical_specialty(models.Model):
     lenth_doublejL240 = fields.Float(u'双回线路JL/G1A-240/30长度（km）', required=True)
     yjlv95 = fields.Float(u'直埋电缆YJLV22-26/35-3×95（km）', required=True)
     yjv300 = fields.Float(u'直埋电缆YJV22-26/35-1×300（km）', required=True)
+    turbine_numbers = fields.Float(u'风机台数')
     circuit_number = fields.Integer(u'线路回路数', required=True)
     report_attachment_id = fields.Many2one('ir.attachment', string=u'可研报告电气章节')
 
     @api.multi
     def electrical_generate(self):
-        args = [19, 22, 8, 1.5, 40, 6]
+        args = [self.lenth_singlejL240,self.lenth_doublejL240,self.yjlv95, self.yjv300,
+                self.turbine_numbers, self.circuit_number]
         generate_electrical_docx(self.voltage_class, args)
         reportfile_name = open(
-            file=r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_6\result_chapter6_d.docx', mode='rb')
+            file=r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_6\result_chapter6_e.docx', mode='rb')
         byte = reportfile_name.read()
         reportfile_name.close()
         print('file lenth=', len(byte))
