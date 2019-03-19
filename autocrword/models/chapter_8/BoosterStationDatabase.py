@@ -1,5 +1,5 @@
 import pandas as pd
-
+from connect_sql import connect_sql_pandas
 
 # import numpy as np
 # from RoundUp import round_up, round_dict
@@ -24,16 +24,19 @@ class BoosterStationDatabase:
         self.Status = status
         self.Grade = grade
         self.Capacity = capacity
-        col_name = ['Status', 'Grade', 'Capacity', 'Long', 'Width', 'InnerWallArea', 'WallLength', 'StoneMasonryFoot',
-                    'StoneMasonryDrainageDitch', 'RoadArea', 'GreenArea', 'ComprehensiveBuilding', 'EquipmentBuilding',
-                    'AffiliatedBuilding', 'C30Concrete', 'C15ConcreteCushion', 'MainTransformerFoundation',
-                    'AccidentOilPoolC30Concrete', 'AccidentOilPoolC15Cushion', 'AccidentOilPoolReinforcement',
-                    'FoundationC25Concrete', 'OutdoorStructure', 'PrecastConcretePole', 'LightningRod'
-                    ]
+        # col_name = ['Status', 'Grade', 'Capacity', 'Long', 'Width', 'InnerWallArea', 'WallLength', 'StoneMasonryFoot',
+        #             'StoneMasonryDrainageDitch', 'RoadArea', 'GreenArea', 'ComprehensiveBuilding', 'EquipmentBuilding',
+        #             'AffiliatedBuilding', 'C30Concrete', 'C15ConcreteCushion', 'MainTransformerFoundation',
+        #             'AccidentOilPoolC30Concrete', 'AccidentOilPoolC15Cushion', 'AccidentOilPoolReinforcement',
+        #             'FoundationC25Concrete', 'OutdoorStructure', 'PrecastConcretePole', 'LightningRod'
+        #             ]
+        #
+        # self.DataBoosterStation = pd.read_excel(
+        #     r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8\chapter8database.xlsx',
+        #     header=2, sheet_name='升压站基础数据', usecols=col_name)
 
-        self.DataBoosterStation = pd.read_excel(
-            r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8\chapter8database.xlsx',
-            header=2, sheet_name='升压站基础数据', usecols=col_name)
+        sql = "SELECT * FROM civil_boosterstation"
+        self.DataBoosterStation = connect_sql_pandas(sql)
 
         self.data_booster_station = self.DataBoosterStation.loc[self.DataBoosterStation['Status'] == self.Status].loc[
             self.DataBoosterStation['Grade'] == self.Grade].loc[self.DataBoosterStation['Capacity'] == self.Capacity]
@@ -119,6 +122,7 @@ class BoosterStationDatabase:
 #
 # project03 = BoosterStationDatabase()
 # data = project03.extraction_data_booster_station('新建', 110, 100)
+# print(data)
 # data_cal = project03.excavation_cal_booster_station(data,0.8, 0.2, '陡坡低山')
 #
 # Dict = round_dict(project03.generate_dict_booster_station(data_cal))

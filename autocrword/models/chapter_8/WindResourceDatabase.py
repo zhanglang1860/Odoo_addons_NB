@@ -1,6 +1,6 @@
 import math
 import pandas as pd
-
+from connect_sql import connect_sql_pandas
 
 # from docxtpl import DocxTemplate
 # from RoundUp import round_dict_numbers
@@ -26,13 +26,16 @@ class WindResourceDatabase:
         self.FortificationIntensity = fortification_intensity
         self.BasicType = basic_type
         self.UltimateLoad = ultimate_load
-        col_name = ['FortificationIntensity', 'BearingCapacity', 'BasicType', 'UltimateLoad', 'FloorRadiusR', 'R1',
-                    'R2', 'H1', 'H2', 'H3', 'PileDiameter', 'Number', 'Length', 'SinglePileLength', 'Area', 'Volume',
-                    'Cushion', 'M48PreStressedAnchor', 'C80SecondaryGrouting']
+        # col_name = ['FortificationIntensity', 'BearingCapacity', 'BasicType', 'UltimateLoad', 'FloorRadiusR', 'R1',
+        #             'R2', 'H1', 'H2', 'H3', 'PileDiameter', 'Number', 'Length', 'SinglePileLength', 'Area', 'Volume',
+        #             'Cushion', 'M48PreStressedAnchor', 'C80SecondaryGrouting']
+        #
+        # self.DataWindResource = pd.read_excel(
+        #     r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8\chapter8database.xlsx',
+        #     header=1, sheet_name='风机基础数据', usecols=col_name)
 
-        self.DataWindResource = pd.read_excel(
-            r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8\chapter8database.xlsx',
-            header=1, sheet_name='风机基础数据', usecols=col_name)
+        sql = "SELECT * FROM civil_windbase"
+        self.DataWindResource = connect_sql_pandas(sql)
         self.data_wind_resource = \
             self.DataWindResource.loc[
                 self.DataWindResource['FortificationIntensity'] == self.FortificationIntensity].loc[

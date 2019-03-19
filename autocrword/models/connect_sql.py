@@ -1,5 +1,11 @@
 import psycopg2
 import numpy as np
+import pandas as pd
+
+def connect_sql_pandas(sql):
+    db = psycopg2.connect(host='localhost', user='openpg', password='openpgpwd', port=5432, database='huarun123')
+    database_pd = pd.read_sql(sql,db)
+    return database_pd
 
 
 def connect_sql_chapter5(*turbine_list):

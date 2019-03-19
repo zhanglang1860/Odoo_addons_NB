@@ -1,5 +1,6 @@
-# import os
 import pandas as pd
+from connect_sql import connect_sql_pandas
+
 
 # from RoundUp import round_dict_numbers
 # from docxtpl import DocxTemplate
@@ -21,11 +22,15 @@ class BoxVoltageDatabase:
 
     def extraction_data_box_voltage(self, turbine_capacity):
         self.TurbineCapacity = turbine_capacity
-        col_name = ['TurbineCapacity', 'ConvertStation', 'Long', 'Width', 'High', 'WallThickness', 'HighPressure',
-                    'C35ConcreteTop', 'C15Cushion', 'MU10Brick', 'Reinforcement', 'Area']
-        self.DataBoxVoltage = pd.read_excel(
-            r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8\chapter8database.xlsx',
-            header=2, sheet_name='箱变基础数据', usecols=col_name)
+        # col_name = ['TurbineCapacity', 'ConvertStation', 'Long', 'Width', 'High', 'WallThickness', 'HighPressure',
+        #             'C35ConcreteTop', 'C15Cushion', 'MU10Brick', 'Reinforcement', 'Area']
+        # self.DataBoxVoltage = pd.read_excel(
+        #     r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8\chapter8database.xlsx',
+        #     header=2, sheet_name='箱变基础数据', usecols=col_name)
+
+        sql = "SELECT * FROM civil_convertbase"
+        self.DataBoxVoltage = connect_sql_pandas(sql)
+
         self.data_box_voltage = self.DataBoxVoltage.loc[self.DataBoxVoltage['TurbineCapacity'] == self.TurbineCapacity]
         return self.data_box_voltage
 

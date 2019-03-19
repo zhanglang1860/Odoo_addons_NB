@@ -1,5 +1,5 @@
 import pandas as pd
-
+from connect_sql import connect_sql_pandas
 
 # import numpy as np
 # from RoundUp import round_up, round_dict_numbers
@@ -41,29 +41,37 @@ class RoadBasementDatabase:
 
     def extraction_data_road_basement(self, terrain_type):
         self.TerrainType = terrain_type
-        col_name_1 = ['TerrainType', 'GradedGravelPavement_1', 'RoundTubeCulvert_1', 'StoneMasonryDrainageDitch_1',
-                      'MortarStoneRetainingWall_1', 'TurfSlopeProtection_1']
-        col_name_2 = ['TerrainType', 'GradedGravelBase_2', 'C30ConcretePavement_2', 'RoundTubeCulvert_2',
-                      'StoneMasonryDrainageDitch_2', 'MortarStoneRetainingWall_2', 'TurfSlopeProtection_2', 'Signage_2',
-                      'WaveGuardrail_2']
-        col_name_3 = ['TerrainType', 'MountainPavement_3', 'C30ConcretePavement_3', 'RoundTubeCulvert_3',
-                      'StoneMasonryDrainageDitch_3', 'MortarStoneRetainingWall_3', 'TurfSlopeProtection_3', 'Signage_3',
-                      'WaveGuardrail_3', 'LandUse_3']
-        col_name_4 = ['TerrainType', 'GeneralSiteLeveling_4', 'StoneMasonryDrainageDitch_4',
-                      'MortarStoneProtectionSlope_4', 'TurfSlopeProtection_4']
-
-        self.DataRoadBasement_1 = pd.read_excel(
-            r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8\chapter8database.xlsx',
-            header=2, sheet_name='道路基础数据1', usecols=col_name_1)
-        self.DataRoadBasement_2 = pd.read_excel(
-            r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8\chapter8database.xlsx',
-            header=2, sheet_name='道路基础数据2', usecols=col_name_2)
-        self.DataRoadBasement_3 = pd.read_excel(
-            r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8\chapter8database.xlsx',
-            header=2, sheet_name='道路基础数据3', usecols=col_name_3)
-        self.DataRoadBasement_4 = pd.read_excel(
-            r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8\chapter8database.xlsx',
-            header=2, sheet_name='道路基础数据4', usecols=col_name_4)
+        # col_name_1 = ['TerrainType', 'GradedGravelPavement_1', 'RoundTubeCulvert_1', 'StoneMasonryDrainageDitch_1',
+        #               'MortarStoneRetainingWall_1', 'TurfSlopeProtection_1']
+        # col_name_2 = ['TerrainType', 'GradedGravelBase_2', 'C30ConcretePavement_2', 'RoundTubeCulvert_2',
+        #               'StoneMasonryDrainageDitch_2', 'MortarStoneRetainingWall_2', 'TurfSlopeProtection_2', 'Signage_2',
+        #               'WaveGuardrail_2']
+        # col_name_3 = ['TerrainType', 'MountainPavement_3', 'C30ConcretePavement_3', 'RoundTubeCulvert_3',
+        #               'StoneMasonryDrainageDitch_3', 'MortarStoneRetainingWall_3', 'TurfSlopeProtection_3', 'Signage_3',
+        #               'WaveGuardrail_3', 'LandUse_3']
+        # col_name_4 = ['TerrainType', 'GeneralSiteLeveling_4', 'StoneMasonryDrainageDitch_4',
+        #               'MortarStoneProtectionSlope_4', 'TurfSlopeProtection_4']
+        #
+        # self.DataRoadBasement_1 = pd.read_excel(
+        #     r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8\chapter8database.xlsx',
+        #     header=2, sheet_name='道路基础数据1', usecols=col_name_1)
+        # self.DataRoadBasement_2 = pd.read_excel(
+        #     r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8\chapter8database.xlsx',
+        #     header=2, sheet_name='道路基础数据2', usecols=col_name_2)
+        # self.DataRoadBasement_3 = pd.read_excel(
+        #     r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8\chapter8database.xlsx',
+        #     header=2, sheet_name='道路基础数据3', usecols=col_name_3)
+        # self.DataRoadBasement_4 = pd.read_excel(
+        #     r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8\chapter8database.xlsx',
+        #     header=2, sheet_name='道路基础数据4', usecols=col_name_4)
+        sql1 = "SELECT * FROM civil_road1"
+        self.DataRoadBasement_1 = connect_sql_pandas(sql1)
+        sql2 = "SELECT * FROM civil_road2"
+        self.DataRoadBasement_2 = connect_sql_pandas(sql2)
+        sql3 = "SELECT * FROM civil_road3"
+        self.DataRoadBasement_3 = connect_sql_pandas(sql3)
+        sql4= "SELECT * FROM civil_road4"
+        self.DataRoadBasement_4 = connect_sql_pandas(sql4)
 
         self.data_road_base_1 = self.DataRoadBasement_1.loc[self.DataRoadBasement_1['TerrainType'] == self.TerrainType]
         self.data_road_base_2 = self.DataRoadBasement_2.loc[self.DataRoadBasement_2['TerrainType'] == self.TerrainType]
