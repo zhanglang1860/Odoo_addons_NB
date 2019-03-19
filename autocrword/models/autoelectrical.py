@@ -2,10 +2,8 @@
 
 from odoo import models, fields, api
 from generate_chapter6_docx import generate_electrical_docx
-import base64, os
-from . import connect_sql
-from . import generate_dict
-from docxtpl import DocxTemplate, InlineImage
+import base64
+
 
 class electrical_specialty(models.Model):
     _name = 'autoreport.electrical'

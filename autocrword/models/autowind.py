@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
-from . import renew2
 import base64, os
-from . import connect_sql
+from addons.Odoo_addons_NB.autocrword.models.source import connect_sql
 from . import generate_dict
 # from . import generate_images
 from docxtpl import DocxTemplate, InlineImage
