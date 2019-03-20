@@ -5,6 +5,8 @@ from doc_8 import generate_civil_docx,get_dict_8
 import base64
 import numpy
 
+from odoo import models, fields, api
+
 class civil_specialty(models.Model):
     _name = 'autoreport.civil'
     _description = 'Civil input'
