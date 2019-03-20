@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api
 from doc_8 import generate_civil_docx,get_dict_8
 import base64
 import numpy
@@ -13,9 +12,9 @@ class civil_specialty(models.Model):
     _rec_name = 'project_id'
     project_id = fields.Many2one('autoreport.project', string='项目名', required=True)
     version_id = fields.Char(u'版本', required=True, default="1.0")
+    # turbine_numbers = fields.Integer(u'风机台数', required=False, default=autowind.windenergy_specialty.turbine_numbers)
+    turbine_numbers = fields.Integer(u'机位数', required=True)
     report_attachment_id = fields.Many2one('ir.attachment', string=u'可研报告土建章节')
-
-    turbine_numbers=fields.Float(u'风机台数')
     basic_type = fields.Selection(
         [('扩展基础', u'扩展基础'), ('预制桩承台基础', u'预制桩承台基础'), ('灌注桩承台基础', u'灌注桩承台基础'), ('复合地基', u'复合地基')],
         string=u'基础形式', required=True)

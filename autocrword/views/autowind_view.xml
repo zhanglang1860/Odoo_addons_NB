@@ -18,8 +18,8 @@
                             <field name="version_id" />
                          </group>
                          <group name="group_right">
-                            <field name="installed_number" />
-                        </group>
+                            <field name="turbine_numbers" />
+                         </group>
                     </group>
                     <group name="group_bottom">
                         <field name="generator_ids" />

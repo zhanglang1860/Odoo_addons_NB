@@ -14,7 +14,7 @@ class windenergy_specialty(models.Model):
     _rec_name = 'project_id'
     project_id = fields.Many2one('autoreport.project', string=u'项目名', required=True)
     version_id = fields.Char(u'版本', required=True, default="1.0")
-    installed_number = fields.Integer(u'机位数', required=True)
+    turbine_numbers = fields.Integer(u'机位数', required=True)
     generator_ids = fields.Many2many('autoreport.generator', required=True, string=u'比选机型')
     report_attachment_id = fields.Many2one('ir.attachment', string=u'可研报告风能章节')
 

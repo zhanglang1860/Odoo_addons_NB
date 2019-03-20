@@ -82,112 +82,97 @@
         parent="menu_autocrword"
         action="action_autocrword_economic"
     />
-                <!-- Action to open the input list -->
-
-    <act_window id="action_windbase_civil"
-        name="风机基础"
+        <act_window id="action_civil_windbase"
+        name="风数据"
         res_model="civil.windbase"
         view_mode="tree,form"
     />
 
-    <!-- Menu item to open the input list -->
+    <!-- Menu item to open the Economic list -->
 
-    <menuitem id="menu_windbase_civil"
-        name="风机基础"
+    <menuitem id="menu_civil_windbase"
+        name="风数据"
         parent="menu_autocrword"
-        action="action_windbase_civil"
+        action="action_civil_windbase"
     />
-    
-                    <!-- Action to open the input list -->
-
-    <act_window id="action_convertbase_civil"
-        name="相变基础"
+        <act_window id="action_civil_convertbase"
+        name="箱变"
         res_model="civil.convertbase"
         view_mode="tree,form"
     />
 
-    <!-- Menu item to open the input list -->
+    <!-- Menu item to open the Economic list -->
 
-    <menuitem id="menu_convertbase_civil"
-        name="相变基础"
+    <menuitem id="menu_civil_convertbase"
+        name="箱变"
         parent="menu_autocrword"
-        action="action_convertbase_civil"
+        action="action_civil_convertbase"
     />
-                        <!-- Action to open the input list -->
-
-    <act_window id="action_boosterstation_civil"
+        <act_window id="action_civil_boosterstation"
         name="升压站"
         res_model="civil.boosterstation"
         view_mode="tree,form"
     />
 
-    <!-- Menu item to open the input list -->
+    <!-- Menu item to open the Economic list -->
 
-    <menuitem id="menu_boosterstation_civil"
+    <menuitem id="menu_civil_boosterstation"
         name="升压站"
         parent="menu_autocrword"
-        action="action_boosterstation_civil"
+        action="action_civil_boosterstation"
     />
-    
-                    <!-- Action to open the input list -->
-
-    <act_window id="action_road1_civil"
+        <act_window id="action_civil_road1"
         name="road1"
         res_model="civil.road1"
         view_mode="tree,form"
     />
 
-    <!-- Menu item to open the input list -->
+    <!-- Menu item to open the Economic list -->
 
-    <menuitem id="menu_road1_civil"
+    <menuitem id="menu_civil_road1"
         name="road1"
         parent="menu_autocrword"
-        action="action_road1_civil"
+        action="action_civil_road1"
     />
-                        <!-- Action to open the input list -->
 
-    <act_window id="action_road2_civil"
+            <act_window id="action_civil_road2"
         name="road2"
         res_model="civil.road2"
         view_mode="tree,form"
     />
 
-    <!-- Menu item to open the input list -->
+    <!-- Menu item to open the Economic list -->
 
-    <menuitem id="menu_road2_civil"
+    <menuitem id="menu_civil_road2"
         name="road2"
         parent="menu_autocrword"
-        action="action_road2_civil"
+        action="action_civil_road2"
     />
-                        <!-- Action to open the input list -->
-
-    <act_window id="action_road3_civil"
+    <act_window id="action_civil_road3"
         name="road3"
         res_model="civil.road3"
         view_mode="tree,form"
     />
 
-    <!-- Menu item to open the input list -->
+    <!-- Menu item to open the Economic list -->
 
-    <menuitem id="menu_road3_civil"
+    <menuitem id="menu_civil_road3"
         name="road3"
         parent="menu_autocrword"
-        action="action_road3_civil"
+        action="action_civil_road3"
     />
-                        <!-- Action to open the input list -->
-
-    <act_window id="action_road4_civil"
+    
+    <act_window id="action_civil_road4"
         name="road4"
         res_model="civil.road4"
         view_mode="tree,form"
     />
 
-    <!-- Menu item to open the input list -->
+    <!-- Menu item to open the Economic list -->
 
-    <menuitem id="menu_road4_civil"
+    <menuitem id="menu_civil_road4"
         name="road4"
         parent="menu_autocrword"
-        action="action_road4_civil"
-    />   
-    
+        action="action_civil_road4"
+    />
 </odoo>
