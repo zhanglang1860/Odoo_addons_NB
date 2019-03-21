@@ -81,7 +81,7 @@ class civil_specialty(models.Model):
         print(dict_8)
         generate_civil_docx(**dict_8)
         reportfile_name = open(
-            file=r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8\result_chapter8.docx', mode='rb')
+            file=r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB2\autocrword\models\source\chapter_8\result_chapter8.docx', mode='rb')
         byte = reportfile_name.read()
         reportfile_name.close()
         print('file lenth=', len(byte))

@@ -26,7 +26,7 @@ class electrical_specialty(models.Model):
                 self.turbine_numbers, self.circuit_number]
         generate_electrical_docx(self.voltage_class, args)
         reportfile_name = open(
-            file=r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_6\result_chapter6_e.docx', mode='rb')
+            file=r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB2\autocrword\models\source\chapter_6\result_chapter6_e.docx', mode='rb')
         byte = reportfile_name.read()
         reportfile_name.close()
         print('file lenth=', len(byte))

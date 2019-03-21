@@ -2,7 +2,7 @@
 
 from odoo import models, fields, api
 import base64, os
-from addons.Odoo_addons_NB.autocrword.models.source import connect_sql
+import connect_sql
 from . import generate_dict
 # from . import generate_images
 from docxtpl import DocxTemplate, InlineImage
@@ -45,7 +45,7 @@ class windenergy_specialty(models.Model):
         data_tur_np, data_power_np, data_efficiency_np = connect_sql.connect_sql_chapter5(*tur_name)
         print(data_efficiency_np)
         #####################
-        path_images = r"C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_5"
+        path_images = r"C:\Users\Administrator\PycharmProjects\Odoo_addons_NB2\autocrword\models\source\chapter_5"
         print("---------step:3  生成图片--------")
         # generate_images.generate_images(path_images, data_power_np, data_efficiency_np)  # 一会儿注释generate_images
         print("---------step:3  生成图片完毕--------")
@@ -63,7 +63,7 @@ class windenergy_specialty(models.Model):
         print("---------开始 chapter 5--------")
         # chapter 5
         tpl = DocxTemplate(
-            r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_5\CR_chapter5_template.docx')
+            r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB2\autocrword\models\source\chapter_5\CR_chapter5_template.docx')
         Dict_5 = generate_dict.get_dict(data_tur_np, dict_keys_chapter5)
         context_5 = generate_dict.write_context(Dict_5, *context_keys_chapter5)
         png_box = ('powers', 'efficiency')
@@ -72,13 +72,13 @@ class windenergy_specialty(models.Model):
             value = InlineImage(tpl, os.path.join(path_images, '%s.png') % png_box[i])
             context_5[key] = value
         tpl.render(context_5)
-        tpl.save(r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_5\result_chapter5_d.docx')
+        tpl.save(r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB2\autocrword\models\source\chapter_5\result_chapter5_d.docx')
         print("---------chapter 5 生成完毕--------")
 
         ###########################
 
         reportfile_name = open(
-            file=r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_5\result_chapter5_d.docx', mode='rb')
+            file=r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB2\autocrword\models\source\chapter_5\result_chapter5_d.docx', mode='rb')
         byte = reportfile_name.read()
         reportfile_name.close()
         print('file lenth=', len(byte))
