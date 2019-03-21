@@ -175,4 +175,46 @@
         parent="menu_autocrword"
         action="action_civil_road4"
     />
+
+    <act_window id="action_autoreport_generator"
+        name="风机型号"
+        res_model="autoreport.generator"
+        view_mode="tree,form"
+    />
+
+    <!-- Menu item to open the Economic list -->
+
+    <menuitem id="menu_autoreport_generator"
+        name="风机型号"
+        parent="menu_autocrword"
+        action="action_autoreport_generator"
+    />
+
+    <act_window id="action_autoreport_efficiency"
+        name="风机效率"
+        res_model="autoreport.efficiency"
+        view_mode="tree,form"
+    />
+
+    <!-- Menu item to open the Economic list -->
+
+    <menuitem id="menu_autoreport_efficiency"
+        name="风机效率"
+        parent="menu_autocrword"
+        action="action_autoreport_efficiency"
+    />
+
+    <act_window id="action_autoreport_outputcurve"
+        name="风机功率"
+        res_model="autoreport.outputcurve"
+        view_mode="tree,form"
+    />
+
+    <!-- Menu item to open the Economic list -->
+
+    <menuitem id="menu_autoreport_outputcurve"
+        name="风机功率"
+        parent="menu_autocrword"
+        action="action_autoreport_outputcurve"
+    />
 </odoo>

@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from doc_8 import generate_civil_docx,get_dict_8
+from doc_8 import generate_civil_docx, get_dict_8
 import base64
 import numpy
 
 from odoo import models, fields, api
+
 
 class civil_specialty(models.Model):
     _name = 'autoreport.civil'
@@ -34,13 +35,18 @@ class civil_specialty(models.Model):
     road_earthwork_ratio = fields.Selection(
         [(0, "0"), (1, "10%"), (2, "20%"), (3, "30%"), (4, "40%"), (5, "50%"), (6, "60%"), (7, "70%"),
          (8, "80%"), (9, "90%"), (1, '100%')], string=u"道路土方比", required=True)
-    road_stone_ratio= fields.Selection(
+    road_stone_ratio = fields.Selection(
         [(0, "0"), (1, "10%"), (2, "20%"), (3, "30%"), (4, "40%"), (5, "50%"), (6, "60%"), (7, "70%"),
          (8, "80%"), (9, "90%"), (1, '100%')], string=u"道路石方比", required=True)
+    # basic_earthwork_ratio = basic_earthwork_ratio_10 / 10
+    # basic_stone_ratio = basic_stone_ratio_10 / 10
+    # road_earthwork_ratio = road_earthwork_ratio_10 / 10
+    # road_stone_ratio = road_stone_ratio_10 / 10
+
     ####箱变
     TurbineCapacity = fields.Selection(
-        [(2, "2MW"), (2.2, "2.2MW"), (2.5, "2.5MW"), (3, "3MW"),(3.2, "3.2MW"),(3.3, "3.3MW"),(3.4, "3.4MW"),
-            (3.6, "3.6MW")], string=u"风机容量", required=True)
+        [(2, "2MW"), (2.2, "2.2MW"), (2.5, "2.5MW"), (3, "3MW"), (3.2, "3.2MW"), (3.3, "3.3MW"), (3.4, "3.4MW"),
+         (3.6, "3.6MW")], string=u"风机容量", required=True)
     ####升压站
     Status = fields.Selection([("新建", u"新建"), ("利用原有", u"利用原有")], string=u"状态", required=True)
     Grade = fields.Selection([(110, "110"), (220, "220")], string=u"等级", required=True)
@@ -51,6 +57,19 @@ class civil_specialty(models.Model):
         [("平原", u"平原"), ("丘陵", u"丘陵"), ("缓坡低山", u"缓坡低山"), ("陡坡低山", u"陡坡低山"), ("缓坡中山", u"缓坡中山"),
          ("陡坡中山", u"陡坡中山"), ("缓坡高山", u"缓坡高山"), ("陡坡高山", u"陡坡高山")], string=u"山地类型", required=True)
 
+    road_1_num = fields.Float(u'场外改扩建道路', required=True, default=5)
+    road_2_num = fields.Float(u'进站道路', required=True, default=1.5)
+    road_3_num = fields.Float(u'施工检修道路工程', required=True, default=10)
+    # turbine_numbers = fields.Float(u'吊装平台工程', required=True)
+    ####线路
+    line_1 = fields.Float(u'线路总挖方', required=True, default=15000)  # 15000
+    line_2 = fields.Float(u'线路总填方', required=True, default=10000)  # 10000
+    overhead_line = fields.Float(u'架空线路用地', required=True, default=1500)  # 1500
+    direct_buried_cable = fields.Float(u'直埋电缆用地', required=True, default=3000)  # 3000
+    overhead_line_num = fields.Float(u'架空线路塔基数量', required=True, default=20)  # 3000
+    direct_buried_cable_num = fields.Float(u'直埋电缆长度', required=True, default=2)  # 3000
+    main_booster_station_num = fields.Float(u'主变数量', required=True, default=2)  # 3000
+
     @api.multi
     def button_civil(self):
         projectname = self.project_id
@@ -59,29 +78,30 @@ class civil_specialty(models.Model):
         return True
 
     def civil_generate(self):
-        self.numbers_list_road = [5, 1.5, 10, 15]
-        self.line_data = [15000, 10000]
-        self.overhead_line=1500
-        self.direct_buried_cable=3000
-        self.overhead_line_num=20
-        self.direct_buried_cable_num=2
-        self.main_booster_station_num=2
-        list = [self.turbine_numbers,self.basic_type,self.ultimate_load, self.fortification_intensity,
-                self.basic_earthwork_ratio, self.basic_stone_ratio,self.TurbineCapacity,self.road_earthwork_ratio,
-              self.road_stone_ratio,self.Status,self.Grade,self.Capacity,self.TerrainType,self.numbers_list_road,
-              self.overhead_line,self.direct_buried_cable,self.line_data,self.main_booster_station_num,
-                self.overhead_line_num,self.direct_buried_cable_num]
-        np=numpy.array(list)
-        dict_keys=['turbine_numbers','basic_type','ultimate_load','fortification_intensity','basic_earthwork_ratio',
-                   'basic_stone_ratio','TurbineCapacity','road_earthwork_ratio','road_stone_ratio','Status',
-                   'Grade','Capacity','TerrainType','numbers_list_road','overhead_line','direct_buried_cable',
-                   'line_data','main_booster_station_num','overhead_line_num','direct_buried_cable_num']
+        print(self.road_1_num, self.road_2_num, self.road_3_num, self.turbine_numbers)
 
-        dict_8=get_dict_8(np,dict_keys)
+        self.line_data = [self.line_1, self.line_2]
+        self.numbers_list_road = [self.road_1_num, self.road_2_num, self.road_3_num, self.turbine_numbers]
+        list = [self.turbine_numbers, self.basic_type, self.ultimate_load, self.fortification_intensity,
+                self.basic_earthwork_ratio / 10, self.basic_stone_ratio / 10, self.TurbineCapacity,
+                self.road_earthwork_ratio / 10,
+                self.road_stone_ratio / 10, self.Status, self.Grade, self.Capacity, self.TerrainType,
+                self.numbers_list_road,
+                self.overhead_line, self.direct_buried_cable, self.line_data, self.main_booster_station_num,
+                self.overhead_line_num, self.direct_buried_cable_num]
+        np = numpy.array(list)
+        dict_keys = ['turbine_numbers', 'basic_type', 'ultimate_load', 'fortification_intensity',
+                     'basic_earthwork_ratio',
+                     'basic_stone_ratio', 'TurbineCapacity', 'road_earthwork_ratio', 'road_stone_ratio', 'Status',
+                     'Grade', 'Capacity', 'TerrainType', 'numbers_list_road', 'overhead_line', 'direct_buried_cable',
+                     'line_data', 'main_booster_station_num', 'overhead_line_num', 'direct_buried_cable_num']
+
+        dict_8 = get_dict_8(np, dict_keys)
         print(dict_8)
         generate_civil_docx(**dict_8)
         reportfile_name = open(
-            file=r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB2\autocrword\models\source\chapter_8\result_chapter8.docx', mode='rb')
+            file=r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB2\autocrword\models\source\chapter_8\result_chapter8.docx',
+            mode='rb')
         byte = reportfile_name.read()
         reportfile_name.close()
         print('file lenth=', len(byte))
@@ -111,7 +131,6 @@ class civil_specialty(models.Model):
         return True
 
 
-
 class civil_windbase(models.Model):
     _name = 'civil.windbase'
     _description = 'Civil windbase'
@@ -121,7 +140,7 @@ class civil_windbase(models.Model):
          (220, "220"), (240, "240"), (260, "260")], string=u"地基承载力(kpa)", required=True)
     BasicType = fields.Selection(
         [('扩展基础', u'扩展基础'), ('预制桩承台基础', u'预制桩承台基础'), ('灌注桩承台基础', u'灌注桩承台基础'), ('复合地基', u'复合地基')],
-                                 string=u'基础形式', required=True)
+        string=u'基础形式', required=True)
     UltimateLoad = fields.Selection(
         [(50000, "50000"), (60000, "60000"), (70000, "70000"), (80000, "80000"), (90000, "90000"),
          (100000, "100000"), (110000, "110000"), (120000, "120000")], string=u"极限载荷", required=True)
@@ -141,15 +160,16 @@ class civil_windbase(models.Model):
     M48PreStressedAnchor = fields.Float(u'M48预应力锚栓（m)')
     C80SecondaryGrouting = fields.Float(u'C80二次灌浆')
 
+
 class civil_convertbase(models.Model):
     _name = 'civil.convertbase'
     _description = 'Civil convertbase'
     TurbineCapacity = fields.Selection(
-        [(2, "2MW"), (2.2, "2.2MW"), (2.5, "2.5MW"), (3, "3MW"),(3.2, "3.2MW"),(3.3, "3.3MW"),(3.4, "3.4MW"),
-            (3.6, "3.6MW")], string=u"风机容量", required=True)
+        [(2, "2MW"), (2.2, "2.2MW"), (2.5, "2.5MW"), (3, "3MW"), (3.2, "3.2MW"), (3.3, "3.3MW"), (3.4, "3.4MW"),
+         (3.6, "3.6MW")], string=u"风机容量", required=True)
     ConvertStation = fields.Selection(
         [(2200, "2200"), (2500, "2500"), (2750, "2750"), (3300, "3300"), (3520, "3520"), (4000, "4000")],
-         string=u"箱变容量", required=True)
+        string=u"箱变容量", required=True)
 
     Long = fields.Float(u'长')
     Width = fields.Float(u'宽')
@@ -191,11 +211,12 @@ class civil_boosterstation(models.Model):
     PrecastConcretePole = fields.Float(u'预制混凝土杆')
     LightningRod = fields.Float(u'避雷针')
 
+
 class civil_road1(models.Model):
     _name = 'civil.road1'
     _description = 'Civil road1'
     TerrainType = fields.Selection(
-        [("平原", u"平原"), ("丘陵", u"丘陵"), ("缓坡低山", u"缓坡低山"), ("陡坡低山", u"陡坡低山"),("缓坡中山", u"缓坡中山"),
+        [("平原", u"平原"), ("丘陵", u"丘陵"), ("缓坡低山", u"缓坡低山"), ("陡坡低山", u"陡坡低山"), ("缓坡中山", u"缓坡中山"),
          ("陡坡中山", u"陡坡中山"), ("缓坡高山", u"缓坡高山"), ("陡坡高山", u"陡坡高山")], string=u"山地类型", required=True)
 
     GradedGravelPavement_1 = fields.Float(u'级配碎石路面(20cm厚)')
@@ -203,6 +224,7 @@ class civil_road1(models.Model):
     StoneMasonryDrainageDitch_1 = fields.Float(u'浆砌石排水沟')
     MortarStoneRetainingWall_1 = fields.Float(u'M7.5浆砌片石挡墙')
     TurfSlopeProtection_1 = fields.Float(u'草皮护坡')
+
 
 class civil_road2(models.Model):
     _name = 'civil.road2'
@@ -219,6 +241,7 @@ class civil_road2(models.Model):
     Signage_2 = fields.Float(u'标志标牌')
     WaveGuardrail_2 = fields.Float(u'波形护栏')
 
+
 class civil_road3(models.Model):
     _name = 'civil.road3'
     _description = 'Civil road3'
@@ -234,6 +257,7 @@ class civil_road3(models.Model):
     Signage_3 = fields.Float(u'标志标牌')
     WaveGuardrail_3 = fields.Float(u'波形护栏')
     LandUse_3 = fields.Float(u'用地')
+
 
 class civil_road4(models.Model):
     _name = 'civil.road4'

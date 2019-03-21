@@ -47,16 +47,16 @@ def generate_civil_docx(turbine_numbers=0, basic_type='', ultimate_load=0, forti
     data1 = project10.extraction_data_wind_resource(basic_type=basic_type, ultimate_load=ultimate_load,
                                                     fortification_intensity=fortification_intensity)
     data_cal1 = project10.excavation_cal_wind_resource(data1, basic_earthwork_ratio, basic_stone_ratio, turbine_numbers)
-    Dict1 = RoundUp.round_dict_numbers(project10.generate_dict_wind_resource(data_cal1, turbine_numbers), turbine_numbers)
+    Dict1 = RoundUp.round_dict_numbers(project10.generate_dict_wind_resource(data_cal1, turbine_numbers), turbine_numbers,2)
     # ==============================================
     data2 = project10.extraction_data_box_voltage(TurbineCapacity)
-    data_cal2 = project10.excavation_cal_box_voltage(data2, road_earthwork_ratio, road_stone_ratio, turbine_numbers)
+    data_cal2 = project10.excavation_cal_box_voltage(data2, basic_earthwork_ratio, basic_stone_ratio, turbine_numbers)
     dict_box_voltage = project10.generate_dict_box_voltage(data_cal2, turbine_numbers)
-    Dict2 = RoundUp.round_dict_numbers(dict_box_voltage, turbine_numbers)
+    Dict2 = RoundUp.round_dict_numbers(dict_box_voltage, turbine_numbers,1)
     # ==============================================
     # data3 = project10.extraction_data_booster_station('新建', 110, 100)
     data3 = project10.extraction_data_booster_station(Status, Grade, Capacity)
-    data_cal = project10.excavation_cal_booster_station(data3, road_earthwork_ratio, road_stone_ratio, TerrainType)
+    data_cal = project10.excavation_cal_booster_station(data3, basic_earthwork_ratio, basic_stone_ratio, TerrainType)
     Dict3 = RoundUp.round_dict(project10.generate_dict_booster_station(data_cal))
     # ==============================================
     # numbers_list_road = [5, 1.5, 10, 15]
@@ -67,10 +67,10 @@ def generate_civil_docx(turbine_numbers=0, basic_type='', ultimate_load=0, forti
 
     dict_road_base_1, dict_road_base_2, dict_road_base_3, dict_road_base_4 = \
         project10.generate_dict_road_basement(data_ca1, data_ca2, data_ca3, data_ca4, numbers_list_road)
-    Dict_1 = RoundUp.round_dict_numbers(dict_road_base_1, dict_road_base_1['numbers_1'])
-    Dict_2 = RoundUp.round_dict_numbers(dict_road_base_2, dict_road_base_2['numbers_2'])
-    Dict_3 = RoundUp.round_dict_numbers(dict_road_base_3, dict_road_base_3['numbers_3'])
-    Dict_4 = RoundUp.round_dict_numbers(dict_road_base_4, dict_road_base_4['numbers_4'])
+    Dict_1 = RoundUp.round_dict_numbers(dict_road_base_1, dict_road_base_1['numbers_1'],2)
+    Dict_2 = RoundUp.round_dict_numbers(dict_road_base_2, dict_road_base_2['numbers_2'],2)
+    Dict_3 = RoundUp.round_dict_numbers(dict_road_base_3, dict_road_base_3['numbers_3'],2)
+    Dict_4 = RoundUp.round_dict_numbers(dict_road_base_4, dict_road_base_4['numbers_4'],2)
     Dict4 = dict(Dict_1, **Dict_2, **Dict_3, **Dict_4)
     # ==============================================
 

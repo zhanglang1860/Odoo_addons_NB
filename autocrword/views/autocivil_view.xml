@@ -16,7 +16,21 @@
                          <group name="group_left">
                             <field name="project_id" />
                             <field name="version_id" />
+                         </group>
+                         <group name="group_right">
                             <field name="turbine_numbers" />
+                            <field name="road_1_num" />
+                            <field name="road_2_num" />
+                            <field name="road_3_num" />
+                         </group>
+                         <group name="group_left">
+                            <field name="line_1" />
+                            <field name="line_2" />
+                            <field name="overhead_line" />
+                            <field name="direct_buried_cable" />
+                            <field name="overhead_line_num" />
+                            <field name="direct_buried_cable_num" />
+                            <field name="main_booster_station_num" />
                          </group>
                          <group name="group_right">
                             <field name="basic_type" />

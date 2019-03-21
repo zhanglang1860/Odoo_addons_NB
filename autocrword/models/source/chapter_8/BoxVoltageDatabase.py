@@ -11,7 +11,7 @@ class BoxVoltageDatabase:
         self.TurbineCapacity = 0
         # ===========basic parameters==============
         self.data_box_voltage, self.DataBoxVoltage = pd.DataFrame(), pd.DataFrame()
-        self.road_earthwork_ratio, self.road_stone_ratio, self.TurbineNumbers = 0, 0, 0
+        self.basic_earthwork_ratio, self.basic_stone_ratio, self.TurbineNumbers = 0, 0, 0
         self.dict_box_voltage = {}
         # ===========Calculated parameters==============
         self.earth_excavation_box_voltage, self.stone_excavation_box_voltage = 0, 0
@@ -34,18 +34,18 @@ class BoxVoltageDatabase:
         self.data_box_voltage = self.DataBoxVoltage.loc[self.DataBoxVoltage['TurbineCapacity'] == self.TurbineCapacity]
         return self.data_box_voltage
 
-    def excavation_cal_box_voltage(self, data_box_voltage, road_earthwork_ratio, road_stone_ratio, turbine_num):
+    def excavation_cal_box_voltage(self, data_box_voltage, basic_earthwork_ratio, basic_stone_ratio, turbine_num):
         self.data_box_voltage = data_box_voltage
-        self.road_earthwork_ratio = road_earthwork_ratio
-        self.road_stone_ratio = road_stone_ratio
+        self.basic_earthwork_ratio = basic_earthwork_ratio
+        self.basic_stone_ratio = basic_stone_ratio
         self.TurbineNumbers = turbine_num
 
         self.earth_excavation_box_voltage = \
             (self.data_box_voltage['Long'] + 0.5 * 2) * (self.data_box_voltage['Width'] + 0.5 * 2) * \
-            (self.data_box_voltage['High'] - 0.2) * self.road_earthwork_ratio
+            (self.data_box_voltage['High'] - 0.2) * self.basic_earthwork_ratio
         self.stone_excavation_box_voltage = \
             (self.data_box_voltage['Long'] + 0.5 * 2) * (self.data_box_voltage['Width'] + 0.5 * 2) * \
-            (self.data_box_voltage['High'] - 0.2) * self.road_stone_ratio
+            (self.data_box_voltage['High'] - 0.2) * self.basic_stone_ratio
         self.earthwork_back_fill_box_voltage = \
             self.earth_excavation_box_voltage + self.stone_excavation_box_voltage - self.data_box_voltage['Long'] * \
             self.data_box_voltage['Width'] * (self.data_box_voltage['High'] - 0.2)
