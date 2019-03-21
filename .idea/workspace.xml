@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="466783e1-41ae-4521-9597-cac8c79ab351" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/autocrword/models/source/doc_5.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autocrword/models/autocivil.py" beforeDir="false" afterPath="$PROJECT_DIR$/autocrword/models/autocivil.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autocrword/models/source/chapter_5/result_chapter5_d.docx" beforeDir="false" afterPath="$PROJECT_DIR$/autocrword/models/source/chapter_5/result_chapter5_d.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autocrword/models/source/chapter_8/BoxVoltageDatabase.py" beforeDir="false" afterPath="$PROJECT_DIR$/autocrword/models/source/chapter_8/BoxVoltageDatabase.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autocrword/models/source/chapter_8/RoundUp.py" beforeDir="false" afterPath="$PROJECT_DIR$/autocrword/models/source/chapter_8/RoundUp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/autocrword/models/autowind.py" beforeDir="false" afterPath="$PROJECT_DIR$/autocrword/models/autowind.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/autocrword/models/generate_dict.py" beforeDir="false" afterPath="$PROJECT_DIR$/autocrword/models/source/chapter_5/generate_dict.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/autocrword/models/source/chapter_5/CR_chapter5_template.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/autocrword/models/source/chapter_5/generate_images.py" beforeDir="false" afterPath="$PROJECT_DIR$/autocrword/models/source/chapter_5/generate_images.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/autocrword/models/source/chapter_5/result_chapter5_d.docx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/autocrword/models/source/doc_8.py" beforeDir="false" afterPath="$PROJECT_DIR$/autocrword/models/source/doc_8.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autocrword/views/autocivil_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/autocrword/views/autocivil_view.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autocrword/views/autocrword_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/autocrword/views/autocrword_menu.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,7 +31,7 @@
     <SUITE FILE_PATH="coverage/Odoo_addons_NB$TowerType.coverage" NAME="TowerType Coverage Results" MODIFIED="1551597295673" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/" />
     <SUITE FILE_PATH="coverage/Odoo_addons_NB$TowerBase.coverage" NAME="TowerBase Coverage Results" MODIFIED="1551598832091" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Odoo_addons_NB$roundUp.coverage" NAME="roundUp Coverage Results" MODIFIED="1550799001523" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Odoo_addons_NB2$odoo_bin.coverage" NAME="odoo-bin Coverage Results" MODIFIED="1553169274086" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="d:/Program Files (x86)/Odoo 12.0/server" />
+    <SUITE FILE_PATH="coverage/Odoo_addons_NB2$odoo_bin.coverage" NAME="odoo-bin Coverage Results" MODIFIED="1553173393140" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="d:/Program Files (x86)/Odoo 12.0/server" />
     <SUITE FILE_PATH="coverage/Odoo_addons_NB$BoosterStationDatabase.coverage" NAME="BoosterStationDatabase Coverage Results" MODIFIED="1551948241287" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/" />
     <SUITE FILE_PATH="coverage/Odoo_addons_NB$ElectricalInsulator.coverage" NAME="ElectricalInsulator Coverage Results" MODIFIED="1551597617399" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/" />
     <SUITE FILE_PATH="coverage/Odoo_addons_NB$generate_chapter6_docx.coverage" NAME="generate_chapter6_docx Coverage Results" MODIFIED="1551664508342" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -57,7 +57,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/autocrword/models/autocivil.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="455">
+            <state relative-caret-position="-145">
               <caret line="70" column="28" selection-start-line="70" selection-start-column="4" selection-end-line="70" selection-end-column="28" />
               <folding>
                 <element signature="e#25#73#0" expanded="true" />
@@ -84,13 +84,56 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/autocrword/models/autowind.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
+            <state relative-caret-position="125">
+              <caret line="5" column="20" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/autocrword/models/source/doc_5.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="3" column="9" lean-forward="true" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
               <folding>
-                <element signature="e#25#61#0" expanded="true" />
+                <element signature="e#0#44#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/autocrword/models/source/chapter_5/generate_images.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="3" column="31" lean-forward="true" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
+              <folding>
+                <element signature="e#15#24#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/autocrword/models/source/chapter_5/generate_images_echarts.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-4">
+              <folding>
+                <element signature="e#15#24#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/autocrword/models/source/connect_sql.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-150">
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -99,55 +142,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/autocrword/models/source/doc_8.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="101" selection-start-line="101" selection-end-line="108" selection-end-column="23" />
+            <state relative-caret-position="617">
+              <caret line="109" selection-start-line="102" selection-start-column="1" selection-end-line="109" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/autocrword/models/source/chapter_8/RoundUp.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="479">
-              <caret line="40" column="40" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/autocrword/models/source/chapter_8/WindResourceDatabase.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/autocrword/models/source/chapter_8/BoxVoltageDatabase.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="45" column="32" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="32" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/autocrword/models/source/chapter_8/BoosterStationDatabase.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-200">
-              <caret line="16" column="38" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -164,8 +162,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>total_2</find>
-      <find>wind_turbine_foundation</find>
       <find>主变</find>
       <find>print</find>
       <find>extraction_data_earth_stone_balance</find>
@@ -194,6 +190,8 @@
       <find>生成</find>
       <find>Odoo_addons_NB</find>
       <find>numbers_list_road</find>
+      <find>b</find>
+      <find>generate_dict</find>
     </findStrings>
     <replaceStrings>
       <replace>1</replace>
@@ -237,8 +235,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/autocrword/models/chapter_6/calulate.py" />
-        <option value="$PROJECT_DIR$/autocrword/models/chapter_6/calculate.py" />
         <option value="$PROJECT_DIR$/autocrword/models/chapter_6/s.py" />
         <option value="$PROJECT_DIR$/autocrword/models/chapter_6/roundUp.py" />
         <option value="$PROJECT_DIR$/autocrword/models/chapter_6/RoundUp.py" />
@@ -279,15 +275,17 @@
         <option value="$PROJECT_DIR$/autocrword/models/__init__.py" />
         <option value="$PROJECT_DIR$/autocrword/models/source/__init__.py" />
         <option value="$PROJECT_DIR$/autocrword/models/generate_docx.py" />
-        <option value="$PROJECT_DIR$/autocrword/models/autowind.py" />
         <option value="$PROJECT_DIR$/autocrword/models/autoelectrical.py" />
         <option value="$PROJECT_DIR$/autocrword/models/source/chapter_8/BoxVoltageDatabase.py" />
         <option value="$PROJECT_DIR$/autocrword/models/source/chapter_8/RoundUp.py" />
         <option value="$PROJECT_DIR$/autocrword/models/source/chapter_8/BoosterStationDatabase.py" />
-        <option value="$PROJECT_DIR$/autocrword/models/source/doc_8.py" />
         <option value="$PROJECT_DIR$/autocrword/models/autocivil.py" />
         <option value="$PROJECT_DIR$/autocrword/views/autocivil_view.xml" />
         <option value="$PROJECT_DIR$/autocrword/views/autocrword_menu.xml" />
+        <option value="$PROJECT_DIR$/autocrword/models/source/doc_8.py" />
+        <option value="$PROJECT_DIR$/autocrword/models/source/doc_5.py" />
+        <option value="$PROJECT_DIR$/autocrword/models/source/chapter_5/generate_images.py" />
+        <option value="$PROJECT_DIR$/autocrword/models/autowind.py" />
       </list>
     </option>
   </component>
@@ -335,6 +333,14 @@
               <item name="Odoo_addons_NB2" type="b2602c69:ProjectViewProjectNode" />
               <item name="Odoo_addons_NB2" type="462c0819:PsiDirectoryNode" />
               <item name="autocrword" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+              <item name="chapter_5" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Odoo_addons_NB2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Odoo_addons_NB2" type="462c0819:PsiDirectoryNode" />
+              <item name="autocrword" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -363,18 +369,18 @@
     <option name="mySupportQtDebugging" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\PycharmProjects\Odoo_addons_NB2\autocrword\models\source\chapter_5" />
+      <recent name="C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models" />
+      <recent name="C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\wind_f" />
+      <recent name="C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_5" />
+      <recent name="C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_6" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_8" />
       <recent name="C:\Users\Administrator\PycharmProjects\docx_project\chapter" />
       <recent name="C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_6" />
       <recent name="C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_5" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models" />
-      <recent name="C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\wind_f" />
-      <recent name="C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_5" />
-      <recent name="C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_6" />
-      <recent name="C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\wind_f\工程量表" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -667,14 +673,7 @@
       <workItem from="1552809236705" duration="9090000" />
       <workItem from="1552869860769" duration="41000" />
       <workItem from="1553156847595" duration="756000" />
-      <workItem from="1553157627369" duration="9112000" />
-    </task>
-    <task id="LOCAL-00055" summary="base finished&#10;chapter 8 5%">
-      <created>1552038633726</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1552038633726</updated>
+      <workItem from="1553157627369" duration="12172000" />
     </task>
     <task id="LOCAL-00056" summary="base finished&#10;chapter 8 5%">
       <created>1552048367699</created>
@@ -1012,11 +1011,18 @@
       <option name="project" value="LOCAL" />
       <updated>1553159480236</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="20190321-恢复">
+      <created>1553170595090</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1553170595090</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="297645000" />
+    <option name="totallyTimeSpent" value="300705000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1025,9 +1031,10 @@
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29904053" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4989339" weight="0.329718" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49733475" visible="true" weight="0.23210412" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49733475" visible="true" weight="0.29392624" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.38394794" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1071,34 +1078,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="20190321-恢复" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://D:/Program Files (x86)/Odoo 12.0/python/Lib/site-packages/pandas/core/indexing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
-          <caret line="2350" selection-start-line="2350" selection-end-line="2350" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autocrword/models/chapter_6/ElectricalCircuit.py" />
-    <entry file="file://D:/Program Files (x86)/Odoo 12.0/python/Lib/site-packages/pandas/core/series.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="967" selection-start-line="967" selection-end-line="967" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autocrword/views/windgenerator_view.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autocrword/models/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/autocrword/security/ir.model.access.csv">
       <provider editor-type-id="csv-table-editor">
         <state showInfoPanel="true" fixedHeaders="false" rowLines="3">
@@ -1184,13 +1163,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/autocrword/models/generate_dict.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/autocrword/models/generate_docx.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
@@ -1232,20 +1204,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/autocrword/models/source/chapter_8/WindResourceDatabase.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/autocrword/views/civil_view.xml">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/autocrword/models/source/chapter_8/RoundUp.py">
+    <entry file="file://$PROJECT_DIR$/autocrword/views/autocrword_menu.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="40" column="40" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
+        <state relative-caret-position="2696">
+          <caret line="215" column="18" selection-start-line="215" selection-start-column="18" selection-end-line="215" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -1259,9 +1224,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/autocrword/models/source/chapter_8/WindResourceDatabase.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/autocrword/models/source/chapter_8/BoosterStationDatabase.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-200">
+        <state relative-caret-position="-350">
           <caret line="16" column="38" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
@@ -1269,8 +1244,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/autocrword/views/civil_view.xml">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/autocrword/models/source/chapter_8/RoundUp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="479">
+          <caret line="40" column="40" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autocrword/models/autocivil.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-145">
+          <caret line="70" column="28" selection-start-line="70" selection-start-column="4" selection-end-line="70" selection-end-column="28" />
+          <folding>
+            <element signature="e#25#73#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/autocrword/views/autocivil_view.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -1279,39 +1268,69 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/autocrword/models/autocivil.py">
+    <entry file="file://$PROJECT_DIR$/autocrword/models/source/connect_sql.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="70" column="28" selection-start-line="70" selection-start-column="4" selection-end-line="70" selection-end-column="28" />
+        <state relative-caret-position="-150">
           <folding>
-            <element signature="e#25#73#0" expanded="true" />
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/autocrword/views/autocrword_menu.xml">
+    <entry file="file://$PROJECT_DIR$/autocrword/models/source/chapter_5/generate_dict.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2696">
-          <caret line="215" column="18" selection-start-line="215" selection-start-column="18" selection-end-line="215" selection-end-column="18" />
+        <state relative-caret-position="375">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/autocrword/models/source/doc_8.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="101" selection-start-line="101" selection-end-line="108" selection-end-column="23" />
+        <state relative-caret-position="617">
+          <caret line="109" selection-start-line="102" selection-start-column="1" selection-end-line="109" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/autocrword/models/source/chapter_5/generate_images.spec">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-42" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autocrword/models/source/chapter_5/generate_images_echarts.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4">
+          <folding>
+            <element signature="e#15#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autocrword/models/source/doc_5.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="3" column="9" lean-forward="true" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/autocrword/models/autowind.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
+        <state relative-caret-position="125">
+          <caret line="5" column="20" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autocrword/models/source/chapter_5/generate_images.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="3" column="31" lean-forward="true" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
           <folding>
-            <element signature="e#25#61#0" expanded="true" />
+            <element signature="e#15#24#0" expanded="true" />
           </folding>
         </state>
       </provider>

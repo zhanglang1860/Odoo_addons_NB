@@ -2,10 +2,10 @@
 import os
 import numpy as np
 import matplotlib.pyplot as plt
-import connect_sql
+
 # def generate_images(save_path, turbine_list):
-turbine_list = ['GW3.3-155', 'MY2.5-145', 'GW3.0-140', 'GW3.4-140', 'GW2.5-140']
-data_tur_np, data_power_np, data_efficiency_np = connect_sql.connect_sql_chapter5(*turbine_list)
+# turbine_list = ['GW3.3-155', 'MY2.5-145', 'GW3.0-140', 'GW3.4-140', 'GW2.5-140']
+# data_tur_np, data_power_np, data_efficiency_np = connect_sql.connect_sql_chapter5(*turbine_list)
 
 def generate_images(save_path, power_np, efficiency_np):
     png_box = ('powers', 'efficiency')
@@ -60,6 +60,6 @@ def generate_images(save_path, power_np, efficiency_np):
     plt.savefig(os.path.join(save_path, '%s.png') % png_box[1])
 
 
-save_path = r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_5'
-print(data_power_np,data_efficiency_np)
-generate_images(save_path, data_power_np, data_efficiency_np)
+# save_path = r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_5'
+# print(data_power_np,data_efficiency_np)
+# generate_images(save_path, data_power_np, data_efficiency_np)

@@ -3,10 +3,11 @@
 from odoo import models, fields, api
 import base64, os
 import connect_sql
-from . import generate_dict
+import generate_dict
 # from . import generate_images
 from docxtpl import DocxTemplate, InlineImage
 
+import doc_5
 
 class windenergy_specialty(models.Model):
     _name = 'autoreport.windenergy'
@@ -29,13 +30,17 @@ class windenergy_specialty(models.Model):
 
     @api.multi
     def wind_generate(self):
+        tur_name = []
+        for i in range(0, len(self.generator_ids)):
+            tur_name.append(self.generator_ids[i].name_tur)
+        path_images = r"C:\Users\Administrator\PycharmProjects\Odoo_addons_NB2\autocrword\models\source\chapter_5"
+
+        # doc_5.generate_wind_docx(tur_name,path_images)
         b = self.generator_ids
         print('tur:', b[1])
         print('old attachment：', self.report_attachment_id)
         if (str(self.report_attachment_id) != 'ir.attachment()'):
             print('old datas len：', len(self.report_attachment_id.datas))
-
-        # renew2.read_excel()
 
         tur_name = []
         # tur_na = self.generator_ids
