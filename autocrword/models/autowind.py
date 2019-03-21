@@ -2,10 +2,10 @@
 
 from odoo import models, fields, api
 import base64, os
-import connect_sql
-import generate_dict
-# from . import generate_images
-from docxtpl import DocxTemplate, InlineImage
+# import connect_sql
+# import generate_dict
+# # from . import generate_images
+# from docxtpl import DocxTemplate, InlineImage
 
 import doc_5
 
@@ -35,55 +35,55 @@ class windenergy_specialty(models.Model):
             tur_name.append(self.generator_ids[i].name_tur)
         path_images = r"C:\Users\Administrator\PycharmProjects\Odoo_addons_NB2\autocrword\models\source\chapter_5"
 
-        # doc_5.generate_wind_docx(tur_name,path_images)
-        b = self.generator_ids
-        print('tur:', b[1])
-        print('old attachment：', self.report_attachment_id)
-        if (str(self.report_attachment_id) != 'ir.attachment()'):
-            print('old datas len：', len(self.report_attachment_id.datas))
-
-        tur_name = []
-        # tur_na = self.generator_ids
-        for i in range(0, len(self.generator_ids)):
-            tur_name.append(self.generator_ids[i].name_tur)
-
-        data_tur_np, data_power_np, data_efficiency_np = connect_sql.connect_sql_chapter5(*tur_name)
-        print(data_efficiency_np)
-        #####################
-        path_images = r"C:\Users\Administrator\PycharmProjects\Odoo_addons_NB2\autocrword\models\source\chapter_5"
-        print("---------step:3  生成图片--------")
-        # generate_images.generate_images(path_images, data_power_np, data_efficiency_np)  # 一会儿注释generate_images
-        print("---------step:3  生成图片完毕--------")
-
-        #####################
-        #  chapter 5
-
-        dict_keys_chapter5 = ['型号ID', '功率', '叶片数', '风轮直径', '扫风面积', '轮毂高度',
-                              '功率调节', '切入风速', '切出风速', '额定风速', '发电机型式', '额定功率', '电压', '频率',
-                              '塔架型式', '塔筒重量', '主制动系统', '第二制动', '三秒最大值', 'datetime1id', 'datetime1',
-                              'datetime2id', 'datetime2', '机组类型']
-        context_keys_chapter5 = ['机组类型', '功率', '叶片数', '风轮直径', '扫风面积', '轮毂高度', '功率调节', '切入风速',
-                                 '切出风速', '额定风速', '发电机型式', '额定功率', '电压', '主制动系统', '第二制动', '三秒最大值']
-
-        print("---------开始 chapter 5--------")
-        # chapter 5
-        tpl = DocxTemplate(
-            r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB2\autocrword\models\source\chapter_5\CR_chapter5_template.docx')
-        Dict_5 = generate_dict.get_dict(data_tur_np, dict_keys_chapter5)
-        context_5 = generate_dict.write_context(Dict_5, *context_keys_chapter5)
-        png_box = ('powers', 'efficiency')
-        for i in range(0, 2):
-            key = 'myimage' + str(i)
-            value = InlineImage(tpl, os.path.join(path_images, '%s.png') % png_box[i])
-            context_5[key] = value
-        tpl.render(context_5)
-        tpl.save(r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB2\autocrword\models\source\chapter_5\result_chapter5_d.docx')
-        print("---------chapter 5 生成完毕--------")
+        doc_5.generate_wind_docx(tur_name,path_images)
+        # b = self.generator_ids
+        # print('tur:', b[1])
+        # print('old attachment：', self.report_attachment_id)
+        # if (str(self.report_attachment_id) != 'ir.attachment()'):
+        #     print('old datas len：', len(self.report_attachment_id.datas))
+        #
+        # tur_name = []
+        # # tur_na = self.generator_ids
+        # for i in range(0, len(self.generator_ids)):
+        #     tur_name.append(self.generator_ids[i].name_tur)
+        #
+        # data_tur_np, data_power_np, data_efficiency_np = connect_sql.connect_sql_chapter5(*tur_name)
+        # print(data_efficiency_np)
+        # #####################
+        # path_images = r"C:\Users\Administrator\PycharmProjects\Odoo_addons_NB2\autocrword\models\source\chapter_5"
+        # print("---------step:3  生成图片--------")
+        # # generate_images.generate_images(path_images, data_power_np, data_efficiency_np)  # 一会儿注释generate_images
+        # print("---------step:3  生成图片完毕--------")
+        #
+        # #####################
+        # #  chapter 5
+        #
+        # dict_keys_chapter5 = ['型号ID', '功率', '叶片数', '风轮直径', '扫风面积', '轮毂高度',
+        #                       '功率调节', '切入风速', '切出风速', '额定风速', '发电机型式', '额定功率', '电压', '频率',
+        #                       '塔架型式', '塔筒重量', '主制动系统', '第二制动', '三秒最大值', 'datetime1id', 'datetime1',
+        #                       'datetime2id', 'datetime2', '机组类型']
+        # context_keys_chapter5 = ['机组类型', '功率', '叶片数', '风轮直径', '扫风面积', '轮毂高度', '功率调节', '切入风速',
+        #                          '切出风速', '额定风速', '发电机型式', '额定功率', '电压', '主制动系统', '第二制动', '三秒最大值']
+        #
+        # print("---------开始 chapter 5--------")
+        # # chapter 5
+        # tpl = DocxTemplate(
+        #     r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB2\autocrword\models\source\chapter_5\CR_chapter5_template.docx')
+        # Dict_5 = generate_dict.get_dict(data_tur_np, dict_keys_chapter5)
+        # context_5 = generate_dict.write_context(Dict_5, *context_keys_chapter5)
+        # png_box = ('powers', 'efficiency')
+        # for i in range(0, 2):
+        #     key = 'myimage' + str(i)
+        #     value = InlineImage(tpl, os.path.join(path_images, '%s.png') % png_box[i])
+        #     context_5[key] = value
+        # tpl.render(context_5)
+        # tpl.save(r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB2\autocrword\models\source\chapter_5\result_chapter5_d.docx')
+        # print("---------chapter 5 生成完毕--------")
 
         ###########################
 
         reportfile_name = open(
-            file=r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB2\autocrword\models\source\chapter_5\result_chapter5_d.docx', mode='rb')
+            file=r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB2\autocrword\models\source\chapter_5\result_chapter5.docx', mode='rb')
         byte = reportfile_name.read()
         reportfile_name.close()
         print('file lenth=', len(byte))

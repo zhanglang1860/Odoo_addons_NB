@@ -11,7 +11,7 @@ def generate_images(save_path, power_np, efficiency_np):
     png_box = ('powers', 'efficiency')
 
     # tur_np, power_np, efficiency_np = connect_sql(*turbine_list)
-
+    print(power_np)
     speed = np.zeros(power_np.shape[1] - 6)  # 标注
     for i in range(0, power_np.shape[1] - 6):  # 标注
         if i == 0:
@@ -20,7 +20,7 @@ def generate_images(save_path, power_np, efficiency_np):
             speed[i] = i + 2
     power = power_np[:, 2: (power_np.shape[1] - 4)].astype('float32')  # 标注
     efficiency = efficiency_np[:, 2: (efficiency_np.shape[1] - 4)].astype('float32')  # 标注
-    turbine_power_model = power_np[:, 5]
+    turbine_power_model = power_np[:, 1]
     turbine_efficiency_model = efficiency_np[:, 1]
     print(turbine_power_model,turbine_power_model.shape)
     # figure power
