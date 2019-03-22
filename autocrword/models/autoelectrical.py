@@ -16,17 +16,27 @@ class electrical_specialty(models.Model):
     lenth_doublejL240 = fields.Float(u'双回线路JL/G1A-240/30长度（km）', required=True)
     yjlv95 = fields.Float(u'直埋电缆YJLV22-26/35-3×95（km）', required=True)
     yjv300 = fields.Float(u'直埋电缆YJV22-26/35-1×300（km）', required=True)
-    turbine_numbers = fields.Float(u'风机台数')
+    turbine_numbers = fields.Char(u'机位数', default="待提交", readonly=True)
+
     circuit_number = fields.Integer(u'线路回路数', required=True)
     report_attachment_id = fields.Many2one('ir.attachment', string=u'可研报告电气章节')
 
+    line_1 = fields.Float(u'线路总挖方', required=True)
+    line_2 = fields.Float(u'线路总填方', required=True)
+    overhead_line = fields.Float(u'架空线路用地', required=True)
+    direct_buried_cable = fields.Float(u'直埋电缆用地', required=True)
+    overhead_line_num = fields.Float(u'架空线路塔基数量', required=True)
+    direct_buried_cable_num = fields.Float(u'直埋电缆长度', required=True)
+    main_booster_station_num = fields.Float(u'主变数量', required=True)
+
     @api.multi
     def electrical_generate(self):
-        args = [self.lenth_singlejL240,self.lenth_doublejL240,self.yjlv95, self.yjv300,
+        args = [self.lenth_singlejL240, self.lenth_doublejL240, self.yjlv95, self.yjv300,
                 self.turbine_numbers, self.circuit_number]
         generate_electrical_docx(self.voltage_class, args)
         reportfile_name = open(
-            file=r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB2\autocrword\models\source\chapter_6\result_chapter6_e.docx', mode='rb')
+            file=r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB2\autocrword\models\source\chapter_6\result_chapter6_e.docx',
+            mode='rb')
         byte = reportfile_name.read()
         reportfile_name.close()
         print('file lenth=', len(byte))
@@ -61,4 +71,17 @@ class electrical_specialty(models.Model):
         myself = self
         projectname.electrical_attachment_id = myself
         projectname.electrical_attachment_ok = u"已提交,版本：" + self.version_id
+
+        projectname.line_1=self.line_1
+        projectname.line_2 = self.line_2
+        projectname.overhead_line = self.overhead_line
+        projectname.direct_buried_cable = self.direct_buried_cable
+        projectname.overhead_line_num = self.overhead_line_num
+        projectname.direct_buried_cable_num = self.direct_buried_cable_num
+        projectname.main_booster_station_num = self.main_booster_station_num
+
         return True
+
+    def electrical_refresh(self):
+        projectname = self.project_id
+        self.turbine_numbers = projectname.turbine_numbers

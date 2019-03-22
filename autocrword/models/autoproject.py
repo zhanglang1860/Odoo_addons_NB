@@ -30,6 +30,16 @@ class project(models.Model):
     economic_attachment_ok = fields.Char(u'经评数据', default="待提交", readonly=True)
     report_attachment_id = fields.Many2one('ir.attachment', string=u'可研报告成果')
 
+    turbine_numbers = fields.Char(u'机位数', default="待提交", readonly=True)
+    line_1 = fields.Char(u'线路总挖方', default="待提交", readonly=True)
+    line_2 = fields.Char(u'线路总填方', default="待提交", readonly=True)
+    overhead_line = fields.Char(u'架空线路用地', default="待提交", readonly=True)
+    direct_buried_cable = fields.Char(u'直埋电缆用地', default="待提交", readonly=True)
+    overhead_line_num = fields.Char(u'架空线路塔基数量', default="待提交", readonly=True)
+    direct_buried_cable_num = fields.Char(u'直埋电缆长度', default="待提交", readonly=True)
+    main_booster_station_num = fields.Char(u'主变数量', default="待提交", readonly=True)
+
+
     @api.multi
     def button_project(self):
         if(str(self.wind_attachment_id)=='autoreport.wind()'):

@@ -13,8 +13,10 @@ class PermanentLandAreaSheet(WindResourceDatabase, BoxVoltageDatabase, BoosterSt
         self.sum_foundation, self.sum_acres_foundation = 0, 0, 0, 0, 0
 
     def extraction_data_permanent_land_area(self):
-        self.wind_turbine_foundation = self.data_wind_resource.at[self.data_wind_resource.index[0], 'Area']
-        self.box_voltage_foundation = self.data_box_voltage.at[self.data_box_voltage.index[0], 'Area']
+        self.wind_turbine_foundation = \
+            self.data_wind_resource.at[self.data_wind_resource.index[0], 'Area'] * self.TurbineNumbers
+        self.box_voltage_foundation = \
+            self.data_box_voltage.at[self.data_box_voltage.index[0], 'Area'] * self.TurbineNumbers
         self.booster_station_foundation = self.data_booster_station.at[self.data_booster_station.index[0], 'SlopeArea']
         self.sum_foundation = self.wind_turbine_foundation + self.box_voltage_foundation + self.booster_station_foundation
         self.sum_acres_foundation = self.sum_foundation / 666.667
@@ -26,7 +28,7 @@ class PermanentLandAreaSheet(WindResourceDatabase, BoxVoltageDatabase, BoosterSt
             '变电站_永久用地面积': self.booster_station_foundation,
             '合计_永久用地面积': self.sum_foundation,
             '合计亩_永久用地面积': self.sum_acres_foundation,
-         }
+        }
         return dict_permanent_land_area
 
 # project08 = PermanentLandAreaSheet()

@@ -3,7 +3,7 @@
 from doc_8 import generate_civil_docx, get_dict_8
 import base64
 import numpy
-
+from autowind import windenergy_specialty
 from odoo import models, fields, api
 
 
@@ -13,8 +13,7 @@ class civil_specialty(models.Model):
     _rec_name = 'project_id'
     project_id = fields.Many2one('autoreport.project', string='项目名', required=True)
     version_id = fields.Char(u'版本', required=True, default="1.0")
-    # turbine_numbers = fields.Integer(u'风机台数', required=False, default=autowind.windenergy_specialty.turbine_numbers)
-    turbine_numbers = fields.Integer(u'机位数', required=True)
+    turbine_numbers = fields.Char(u'机位数', default="待提交", readonly=True)
     report_attachment_id = fields.Many2one('ir.attachment', string=u'可研报告土建章节')
     basic_type = fields.Selection(
         [('扩展基础', u'扩展基础'), ('预制桩承台基础', u'预制桩承台基础'), ('灌注桩承台基础', u'灌注桩承台基础'), ('复合地基', u'复合地基')],
@@ -38,11 +37,6 @@ class civil_specialty(models.Model):
     road_stone_ratio = fields.Selection(
         [(0, "0"), (1, "10%"), (2, "20%"), (3, "30%"), (4, "40%"), (5, "50%"), (6, "60%"), (7, "70%"),
          (8, "80%"), (9, "90%"), (1, '100%')], string=u"道路石方比", required=True)
-    # basic_earthwork_ratio = basic_earthwork_ratio_10 / 10
-    # basic_stone_ratio = basic_stone_ratio_10 / 10
-    # road_earthwork_ratio = road_earthwork_ratio_10 / 10
-    # road_stone_ratio = road_stone_ratio_10 / 10
-
     ####箱变
     TurbineCapacity = fields.Selection(
         [(2, "2MW"), (2.2, "2.2MW"), (2.5, "2.5MW"), (3, "3MW"), (3.2, "3.2MW"), (3.3, "3.3MW"), (3.4, "3.4MW"),
@@ -57,24 +51,39 @@ class civil_specialty(models.Model):
         [("平原", u"平原"), ("丘陵", u"丘陵"), ("缓坡低山", u"缓坡低山"), ("陡坡低山", u"陡坡低山"), ("缓坡中山", u"缓坡中山"),
          ("陡坡中山", u"陡坡中山"), ("缓坡高山", u"缓坡高山"), ("陡坡高山", u"陡坡高山")], string=u"山地类型", required=True)
 
-    road_1_num = fields.Float(u'场外改扩建道路', required=True, default=5)
-    road_2_num = fields.Float(u'进站道路', required=True, default=1.5)
-    road_3_num = fields.Float(u'施工检修道路工程', required=True, default=10)
-    # turbine_numbers = fields.Float(u'吊装平台工程', required=True)
+    road_1_num = fields.Float(u'场外改扩建道路', required=True, default=0)
+    road_2_num = fields.Float(u'进站道路', required=True, default=0)
+    road_3_num = fields.Float(u'施工检修道路工程', required=True, default=0)
+
     ####线路
-    line_1 = fields.Float(u'线路总挖方', required=True, default=15000)  # 15000
-    line_2 = fields.Float(u'线路总填方', required=True, default=10000)  # 10000
-    overhead_line = fields.Float(u'架空线路用地', required=True, default=1500)  # 1500
-    direct_buried_cable = fields.Float(u'直埋电缆用地', required=True, default=3000)  # 3000
-    overhead_line_num = fields.Float(u'架空线路塔基数量', required=True, default=20)  # 3000
-    direct_buried_cable_num = fields.Float(u'直埋电缆长度', required=True, default=2)  # 3000
-    main_booster_station_num = fields.Float(u'主变数量', required=True, default=2)  # 3000
+
+    line_1 = fields.Char(u'线路总挖方', default="待提交", readonly=True)
+    line_2 = fields.Char(u'线路总填方', default="待提交", readonly=True)
+    overhead_line = fields.Char(u'架空线路用地', default="待提交", readonly=True)
+    direct_buried_cable = fields.Char(u'直埋电缆用地', default="待提交", readonly=True)
+    overhead_line_num = fields.Char(u'架空线路塔基数量', default="待提交", readonly=True)
+    direct_buried_cable_num = fields.Char(u'直埋电缆长度', default="待提交", readonly=True)
+    main_booster_station_num = fields.Char(u'主变数量', default="待提交", readonly=True)
 
     @api.multi
     def button_civil(self):
         projectname = self.project_id
         projectname.civil_attachment_id = self
         projectname.civil_attachment_ok = u"已提交,版本：" + self.version_id
+        return True
+
+    def civil_refresh(self):
+        projectname = self.project_id
+        self.turbine_numbers = projectname.turbine_numbers
+
+        self.line_1 = projectname.line_1
+        self.line_2 = projectname.line_2
+        self.overhead_line = projectname.overhead_line
+        self.direct_buried_cable = projectname.direct_buried_cable
+        self.overhead_line_num = projectname.overhead_line_num
+        self.direct_buried_cable_num = projectname.direct_buried_cable_num
+        self.main_booster_station_num = projectname.main_booster_station_num
+
         return True
 
     def civil_generate(self):
