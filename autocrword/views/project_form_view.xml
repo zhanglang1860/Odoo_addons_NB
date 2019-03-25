@@ -10,7 +10,7 @@
                            string="报告合并" />
                </header>
                 <sheet>
-                    <group name="group_top">
+                    <group name="group_top" string="项目明细">
                          <group name="group_left">
                              <field name="project_name" />
                              <field name="order_number" />
@@ -26,26 +26,46 @@
                              <field name="economic_attachment_ok" />
                         </group>
                     </group>
-                    <group name="group_bottom">
-                        <group name="group_01">
+                    <group name="group_mid" string="项目资料">
                             <field name="message_main_attachment_id" />
-                            <field name="report_attachment_id" />
-                        </group>
-                        <group name="group_02">
-                            <field name="turbine_numbers" />
-                        </group>
-                        <group name="group_03">
-                            <field name="line_1" />
-                            <field name="line_2" />
-                            <field name="overhead_line" />
-                            <field name="direct_buried_cable" />
-                            <field name="overhead_line_num" />
-                            <field name="direct_buried_cable_num" />
-                            <field name="main_booster_station_num" />
-                        </group>
-
                     </group>
-
+                    <group name="group_wind" string="风资源提交明细">
+                        <field name="turbine_numbers" />
+                    </group>
+                    <group name="group_electrical" string="电气提交明细" col="5" colspan="4" >
+                        <field name="line_1" />
+                        <field name="line_2" />
+                        <field name="overhead_line" />
+                        <field name="direct_buried_cable" />
+                        <field name="overhead_line_num" />
+                        <field name="direct_buried_cable_num" />
+                        <field name="main_booster_station_num" />
+                    </group>
+                    <group name="group_road" string="土建提交明细">
+                        <group name="group_left">
+                            <field name="turbine_numbers" />
+                            <field name="road_1_num" />
+                            <field name="road_2_num" />
+                            <field name="road_3_num" />
+                        </group>
+                        <group name="group_left" colspan="2">
+                            <field name="basic_type" />
+                            <field name="ultimate_load" />
+                            <field name="fortification_intensity" />
+                            <field name="basic_earthwork_ratio" />
+                            <field name="basic_stone_ratio" />
+                            <field name="TurbineCapacity" />
+                            <field name="road_earthwork_ratio" />
+                            <field name="road_stone_ratio" />
+                            <field name="Status" />
+                            <field name="Grade" />
+                            <field name="Capacity" />
+                            <field name="TerrainType" />
+                        </group>
+                    </group>
+                    <group name="group_bottom">
+                        <field name="report_attachment_id" />
+                    </group>
                 </sheet>
             </form>
 

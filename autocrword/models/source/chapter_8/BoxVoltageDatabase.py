@@ -11,7 +11,7 @@ class BoxVoltageDatabase:
         self.TurbineCapacity = 0
         # ===========basic parameters==============
         self.data_box_voltage, self.DataBoxVoltage = pd.DataFrame(), pd.DataFrame()
-        self.basic_earthwork_ratio, self.basic_stone_ratio, self.TurbineNumbers = 0, 0, 0
+        self.basic_earthwork_ratio, self.basic_stone_ratio, self.turbine_numbers = 0, 0, 0
         self.dict_box_voltage = {}
         # ===========Calculated parameters==============
         self.earth_excavation_box_voltage, self.stone_excavation_box_voltage = 0, 0
@@ -38,7 +38,7 @@ class BoxVoltageDatabase:
         self.data_box_voltage = data_box_voltage
         self.basic_earthwork_ratio = basic_earthwork_ratio
         self.basic_stone_ratio = basic_stone_ratio
-        self.TurbineNumbers = turbine_num
+        self.turbine_numbers = turbine_num
 
         self.earth_excavation_box_voltage = \
             (self.data_box_voltage['Long'] + 0.5 * 2) * (self.data_box_voltage['Width'] + 0.5 * 2) * \
@@ -52,17 +52,17 @@ class BoxVoltageDatabase:
 
         self.data_box_voltage = self.data_box_voltage.copy()
 
-        self.earth_excavation_box_voltage_numbers = self.earth_excavation_box_voltage * self.TurbineNumbers
-        self.stone_excavation_box_voltage_numbers = self.stone_excavation_box_voltage * self.TurbineNumbers
-        self.earthwork_back_fill_box_voltage_numbers = self.earthwork_back_fill_box_voltage * self.TurbineNumbers
+        self.earth_excavation_box_voltage_numbers = self.earth_excavation_box_voltage * self.turbine_numbers
+        self.stone_excavation_box_voltage_numbers = self.stone_excavation_box_voltage * self.turbine_numbers
+        self.earthwork_back_fill_box_voltage_numbers = self.earthwork_back_fill_box_voltage * self.turbine_numbers
 
         self.c35_box_voltage_numbers = \
-            self.data_box_voltage.at[self.data_box_voltage.index[0], 'C35ConcreteTop'] * self.TurbineNumbers
+            self.data_box_voltage.at[self.data_box_voltage.index[0], 'C35ConcreteTop'] * self.turbine_numbers
         self.c15_box_voltage_numbers = \
-            self.data_box_voltage.at[self.data_box_voltage.index[0], 'C15Cushion'] * self.TurbineNumbers
+            self.data_box_voltage.at[self.data_box_voltage.index[0], 'C15Cushion'] * self.turbine_numbers
 
         self.reinforcement_box_voltage_numbers = \
-            self.data_box_voltage.at[self.data_box_voltage.index[0], 'Reinforcement'] * self.TurbineNumbers
+            self.data_box_voltage.at[self.data_box_voltage.index[0], 'Reinforcement'] * self.turbine_numbers
 
         self.data_box_voltage['EarthExcavation_BoxVoltage'] = self.earth_excavation_box_voltage
         self.data_box_voltage['StoneExcavation_BoxVoltage'] = self.stone_excavation_box_voltage
@@ -72,9 +72,9 @@ class BoxVoltageDatabase:
 
     def generate_dict_box_voltage(self, data_box_voltage, turbine_num):
         self.data_box_voltage = data_box_voltage
-        self.TurbineNumbers = turbine_num
+        self.turbine_numbers = turbine_num
         self.dict_box_voltage = {
-            'numbers_box_voltage': int(self.TurbineNumbers),
+            'numbers_box_voltage': int(self.turbine_numbers),
             '土方开挖_箱变': self.data_box_voltage.at[self.data_box_voltage.index[0], 'EarthExcavation_BoxVoltage'],
             '石方开挖_箱变': self.data_box_voltage.at[self.data_box_voltage.index[0], 'StoneExcavation_BoxVoltage'],
             '土石方回填_箱变': self.data_box_voltage.at[self.data_box_voltage.index[0], 'EarthWorkBackFill_BoxVoltage'],

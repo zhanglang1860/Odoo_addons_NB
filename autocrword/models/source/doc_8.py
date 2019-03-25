@@ -98,8 +98,8 @@ def generate_civil_docx(turbine_numbers=0, basic_type='', ultimate_load=0, forti
     project10.extraction_data_main_construction_quantity_summary(main_booster_station_num, overhead_line_num,
                                                                  direct_buried_cable_num)
     Dict10 = RoundUp.round_dict(project10.generate_dict_main_construction_quantity_summary())
-    # print(Dict)
     Dict = dict(Dict1, **Dict2, **Dict3, **Dict4, **Dict5, **Dict6, **Dict7, **Dict8, **Dict9, **Dict10)
+    print(Dict)
     filename_box = ['cr8', 'result_chapter8']
     save_path = r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB2\autocrword\models\source\chapter_8'
     read_path = os.path.join(save_path, '%s.docx') % filename_box[0]

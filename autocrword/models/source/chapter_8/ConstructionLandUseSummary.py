@@ -8,7 +8,7 @@ import pandas as pd
 class ConstructionLandUseSummary:
     def __init__(self):
         # ===========selecting parameters=============
-        self.TurbineCapacity, self.TurbineNumbers = 0, 0
+        self.TurbineCapacity, self.turbine_numbers = 0, 0
         # ===========basic parameters==============
         self.material_warehouse_1, self.temporary_residential_office_1, self.steel_processing_plant_1 = 0, 0, 0,
         self.equipment_storage_1, self.construction_machinery_parking_1 = 0, 0
@@ -23,9 +23,9 @@ class ConstructionLandUseSummary:
 
     def extraction_data_construction_land_use_summary(self, turbine_capacity, turbine_numbers):
         self.TurbineCapacity = turbine_capacity
-        self.TurbineNumbers = turbine_numbers
+        self.turbine_numbers = turbine_numbers
 
-        if self.TurbineCapacity * self.TurbineNumbers <= 50:
+        if self.TurbineCapacity * self.turbine_numbers <= 50:
             self.material_warehouse_1 = 200
             self.material_warehouse_2 = 1000
             self.temporary_residential_office_1 = 1800
@@ -37,7 +37,7 @@ class ConstructionLandUseSummary:
             self.construction_machinery_parking_1 = 100
             self.construction_machinery_parking_2 = 1200
 
-        elif self.TurbineCapacity * self.TurbineNumbers >= 100:
+        elif self.TurbineCapacity * self.turbine_numbers >= 100:
             self.material_warehouse_1 = 400
             self.material_warehouse_2 = 2000
             self.temporary_residential_office_1 = 2200

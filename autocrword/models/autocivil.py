@@ -28,9 +28,6 @@ class civil_specialty(models.Model):
     basic_stone_ratio = fields.Selection(
         [(0, "0"), (1, "10%"), (2, "20%"), (3, "30%"), (4, "40%"), (5, "50%"), (6, "60%"), (7, "70%"),
          (8, "80%"), (9, "90%"), (1, '100%')], string=u"基础石方比", required=True)
-    TurbineCapacity = fields.Selection(
-        [(2, "2MW"), (2.2, "2.2MW"), (2.5, "2.5MW"), (3, "3MW"), (3.2, "3.2MW"), (3.3, "3.3MW"), (3.4, "3.4MW"),
-         (3.6, "3.6MW")], string=u"风机容量", required=True)
     road_earthwork_ratio = fields.Selection(
         [(0, "0"), (1, "10%"), (2, "20%"), (3, "30%"), (4, "40%"), (5, "50%"), (6, "60%"), (7, "70%"),
          (8, "80%"), (9, "90%"), (1, '100%')], string=u"道路土方比", required=True)
@@ -42,9 +39,9 @@ class civil_specialty(models.Model):
         [(2, "2MW"), (2.2, "2.2MW"), (2.5, "2.5MW"), (3, "3MW"), (3.2, "3.2MW"), (3.3, "3.3MW"), (3.4, "3.4MW"),
          (3.6, "3.6MW")], string=u"风机容量", required=True)
     ####升压站
-    Status = fields.Selection([("新建", u"新建"), ("利用原有", u"利用原有")], string=u"状态", required=True)
-    Grade = fields.Selection([(110, "110"), (220, "220")], string=u"等级", required=True)
-    Capacity = fields.Selection([(50, "50"), (100, "100"), (150, "150"), (200, "200")], string=u"容量", required=True)
+    Status = fields.Selection([("新建", u"新建"), ("利用原有", u"利用原有")], string=u"升压站状态", required=True)
+    Grade = fields.Selection([(110, "110"), (220, "220")], string=u"升压站等级", required=True)
+    Capacity = fields.Selection([(50, "50"), (100, "100"), (150, "150"), (200, "200")], string=u"升压站容量", required=True)
 
     ####道路
     TerrainType = fields.Selection(
@@ -70,6 +67,25 @@ class civil_specialty(models.Model):
         projectname = self.project_id
         projectname.civil_attachment_id = self
         projectname.civil_attachment_ok = u"已提交,版本：" + self.version_id
+
+        projectname.road_1_num = self.road_1_num
+        projectname.road_2_num = self.road_2_num
+        projectname.road_3_num = self.road_3_num
+
+        projectname.basic_type=self.basic_type
+        projectname.ultimate_load=self.ultimate_load
+        projectname.fortification_intensity = self.fortification_intensity
+        projectname.basic_earthwork_ratio = self.basic_earthwork_ratio
+        projectname.basic_stone_ratio = self.basic_stone_ratio
+        projectname.TurbineCapacity = self.TurbineCapacity
+        projectname.road_earthwork_ratio = self.road_earthwork_ratio
+        projectname.road_stone_ratio = self.road_stone_ratio
+        projectname.Status = self.Status
+        projectname.Grade = self.Grade
+        projectname.Capacity = self.Capacity
+        projectname.TerrainType = self.TerrainType
+
+
         return True
 
     def civil_refresh(self):
@@ -87,17 +103,16 @@ class civil_specialty(models.Model):
         return True
 
     def civil_generate(self):
-        print(self.road_1_num, self.road_2_num, self.road_3_num, self.turbine_numbers)
-
-        self.line_data = [self.line_1, self.line_2]
-        self.numbers_list_road = [self.road_1_num, self.road_2_num, self.road_3_num, self.turbine_numbers]
-        list = [self.turbine_numbers, self.basic_type, self.ultimate_load, self.fortification_intensity,
+        self.line_data = [float(self.line_1), float(self.line_2)]
+        self.numbers_list_road = [self.road_1_num, self.road_2_num, self.road_3_num, int(self.turbine_numbers)]
+        list = [int(self.turbine_numbers), self.basic_type, self.ultimate_load, self.fortification_intensity,
                 self.basic_earthwork_ratio / 10, self.basic_stone_ratio / 10, self.TurbineCapacity,
                 self.road_earthwork_ratio / 10,
                 self.road_stone_ratio / 10, self.Status, self.Grade, self.Capacity, self.TerrainType,
                 self.numbers_list_road,
-                self.overhead_line, self.direct_buried_cable, self.line_data, self.main_booster_station_num,
-                self.overhead_line_num, self.direct_buried_cable_num]
+                float(self.overhead_line), float(self.direct_buried_cable), self.line_data,
+                float(self.main_booster_station_num),
+                float(self.overhead_line_num), float(self.direct_buried_cable_num)]
         np = numpy.array(list)
         dict_keys = ['turbine_numbers', 'basic_type', 'ultimate_load', 'fortification_intensity',
                      'basic_earthwork_ratio',
