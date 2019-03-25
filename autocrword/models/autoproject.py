@@ -31,7 +31,7 @@ class project(models.Model):
     report_attachment_id = fields.Many2one('ir.attachment', string=u'可研报告成果')
 
     ###风能
-    turbine_numbers = fields.Char(u'机位数', default="待提交", readonly=True)
+    turbine_numbers_wind = fields.Char(u'机位数', default="待提交", readonly=True)
     ###电气
     line_1 = fields.Char(u'线路总挖方', default="待提交", readonly=True)
     line_2 = fields.Char(u'线路总填方', default="待提交", readonly=True)
@@ -58,10 +58,14 @@ class project(models.Model):
     Capacity = fields.Char(u'升压站容量', default="待提交", readonly=True)
     TerrainType = fields.Char(u'山地类型', default="待提交", readonly=True)
 
-
+    turbine_numbers_civil = fields.Char(u'机位数', default="待提交", readonly=True)
 
     @api.multi
     def button_project(self):
+
+        if(self.turbine_numbers_civil!=self.turbine_numbers_wind):
+            pass
+
         if(str(self.wind_attachment_id)=='autoreport.wind()'):
             raise exceptions.UserError('该项目风资源资料未上传，请上传后再生成报告。')
         if (str(self.civil_attachment_id) == 'autoreport.civil()'):

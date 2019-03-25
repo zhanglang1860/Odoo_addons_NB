@@ -72,25 +72,26 @@ class civil_specialty(models.Model):
         projectname.road_2_num = self.road_2_num
         projectname.road_3_num = self.road_3_num
 
-        projectname.basic_type=self.basic_type
-        projectname.ultimate_load=self.ultimate_load
+        projectname.basic_type = self.basic_type
+        projectname.ultimate_load = self.ultimate_load
         projectname.fortification_intensity = self.fortification_intensity
-        projectname.basic_earthwork_ratio = self.basic_earthwork_ratio
-        projectname.basic_stone_ratio = self.basic_stone_ratio
+        projectname.basic_earthwork_ratio = str(self.basic_earthwork_ratio * 10) + "%"
+        projectname.basic_stone_ratio = str(self.basic_stone_ratio * 10) + "%"
         projectname.TurbineCapacity = self.TurbineCapacity
-        projectname.road_earthwork_ratio = self.road_earthwork_ratio
-        projectname.road_stone_ratio = self.road_stone_ratio
+        projectname.road_earthwork_ratio = str(self.road_earthwork_ratio * 10) + "%"
+        projectname.road_stone_ratio = str(self.road_stone_ratio * 10) + "%"
         projectname.Status = self.Status
         projectname.Grade = self.Grade
         projectname.Capacity = self.Capacity
         projectname.TerrainType = self.TerrainType
 
+        projectname.turbine_numbers_civil = self.turbine_numbers
 
         return True
 
     def civil_refresh(self):
         projectname = self.project_id
-        self.turbine_numbers = projectname.turbine_numbers
+        self.turbine_numbers = projectname.turbine_numbers_wind
 
         self.line_1 = projectname.line_1
         self.line_2 = projectname.line_2

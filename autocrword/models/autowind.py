@@ -24,7 +24,7 @@ class windenergy_specialty(models.Model):
         myself = self
         projectname.wind_attachment_id = myself
         projectname.wind_attachment_ok = u"已提交,版本：" + self.version_id
-        projectname.turbine_numbers = self.turbine_numbers
+        projectname.turbine_numbers_wind = self.turbine_numbers
         civilname = self.turbine_numbers
         return True
 
