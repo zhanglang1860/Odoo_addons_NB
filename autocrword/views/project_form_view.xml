@@ -46,7 +46,8 @@
                         </group>
                     </group>
                     <group name="group_road" string="土建提交明细">
-                        <group name="group_left">
+                        <group name="group_left" decoration-bf="turbine_numbers_civil!=turbine_numbers_wind" >
+
                             <field name="turbine_numbers_civil"/>
                             <field name="road_1_num"/>
                             <field name="road_2_num"/>

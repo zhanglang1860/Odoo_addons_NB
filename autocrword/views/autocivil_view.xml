@@ -12,7 +12,7 @@
                            string="提交报告" confirm="是否确认提交该项目土建资料？" />
 
                    <button name="civil_refresh" type="object" groups="autocrword.civil_group_user"
-                           string="刷新" />
+                           string="刷新" class="btn btn-info"/>
                </header>
                <sheet>
                     <group name="group_top">
