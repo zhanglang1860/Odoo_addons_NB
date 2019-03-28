@@ -7,7 +7,7 @@
             <tree>
                 <field name = "project_name"/>
                 <field name = "order_number"/>
-                <field name = "announce_capacity"/>
+                <field name = "project_capacity"/>
                 <field name = "wind_attachment_ok"/>
                 <field name = "electrical_attachment_ok"/>
                 <field name = "civil_attachment_ok"/>

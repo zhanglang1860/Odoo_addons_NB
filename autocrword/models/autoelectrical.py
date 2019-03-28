@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
-from generate_chapter6_docx import generate_electrical_docx
+from doc_6 import generate_electrical_docx
 import base64
 
 
@@ -11,7 +11,7 @@ class electrical_specialty(models.Model):
     _rec_name = 'project_id'
     project_id = fields.Many2one('autoreport.project', string='项目名', required=True)
     version_id = fields.Char(u'版本', required=True, default="1.0")
-    voltage_class = fields.Selection([('plain', u"平原"), ('mountain', u"山地")], string=u"地形", required=True)
+    voltage_class = fields.Selection([(0, u"平原"), (1, u"山地")], string=u"地形", required=True)
     lenth_singlejL240 = fields.Float(u'单回线路JL/G1A-240/30长度（km）', required=True)
     lenth_doublejL240 = fields.Float(u'双回线路JL/G1A-240/30长度（km）', required=True)
     yjlv95 = fields.Float(u'直埋电缆YJLV22-26/35-3×95（km）', required=True)
@@ -32,10 +32,10 @@ class electrical_specialty(models.Model):
     @api.multi
     def electrical_generate(self):
         args = [self.lenth_singlejL240, self.lenth_doublejL240, self.yjlv95, self.yjv300,
-                self.turbine_numbers, self.circuit_number]
+                int(self.turbine_numbers), self.circuit_number]
         generate_electrical_docx(self.voltage_class, args)
         reportfile_name = open(
-            file=r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB2\autocrword\models\source\chapter_6\result_chapter6_e.docx',
+            file=r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB2\autocrword\models\source\chapter_6\result_chapter6.docx',
             mode='rb')
         byte = reportfile_name.read()
         reportfile_name.close()
@@ -72,7 +72,7 @@ class electrical_specialty(models.Model):
         projectname.electrical_attachment_id = myself
         projectname.electrical_attachment_ok = u"已提交,版本：" + self.version_id
 
-        projectname.line_1=self.line_1
+        projectname.line_1 = self.line_1
         projectname.line_2 = self.line_2
         projectname.overhead_line = self.overhead_line
         projectname.direct_buried_cable = self.direct_buried_cable
@@ -80,8 +80,16 @@ class electrical_specialty(models.Model):
         projectname.direct_buried_cable_num = self.direct_buried_cable_num
         projectname.main_booster_station_num = self.main_booster_station_num
 
+        projectname.turbine_numbers = self.turbine_numbers
+        projectname.voltage_class = self.voltage_class
+        projectname.lenth_singlejL240 = self.lenth_singlejL240
+        projectname.lenth_doublejL240 = self.lenth_doublejL240
+        projectname.yjlv95 = self.yjlv95
+        projectname.yjv300 = self.yjv300
+        projectname.circuit_number = self.circuit_number
+
         return True
 
     def electrical_refresh(self):
         projectname = self.project_id
-        self.turbine_numbers = projectname.turbine_numbers
+        self.turbine_numbers = projectname.turbine_numbers_wind

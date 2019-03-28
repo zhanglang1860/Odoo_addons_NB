@@ -12,7 +12,7 @@ class project(models.Model):
     _rec_name = 'project_name'
     project_name = fields.Char(u'项目名', required=True, write=['autocrword.project_group_user'])
     order_number = fields.Char(u'项目编号', required=True)
-    announce_capacity = fields.Float(u'项目容量', required=True)
+    project_capacity = fields.Float(u'项目容量', required=True)
     active = fields.Boolean(u'续存？', default=True)
     date_start = fields.Date(u'项目启动日期', default=fields.date.today())
     dat_end = fields.Date(u'项目要求完成日期',default=fields.date.today()+datetime.timedelta(days=10))
@@ -30,6 +30,8 @@ class project(models.Model):
     economic_attachment_ok = fields.Char(u'经评数据', default="待提交", readonly=True)
     report_attachment_id = fields.Many2one('ir.attachment', string=u'可研报告成果')
 
+    staff = fields.Integer(u'工程定员', required=True)
+
     ###风能
     turbine_numbers_wind = fields.Char(u'机位数', default="待提交", readonly=True)
     ###电气
@@ -40,6 +42,14 @@ class project(models.Model):
     overhead_line_num = fields.Char(u'架空线路塔基数量', default="待提交", readonly=True)
     direct_buried_cable_num = fields.Char(u'直埋电缆长度', default="待提交", readonly=True)
     main_booster_station_num = fields.Char(u'主变数量', default="待提交", readonly=True)
+
+    voltage_class = fields.Char(u'地形', default="待提交", readonly=True)
+    lenth_singlejL240 = fields.Char(u'单回线路JL/G1A-240/30长度（km）', default="待提交", readonly=True)
+    lenth_doublejL240 = fields.Char(u'双回线路JL/G1A-240/30长度（km）', default="待提交", readonly=True)
+    yjlv95 = fields.Char(u'直埋电缆YJLV22-26/35-3×95（km）', default="待提交", readonly=True)
+    yjv300 = fields.Char(u'直埋电缆YJV22-26/35-1×300（km）', default="待提交", readonly=True)
+    circuit_number = fields.Char(u'线路回路数', default="待提交", readonly=True)
+
     ###土建
     road_1_num = fields.Char(u'场外改扩建道路', default="待提交", readonly=True)
     road_2_num = fields.Char(u'进站道路', default="待提交", readonly=True)
@@ -59,6 +69,8 @@ class project(models.Model):
     TerrainType = fields.Char(u'山地类型', default="待提交", readonly=True)
 
     turbine_numbers_civil = fields.Char(u'机位数', default="待提交", readonly=True)
+    turbine_numbers_electric = fields.Char(u'机位数', default="待提交", readonly=True)
+
 
     @api.multi
     def button_project(self):

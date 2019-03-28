@@ -10,7 +10,6 @@ class windenergy_specialty(models.Model):
     _description = 'Wind energy input'
     _rec_name = 'project_id'
     project_id = fields.Many2one('autoreport.project', string=u'项目名', required=True)
-    civil_id = fields.Many2one('autoreport.civil', string=u'项目名', required=True)
     version_id = fields.Char(u'版本', required=True, default="1.0")
     turbine_numbers = fields.Integer(u'机位数', required=True)
     generator_ids = fields.Many2many('autoreport.generator', required=True, string=u'比选机型')
@@ -19,13 +18,11 @@ class windenergy_specialty(models.Model):
     @api.multi
     def button_wind(self):
         projectname = self.project_id
-        civilname = self.civil_id.turbine_numbers
-        windattachmentid = projectname.wind_attachment_id
         myself = self
         projectname.wind_attachment_id = myself
         projectname.wind_attachment_ok = u"已提交,版本：" + self.version_id
         projectname.turbine_numbers_wind = self.turbine_numbers
-        civilname = self.turbine_numbers
+
         return True
 
     @api.multi

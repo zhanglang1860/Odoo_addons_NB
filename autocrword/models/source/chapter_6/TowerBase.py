@@ -47,7 +47,7 @@ class TowerBase(TowerType):
         self.steel_unit = steel_unit
         self.foot_bolt_unit = foot_bolt_unit
 
-        if self.project_chapter6_type == ["山地"]:
+        if self.project_chapter6_type == 1:
             if self.used_numbers_base_type == "ZJC1":
                 self.used_numbers_base_zjc1 = round_up(
                     (self.used_numbers_single_Z2_30 + self.used_numbers_double_SZ2_30) / 2, 0)
@@ -116,7 +116,7 @@ class TowerBase(TowerType):
                 self.foot_bolt_unit_layer = self.foot_bolt_unit
                 self.foot_bolt_sum_layer = self.used_numbers_base_layer * self.foot_bolt_unit_layer
 
-        if self.project_chapter6_type == ["平地"]:
+        if self.project_chapter6_type == 0:
             if self.used_numbers_base_type == "ZJC1":
                 self.used_numbers_base_zjc1 = round_up(
                     (self.used_numbers_single_Z2_30 + self.used_numbers_double_SZ2_30) * 0.6, 0)

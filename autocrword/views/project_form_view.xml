@@ -19,27 +19,34 @@
                         </group>
                         <group name="group_right">
                             <field name="company_id" options="{'no_create_edit': 1}"/>
-                            <field name="announce_capacity"/>
-                            <field name="wind_attachment_ok"/>
-                            <field name="electrical_attachment_ok"/>
-                            <field name="civil_attachment_ok"/>
-                            <field name="economic_attachment_ok"/>
+                            <field name="project_capacity"/>
+                            <field name="staff"/>
                         </group>
                     </group>
-                    <group name="group_mid" string="项目资料">
-                        <field name="message_main_attachment_id"/>
+                    <group name="group_sumbit" string="项目提交情况" col="4" colspan="2">
+                        <field name="wind_attachment_ok"/>
+                        <field name="electrical_attachment_ok"/>
+                        <field name="civil_attachment_ok"/>
+                        <field name="economic_attachment_ok"/>
                     </group>
                     <group name="group_wind" string="风资源提交明细">
                         <field name="turbine_numbers_wind"/>
                     </group>
                     <group name="group_electrical" string="电气提交明细">
                         <group name="group_left">
+                            <field name="turbine_numbers_electric"/>
+                            <field name="voltage_class"/>
+                            <field name="lenth_singlejL240"/>
+                            <field name="lenth_doublejL240"/>
+                            <field name="yjlv95"/>
+                            <field name="yjv300"/>
+                            <field name="circuit_number"/>
+                        </group>
+                        <group name="group_right">
                             <field name="line_1"/>
                             <field name="line_2"/>
                             <field name="overhead_line"/>
                             <field name="direct_buried_cable"/>
-                        </group>
-                        <group name="group_right">
                             <field name="overhead_line_num"/>
                             <field name="direct_buried_cable_num"/>
                             <field name="main_booster_station_num"/>
@@ -71,6 +78,9 @@
                             <field name="Capacity"/>
                             <field name="TerrainType"/>
                         </group>
+                    </group>
+                    <group name="group_mid" string="项目资料">
+                        <field name="message_main_attachment_id"/>
                     </group>
                     <group name="group_bottom">
                         <field name="report_attachment_id"/>

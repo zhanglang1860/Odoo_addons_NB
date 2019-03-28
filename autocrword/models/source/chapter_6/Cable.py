@@ -21,7 +21,7 @@ class Cable(ElectricalCircuit):
         self.cable_project = cable_project
         self.cable_model = cable_model
 
-        if self.project_chapter6_type == ["山地"]:
+        if self.project_chapter6_type == 1:
             if self.cable_project == "高压电缆":
                 if self.cable_model == "YJLV22_26_35_3_95_gaoya":
                     self.cable_model_YJLV22_26_35_3_95_gaoya = self.buried_cable_35_3
@@ -36,7 +36,7 @@ class Cable(ElectricalCircuit):
                 elif self.cable_model == "YJV22_26_35_1_300_dianlanzhongduan":
                     self.cable_model_YJV22_26_35_1_300_dianlanzhongduan = self.line_loop_number * 2
 
-        if self.project_chapter6_type == ["平地"]:
+        if self.project_chapter6_type == 0:
             if self.cable_project == "高压电缆":
                 if self.cable_model == "YJLV22_26_35_3_95_gaoya":
                     self.cable_model_YJLV22_26_35_3_95_gaoya = self.buried_cable_35_3

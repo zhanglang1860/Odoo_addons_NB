@@ -38,7 +38,6 @@ def generate_electrical_docx(project_chapter6_type,args):
     tower_height_list = [32, 32, 27, 37, 49, 37, 37, 42, 54, 0]
     tower_foot_distance_list = [5.5, 5.5, 6, 5, 6, 7, 8, 6, 8, 0]
 
-    project_chapter6_type = ['山地']
     project02 = ElectricalInsulator(project_chapter6_type, *args)
     project02.sum_cal_tower_type(tower_type_list, tower_type_high_list, tower_weight_list, tower_height_list,
                                  tower_foot_distance_list)
@@ -179,7 +178,7 @@ def generate_electrical_docx(project_chapter6_type,args):
             Dict_6['YJLV22_26_35_3_95_dianlanzhongduan'] = str(project05.cable_model_YJLV22_26_35_3_95_dianlanzhongduan)
         if key_dict == 'YJV22_26_35_1_300_dianlanzhongduan':
             Dict_6['YJV22_26_35_1_300_dianlanzhongduan'] = str(project05.cable_model_YJV22_26_35_1_300_dianlanzhongduan)
-    # print(Dict_6)
+    print(Dict_6)
     path_images = r"C:\Users\Administrator\PycharmProjects\docx_project\files\results"
     tpl = DocxTemplate(r'C:\Users\Administrator\PycharmProjects\Odoo_addons_NB\autocrword\models\chapter_6\CR_chapter6_template.docx')
     tpl.render(Dict_6)

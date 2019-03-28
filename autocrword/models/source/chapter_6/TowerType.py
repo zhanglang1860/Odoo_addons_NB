@@ -31,7 +31,7 @@ class TowerType(ElectricalCircuit):
         self.tower_height = tower_height
         self.tower_foot_distance = tower_foot_distance
 
-        if self.project_chapter6_type == ["山地"]:
+        if self.project_chapter6_type == 1:
             if self.tower_type == "单回耐张塔":
 
                 if self.tower_type_high == "J2_24" or self.tower_type_high == "J4_24":
@@ -84,10 +84,11 @@ class TowerType(ElectricalCircuit):
                 if self.tower_type_high == "角钢":
                     self.used_numbers = self.tur_number
                     self.used_numbers_angle_steel = self.used_numbers
+                    print(type(self.tower_weight),type(self.used_numbers))
                     self.tower_number_weight = self.tower_weight * self.used_numbers
                     self.tower_area = 0
 
-        if self.project_chapter6_type == ["平地"]:
+        if self.project_chapter6_type == 0:
             if self.tower_type == "单回耐张塔":
                 if self.tower_type_high == "J2_24" or self.tower_type_high == "J4_24":
                     self.used_numbers = round_up(self.single_circuit / 4, 0)

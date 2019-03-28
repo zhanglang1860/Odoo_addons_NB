@@ -28,7 +28,7 @@ class ElectricalInsulator(TowerType):
         self.project_chapter6_type = project_chapter6_ty
         self.electrical_insulator_name_li = electrical_insulator_name_li
         self.electrical_insulator_type_li = electrical_insulator_type_li
-        if self.project_chapter6_type == ["山地"]:
+        if self.project_chapter6_type == 1:
             for i in range(0, len(self.electrical_insulator_name_li)):
                 self.electrical_insulator_name = self.electrical_insulator_name_li[i]
                 self.electrical_insulator_type = self.electrical_insulator_type_li[i]
@@ -70,7 +70,7 @@ class ElectricalInsulator(TowerType):
                 self.used_numbers_YH5WZ_51_134 = (self.tur_number + self.line_loop_number) * 3
 
 
-        if self.project_chapter6_type == ["平地"]:
+        if self.project_chapter6_type == 0:
             for i in range(0, len(self.electrical_insulator_name_li)):
                 self.electrical_insulator_name = self.electrical_insulator_name_li[i]
                 self.electrical_insulator_type = self.electrical_insulator_type_li[i]
