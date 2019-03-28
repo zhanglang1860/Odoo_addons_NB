@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="view_tree_wind_res" model="ir.ui.view">
+        <field name="name">Wind_Information Form</field>
+        <field name="model">autoreport.windres</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="tur_id"/>
+                <field name="X"/>
+                <field name="Y"/>
+                <field name="Z"/>
+                <field name="H"/>
+                <field name="Latitude"/>
+                <field name="Longitude"/>
+                <field name="Weibull_A"/>
+                <field name="Weibull_K"/>
+                <field name="EnergyDensity"/>
+                <field name="PowerGeneration"/>
+                <field name="PowerGeneration_Weak"/>
+                <field name="AverageWindSpeed"/>
+                <field name="AverageWindSpeed_Weak"/>
+                <field name="Weak"/>
+                <field name="WindShear_Avg"/>
+                <field name="InflowAngle_Max"/>
+                <field name="InflowAngle_Max_Deg"/>
+                <field name="NextTur"/>
+                <field name="NextLength_M"/>
+                <field name="Sectors"/>
+
+            </tree>
+
+        </field>
+    </record>
+
+
+    <record id="view_form_wind_res" model="ir.ui.view">
+        <field name="name">Wind_Information Form</field>
+        <field name="model">autoreport.windres</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="tur_id"/>
+                <field name="X"/>
+                <field name="Y"/>
+                <field name="Z"/>
+                <field name="H"/>
+                <field name="Latitude"/>
+                <field name="Longitude"/>
+                <field name="WeibullA"/>
+                <field name="WeibullK"/>
+                <field name="EnergyDensity"/>
+                <field name="PowerGeneration"/>
+                <field name="PowerGeneration_Weak"/>
+                <field name="AverageWindSpeed"/>
+                <field name="AverageWindSpeed_Weak"/>
+                <field name="Weak"/>
+                <field name="WindShear_Avg"/>
+                <field name="InflowAngle_Max"/>
+                <field name="InflowAngle_Max_Deg"/>
+                <field name="NextTur"/>
+                <field name="NextLength_M"/>
+                <field name="Sectors"/>
+
+            </form>
+
+        </field>
+    </record>
+</odoo>
+

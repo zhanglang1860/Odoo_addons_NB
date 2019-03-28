@@ -20,9 +20,11 @@
                          <group name="group_right">
                             <field name="turbine_numbers" />
                          </group>
+                         <!--<field name="project_res" />-->
                     </group>
                     <group name="group_bottom">
                         <field name="generator_ids" />
+                        <field name="project_res" />
                         <field name="report_attachment_id" />
                     </group>
 

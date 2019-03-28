@@ -15,6 +15,8 @@ class windenergy_specialty(models.Model):
     generator_ids = fields.Many2many('autoreport.generator', required=True, string=u'比选机型')
     report_attachment_id = fields.Many2one('ir.attachment', string=u'可研报告风能章节')
 
+    project_res= fields.Many2many('autoreport.windres', string=u'机位结果', required=True)
+
     @api.multi
     def button_wind(self):
         projectname = self.project_id
@@ -152,3 +154,43 @@ class generator(models.Model):
     pneumatic_brake = fields.Char(u'安全制动类型')
     mechanical_brake = fields.Char(u'机械制动类型')
     three_second_maximum = fields.Char(u'生存风速', required=True)
+
+
+class windres(models.Model):
+    _name = 'autoreport.windres'
+    _description = 'Wind energy result input'
+    _rec_name = 'tur_id'
+
+    Turbine = fields.Char(u'风力发电机(kW)')
+    tur_id = fields.Char(u'风机编号', required=True)
+    X = fields.Float(u'X', required=True)
+    Y = fields.Float(u'Y', required=True)
+    Z = fields.Float(u'Z', required=True)
+    H = fields.Float(u'轮毂高度', required=True)
+    Latitude = fields.Float(u'经度', required=True)
+    Longitude = fields.Float(u'纬度', required=True)
+    TrustCoefficient = fields.Char(u'信任系数')
+    WeibullA = fields.Float(u'A')
+    WeibullK = fields.Float(u'K')
+    EnergyDensity = fields.Float(u'能量密度')
+    PowerGeneration = fields.Float(u'发电量', required=True)
+    PowerGeneration_Weak = fields.Float(u'考虑尾流效应的发电量', required=True)
+    CapacityCoe = fields.Float(u'容量系数')
+    AverageWindSpeed = fields.Float(u'平均风速')
+    TurbulenceEnv_StrongWind = fields.Float(u'强风状态下的平均环境湍流强度')
+    Turbulence_StrongWind = fields.Float(u'强风状态下的平均总体湍流强度', required=True)
+    AverageWindSpeed_Weak = fields.Float(u'考虑尾流效应的平均风速', required=True)
+    Weak = fields.Float(u'尾流效应导致的平均折减率',required=True)
+    AirDensity = fields.Float(u'该点的空气密度')
+    WindShear_Avg = fields.Float(u'平均风切变指数')
+    WindShear_Max = fields.Float(u'最大风切变指数')
+    WindShear_Max_Deg = fields.Float(u'最大风切变指数对应方向扇区')
+    InflowAngle_Avg = fields.Float(u'绝对值平均入流角')
+    InflowAngle_Max = fields.Float(u'最大入流角', required=True)
+    InflowAngle_Max_Deg = fields.Float(u'出现最大入流角的风向扇区', required=True)
+    NextTur = fields.Char(u' 最近相邻风机的标签', required=True)
+    NextLength_M = fields.Char(u'相邻风机的最近距离')
+    Diameter = fields.Char(u'叶轮直径')
+    NextLength_D = fields.Char(u'以叶轮直径为单位的相邻风机最近距离')
+    NextDeg = fields.Char(u'最近相邻风机的方位角')
+    Sectors = fields.Char(u'扇区数量', required=True)

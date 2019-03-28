@@ -20,7 +20,6 @@
     'data': [
          'security/autocrword_security.xml',
          'security/ir.model.access.csv',
-         # 'views/windgenerator_view.xml',
          'views/autocivil_view.xml',
          'views/civil_view.xml',
          'views/electrical_view.xml',
@@ -34,6 +33,8 @@
          'views/autocrword_menu.xml',
          # 'views/autocrword_rule.xml',
          'reports/autocrword_project_report.xml',
+         # 'views/wind_res_view.xml'
+         # 'views/windgenerator_view.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

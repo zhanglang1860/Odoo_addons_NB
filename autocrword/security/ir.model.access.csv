@@ -7,6 +7,8 @@ access_electrical_manager,ProjectManager,model_autoreport_electrical,autocrword_
 access_economic_manager,ProjectManager,model_autoreport_economic,autocrword_group_manager,1,1,1,1
 access_outputcurve_manager,ProjectManager,model_autoreport_outputcurve,autocrword_group_manager,1,1,1,1
 access_efficiency_manager,ProjectManager,model_autoreport_efficiency,autocrword_group_manager,1,1,1,1
+access_result_manager,ProjectManager,model_autoreport_windres,autocrword_group_manager,1,1,1,1
+
 
 access_windenergy_winduser,WindUser,model_autoreport_windenergy,wind_group_user,1,1,1,1
 access_outputcurve_winduser,WindUser,model_autoreport_outputcurve,wind_group_user,1,1,0,0

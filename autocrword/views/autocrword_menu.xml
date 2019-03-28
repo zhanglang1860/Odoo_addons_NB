@@ -3,6 +3,8 @@
     <!-- Autocrword App Menu -->
     <menuitem id="menu_autocrword" name="风能自动报告编制系统" />
 
+
+
     <!-- Action to open the Project list -->
 
     <act_window id="action_autocrword_project"
@@ -35,6 +37,10 @@
         parent="menu_autocrword"
         action="action_autocrword_wind"
     />
+
+
+
+
 
         <!-- Action to open the Civil list -->
 
@@ -81,6 +87,23 @@
         name="概算与经评"
         parent="menu_autocrword"
         action="action_autocrword_economic"
+    />
+
+
+        <!-- Action to open the Project list -->
+
+    <act_window id="action_autocrword_result"
+        name="项目结果导入"
+        res_model="autoreport.windres"
+        view_mode="tree,form"
+    />
+
+    <!-- Menu item to open the Project list -->
+
+    <menuitem id="menu_autocrword_result"
+        name="项目结果导入"
+        parent="menu_autocrword_wind"
+        action="action_autocrword_result"
     />
 
 </odoo>
